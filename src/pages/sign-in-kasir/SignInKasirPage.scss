@@ -1,0 +1,35 @@
+#sign-in-kasir-page {
+  width: 100%;
+  .left-box {
+    background-color: #ff5348;
+    min-height: 1024px;
+    .left-box-container {
+      display: flex;
+      justify-content: flex-end;
+      padding: 207px 23px 0px 0px;
+    }
+  }
+  .right-box {
+    .right-box-container {
+      padding: 88px 169px 0px 113px;
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .title {
+        padding-top: 102px;
+        h1 {
+          margin: 0;
+          line-height: 54px;
+          font-size: 36px;
+        }
+        p {
+          font-weight: 500;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

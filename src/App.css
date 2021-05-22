@@ -3,8 +3,34 @@
 * {
   box-sizing: border-box;
 }
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+}
 
-a {
-  text-decoration: none;
-  color: #0a0a0ada;
+h1 {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.ant-btn-primary {
+  color: #fff;
+  background: #ff5348;
+  border-color: #ff5348;
+  border-radius: 9px;
+  height: 55px;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  color: #fff;
+  background: #f5695f;
+  border-color: #f5695f;
 }
