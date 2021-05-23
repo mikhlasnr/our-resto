@@ -3,6 +3,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: #ffffff;
@@ -15,7 +16,7 @@ h1 {
 
 h2 {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .ant-btn-primary {
