@@ -31,7 +31,7 @@ h2 {
 
 .ant-btn-primary:hover,
 .ant-btn-primary:focus {
-  color: #fff;
-  background: #f5695f;
-  border-color: #f5695f;
+  background: #ff5348;
+  border-color: #ff5348;
+  box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
 }

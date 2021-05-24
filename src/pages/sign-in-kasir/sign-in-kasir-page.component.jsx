@@ -12,12 +12,12 @@ class SignInKasirPage extends Component {
     return (
       <section id="sign-in-kasir-page">
         <Row>
-          <Col span={12} className="left-box">
+          <Col span={12} className="background">
             <div className="left-box-container">
               <img src={AvatarSignInKasir} alt="avatar" />
             </div>
           </Col>
-          <Col span={12} className="right-box">
+          <Col span={12} className="sign-in">
             <div className="right-box-container">
               <div className="logo-container">
                 <Logo />
