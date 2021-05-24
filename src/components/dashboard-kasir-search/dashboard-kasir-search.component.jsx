@@ -12,11 +12,12 @@ const DashboardKasirSearch = () => {
         <Logo />
       </div>
       <Input
-        placeholder="default size"
+        placeholder="Cari menu"
         prefix={
           <SearchOutlined style={{ fontSize: "24px", color: "#FF5348" }} />
         }
         className="input-search"
+        bordered={false}
       />
     </div>
   );

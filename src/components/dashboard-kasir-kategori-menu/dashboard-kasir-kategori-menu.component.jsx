@@ -13,7 +13,7 @@ class DashboardKasirKategoriMenu extends Component {
       <div id="kategori-menu">
         <Divider orientation="left">Kategori Menu</Divider>
         <Row gutter={24} className="kategori-menu-items">
-          <Col span={6}>
+          <Col flex="auto">
             <div className="kategori-menu-item">
               <div className="kategori-menu-container">
                 <KategoriBurger />
@@ -21,7 +21,7 @@ class DashboardKasirKategoriMenu extends Component {
               </div>
             </div>
           </Col>
-          <Col span={6}>
+          <Col flex="auto">
             <div className="kategori-menu-item kategori-menu-item-active">
               <div className="kategori-menu-container">
                 <KategoriBurger />
@@ -29,7 +29,7 @@ class DashboardKasirKategoriMenu extends Component {
               </div>
             </div>
           </Col>
-          <Col span={6}>
+          <Col flex="auto">
             <div className="kategori-menu-item">
               <div className="kategori-menu-container">
                 <KategoriBurger />
@@ -37,7 +37,15 @@ class DashboardKasirKategoriMenu extends Component {
               </div>
             </div>
           </Col>
-          <Col span={6}>
+          <Col flex="auto">
+            <div className="kategori-menu-item">
+              <div className="kategori-menu-container">
+                <KategoriBurger />
+                <span className="kategori-menu-title">Burger</span>
+              </div>
+            </div>
+          </Col>
+          <Col flex="auto">
             <div className="kategori-menu-item">
               <div className="kategori-menu-container">
                 <KategoriBurger />
