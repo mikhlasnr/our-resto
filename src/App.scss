@@ -1,0 +1,47 @@
+@import "~antd/dist/antd.css";
+@import "./colors";
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span {
+  color: $textColorPrimary;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.ant-btn-primary {
+  background: $primaryColor;
+  border-color: $primaryColor;
+  border-radius: 9px;
+  height: 55px;
+  span {
+    color: $textColorSecondary;
+  }
+
+  &:hover,
+  &:focus {
+    background: $primaryColor;
+    border-color: $primaryColor;
+    box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
+  }
+}

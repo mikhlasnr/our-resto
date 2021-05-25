@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 
 // Router
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // Import Component Pages
 import DashBoadrKasirPage from "./pages/dashboard-kasir/dashboard-kasir-page.component";

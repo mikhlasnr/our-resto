@@ -30,9 +30,9 @@ const DashboardKasirPilihMenu = () => {
                       </div>
                     </Col>
                     <Col flex="auto">
-                      <a className="btn-add">
+                      <div className="btn-add">
                         <span>add</span>
-                      </a>
+                      </div>
                     </Col>
                   </Row>
                 </div>

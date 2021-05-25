@@ -1,7 +1,8 @@
+@import "../../colors";
 #sign-in-kasir-page {
   width: 100%;
   .background {
-    background-color: #ff5348;
+    background-color: $primaryColor;
     min-height: 1024px;
     .left-box-container {
       display: flex;

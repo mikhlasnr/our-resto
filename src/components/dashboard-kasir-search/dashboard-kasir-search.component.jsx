@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Col } from "antd";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
