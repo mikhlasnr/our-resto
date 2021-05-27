@@ -1,11 +1,29 @@
 .dashboard-kasir-pesanan {
-  max-height: 516px;
-  height: 70%;
-  margin-bottom: 5rem;
-  overflow: hidden;
+  padding-bottom: 5em;
+  flex-grow: 1;
+
   .pesanan-list-items {
-    padding-top: 30px;
-    height: 100%;
-    overflow: auto;
+    margin-top: 1em;
+    max-height: 380px;
+    overflow-y: scroll; /* Add the ability to scroll */
+    -ms-overflow-style: none; /* IE and Edge */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    scrollbar-width: none; /* Firefox */
+  }
+  .pesanan-total {
+    border-top: 1px solid black;
+    border-style: dashed none none none;
+    margin-top: 3em;
+    padding-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+    }
   }
 }

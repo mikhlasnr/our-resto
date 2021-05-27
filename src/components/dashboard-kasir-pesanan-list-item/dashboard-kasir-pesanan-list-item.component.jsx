@@ -2,13 +2,33 @@ import React from "react";
 import "./dashboard-kasir-pesanan-list-item.styles.scss";
 
 import { Row, Col, Avatar, Image, Button, Input } from "antd";
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
+import { PlusOutlined, MinusOutlined, DeleteFilled } from "@ant-design/icons";
 
 import BurgerMantap from "../../assets/images/kategori-menu/burger/menu/mantap-burger.png";
 
 const DashboardKasirPesananListItem = () => {
+  const handleShowDeleteBtn = e => {
+    e.preventDefault();
+    console.log(
+      e.target.parentElement.parentElement.parentElement.parentElement
+    );
+  };
+
+  const handleDeleteItem = e => {
+    e.preventDefault();
+    alert("click");
+  };
   return (
     <div className="dashboard-kasir-pesanan-list-item">
+      <div className="list-item-delete">
+        <Button
+          size="small"
+          className="delete-item"
+          shape="circle"
+          icon={<DeleteFilled style={{ color: "#FFFFFF" }} />}
+          onClick={handleDeleteItem}
+        />
+      </div>
       <div className="dashboard-kasir-pesanan-list-item-container">
         <Row>
           <Col flex={1}>
@@ -27,10 +47,11 @@ const DashboardKasirPesananListItem = () => {
                   />
                 }
                 style={{ backgroundColor: "#FFB649", borderRadius: "14px" }}
+                onClick={handleShowDeleteBtn}
               />
             </div>
           </Col>
-          <Col flex={3}>
+          <Col flex={2}>
             <div className="list-item-detail">
               <h2>Mantap Burger</h2>
               <p>Rp 23.000</p>

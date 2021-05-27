@@ -17,6 +17,14 @@
           }
         }
       }
+      &:hover {
+        background-color: #ff5348;
+        .kategori-menu-container {
+          .kategori-menu-title {
+            color: #ffffff;
+          }
+        }
+      }
 
       .kategori-menu-container {
         display: flex;

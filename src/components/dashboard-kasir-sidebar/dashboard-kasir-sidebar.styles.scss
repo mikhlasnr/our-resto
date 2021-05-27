@@ -1,5 +1,7 @@
 @import "../../colors";
 #dashboard-kasir-sidebar {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
   padding: 87px 50px 83px 73px;
 }

@@ -12,6 +12,11 @@ const DashboardKasirPesanan = () => {
         <DashboardKasirPesananListItem />
         <DashboardKasirPesananListItem />
         <DashboardKasirPesananListItem />
+        <DashboardKasirPesananListItem />
+      </div>
+      <div className="pesanan-total">
+        <h2>Total</h2>
+        <p>Rp 99.999</p>
       </div>
     </div>
   );
