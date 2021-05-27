@@ -2,7 +2,7 @@ import React from "react";
 import "./dashboard-kasir-profile.styles.scss";
 import avatarProfile from "../../assets/images/avatarProfile.png";
 import { Avatar, Badge, Image } from "antd";
-import { Menu, Dropdown, Button } from "antd";
+import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 const menu = (

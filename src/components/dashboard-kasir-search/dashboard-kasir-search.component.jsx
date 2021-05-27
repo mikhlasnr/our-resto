@@ -7,7 +7,7 @@ import "./dashboard-kasir-search.styles.scss";
 const DashboardKasirSearch = () => {
   return (
     <div id="dashboard-kasir-search">
-      <div className="logo-container">
+      <div className="search-logo">
         <Logo />
       </div>
       <Input

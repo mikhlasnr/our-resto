@@ -10,7 +10,7 @@ import { Row, Col, Divider } from "antd";
 class DashboardKasirKategoriMenu extends Component {
   render() {
     return (
-      <div id="kategori-menu">
+      <div id="dashboard-kasir-kategori-menu">
         <Divider orientation="left">Kategori Menu</Divider>
         <Row gutter={24} className="kategori-menu-items">
           <Col flex="auto">

@@ -1,0 +1,11 @@
+.dashboard-kasir-pesanan {
+  max-height: 516px;
+  height: 70%;
+  margin-bottom: 5rem;
+  overflow: hidden;
+  .pesanan-list-items {
+    padding-top: 30px;
+    height: 100%;
+    overflow: auto;
+  }
+}
