@@ -10,9 +10,11 @@ const DashboardKasirSidebar = () => {
     <div id="dashboard-kasir-sidebar">
       <DashboardKasirProfile />
       <DashboardKasirPesanan />
-      <Button className="checkout-btn" block disabled={false}>
-        Checkout
-      </Button>
+      <div className="checkout-btn-container">
+        <Button className="checkout-btn" block disabled={false}>
+          Checkout
+        </Button>
+      </div>
     </div>
   );
 };

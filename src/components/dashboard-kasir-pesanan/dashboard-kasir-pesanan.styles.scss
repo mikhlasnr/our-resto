@@ -1,11 +1,14 @@
+@import "../dashboard-kasir-sidebar/sidebar-padding";
 .dashboard-kasir-pesanan {
   padding-bottom: 5em;
   flex-grow: 1;
-
+  .divider-container {
+    padding-right: $sidebar-right-space;
+  }
   .pesanan-list-items {
     margin-top: 1em;
     max-height: 380px;
-    overflow-y: scroll; /* Add the ability to scroll */
+    overflow: auto;
     -ms-overflow-style: none; /* IE and Edge */
     &::-webkit-scrollbar {
       display: none;
@@ -17,6 +20,7 @@
     border-top: 1px solid black;
     border-style: dashed none none none;
     margin-top: 3em;
+    margin-right: $sidebar-right-space;
     padding-top: 1em;
     display: flex;
     justify-content: space-between;

@@ -1,23 +1,18 @@
 @import "../../colors";
 .dashboard-kasir-pesanan-list-item {
-  margin-bottom: 24px;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 13px 15px;
-  padding-right: 20px;
+  margin-bottom: 35px;
+  padding-right: 50px;
   position: relative;
-  overflow-x: visible;
-  &:hover {
-    box-shadow: 0px 4px 16px rgba(142, 142, 142, 0.25);
-    border-radius: 14px;
-    cursor: pointer;
-  }
 
   .list-item-delete {
     position: absolute;
+    transition: all 0.5s ease;
+    transition-delay: 0.5;
     top: 50%;
     transform: translateY(-50%);
-    display: none;
+    z-index: -1;
+    opacity: 0;
+
     .ant-btn {
       &.delete-item {
         background-color: $primaryColor;
@@ -29,14 +24,28 @@
         }
       }
     }
-
-    .show-quantity {
-      font-weight: 600;
-      font-size: 12px;
-      line-height: 18px;
+    &.show-delete-btn {
+      opacity: 1;
+      z-index: 0;
     }
   }
-  .dashboard-kasir-pesanan-list-item-container {
+  .dashboard-kasir-pesanan-list-item-card {
+    width: 100%;
+
+    border-radius: 14px;
+    transition: all 0.5s ease;
+
+    &.sliding-card {
+      box-shadow: 0px 4px 16px rgba(142, 142, 142, 0.25);
+      padding: 13px 15px;
+      border-radius: 14px;
+      margin-left: 72px;
+    }
+
+    .list-item-image {
+      cursor: pointer;
+    }
+
     .list-item-detail {
       display: flex;
       flex-direction: column;

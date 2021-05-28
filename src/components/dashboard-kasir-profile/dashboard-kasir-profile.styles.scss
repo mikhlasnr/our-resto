@@ -1,6 +1,8 @@
 @import "../../colors";
+@import "../dashboard-kasir-sidebar/sidebar-padding";
 #dashboard-kasir-profile {
   margin-bottom: 3rem;
+  padding-right: $sidebar-right-space;
   .dashboard-kasir-profile-container {
     display: flex;
     // dot In avatar profile
