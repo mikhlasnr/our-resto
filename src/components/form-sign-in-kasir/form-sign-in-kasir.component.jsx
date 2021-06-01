@@ -30,19 +30,29 @@ class FormSignInKasir extends Component {
           <Form.Item
             label="Username"
             name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[
+              {
+                required: true,
+                message: "Username yang Anda Masukkan tidak terhubung ke akun",
+              },
+            ]}
           >
-            <Input placeholder="Masukkan Username" className="input" />
+            <Input placeholder="Masukkan Username-mu" className="input" />
           </Form.Item>
 
           <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            label="Kata Sandi"
+            name="kataSandi"
+            rules={[
+              {
+                required: true,
+                message: "Kata sandi yang Anda masukkan salah",
+              },
+            ]}
             className="form-item-password"
           >
             <Input.Password
-              placeholder="Masukkan kata sandi"
+              placeholder="Masukkan Kata sandimu"
               className="input"
             />
           </Form.Item>
@@ -52,7 +62,7 @@ class FormSignInKasir extends Component {
               type="primary"
               htmlType="submit"
               block
-              className="primary-button"
+              className="custom-default-button primary-button"
             >
               Masuk
             </Button>

@@ -8,7 +8,11 @@ import { Link } from "react-router-dom";
 const menu = (
   <Menu>
     <Menu.Item key="0">
-      <Link to="/signin-kasir">Logout</Link>
+      <Link to="/kasir/pesanan">List Pesanan</Link>
+    </Menu.Item>
+    <Menu.Divider />
+    <Menu.Item key="1">
+      <Link to="/kasir/signin">Logout</Link>
     </Menu.Item>
   </Menu>
 );
@@ -43,8 +47,8 @@ const DashboardKasirProfile = () => {
           <div className="detail-dropdown">
             <Dropdown
               overlay={menu}
-              trigger={["click"]}
-              placement="bottomCenter"
+              trigger={["hover"]}
+              placement="bottomRight"
             >
               <span
                 className="ant-dropdown-link"

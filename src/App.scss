@@ -5,8 +5,17 @@
 }
 
 body {
+  &.ant-scrolling-effect {
+    margin: 0;
+    width: 100% !important;
+  }
   font-family: "Poppins", sans-serif;
   background-color: #ffffff;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 h1,
@@ -15,6 +24,7 @@ h3,
 h4,
 h5,
 p,
+a,
 span {
   color: $textColorPrimary;
   margin: 0;
@@ -30,52 +40,119 @@ h2 {
   font-size: 18px;
 }
 
-.ant-btn-primary {
-  background: $primaryColor;
-  border-color: $primaryColor;
-  border-radius: 9px;
-  height: 55px;
-  span {
-    color: $textColorSecondary;
+// Buttion Styles
+.ant-btn {
+  &.custom-default-button {
+    border-radius: 9px;
+    height: 55px;
   }
 
-  &:hover,
-  &:focus {
+  &.primary-button {
     background: $primaryColor;
     border-color: $primaryColor;
-    box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
+
+    span {
+      color: $textColorSecondary;
+    }
+
+    &:hover,
+    &:focus {
+      background: $primaryColor;
+      border-color: $primaryColor;
+      box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
+    }
   }
-}
-.ant-btn.checkout-btn {
-  background: $secondaryColor;
-  border-color: $secondaryColor;
-  border-radius: 140px;
-  height: 70px;
-  span {
-    color: $textColorSecondary;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 36px;
-  }
-  &:hover,
-  &:focus {
+
+  &.secondary-button {
     background: $secondaryColor;
     border-color: $secondaryColor;
-    box-shadow: 0px 8px 30px rgba(35, 198, 91, 0.35);
+
+    span {
+      color: $textColorSecondary;
+    }
+
+    &:hover,
+    &:focus {
+      background: $secondaryColor;
+      border-color: $secondaryColor;
+      box-shadow: 0px 8px 30px rgba(35, 198, 91, 0.35);
+    }
+  }
+
+  &.checkout-btn {
+    background: $secondaryColor;
+    border-color: $secondaryColor;
+    border-radius: 140px;
+    height: 70px;
+    span {
+      color: $textColorSecondary;
+      font-weight: 600;
+      font-size: 24px;
+    }
+    &:hover,
+    &:focus {
+      background: $secondaryColor;
+      border-color: $secondaryColor;
+      box-shadow: 0px 8px 30px rgba(35, 198, 91, 0.35);
+    }
   }
 }
 
-.ant-divider-horizontal.ant-divider-with-text {
-  margin: 0 16px 0 0;
-  border-top-color: #dddddd;
-  &::before {
-    border-top: none;
-    content: none;
+// Divider Styles
+.ant-divider-horizontal {
+  &.ant-divider-with-text {
+    margin: 0 16px 0 0;
+    border-top-color: #dddddd;
+    &::before {
+      border-top: none;
+      content: none;
+    }
+    span {
+      padding: 0 15px 0 0;
+      font-weight: 600;
+      font-size: 24px;
+      color: $textColorPrimary;
+    }
   }
-  span {
-    padding: 0 15px 0 0;
-    font-weight: 600;
-    font-size: 24px;
-    color: $textColorPrimary;
+}
+
+// Modal Styles
+.ant-modal {
+  width: 642px;
+  .ant-modal-content {
+    border-radius: 30px;
+    .ant-modal-body {
+      padding: 30px 32px;
+      .modal-title {
+        margin-bottom: 46px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// Form Styles
+.ant-form {
+  &#form-buat-pesanan {
+    label {
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+  .ant-form-item {
+    .ant-form-item-label {
+      label {
+        font-weight: 500;
+        font-size: 16px;
+
+        color: $textColorPrimary;
+      }
+    }
+    .ant-form-item-control {
+      .input {
+        border-radius: 9px;
+        height: 55px;
+      }
+    }
   }
 }

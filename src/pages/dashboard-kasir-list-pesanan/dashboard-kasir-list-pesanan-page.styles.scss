@@ -1,0 +1,13 @@
+#dashboard-kasir-list-pesanan {
+  padding: 0 100px;
+  .list-pesanan-header {
+    margin-top: 82px;
+    display: flex;
+    align-items: center;
+
+    .title {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+}
