@@ -46,7 +46,19 @@ h2 {
     border-radius: 9px;
     height: 55px;
   }
+  &.list-pesanan-search-btn {
+    background: $primaryColor;
+    border-color: $primaryColor;
 
+    span {
+      color: $textColorSecondary;
+    }
+    &:hover,
+    &:focus {
+      background: $primaryColor;
+      border-color: $primaryColor;
+    }
+  }
   &.primary-button {
     background: $primaryColor;
     border-color: $primaryColor;

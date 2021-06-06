@@ -21,7 +21,7 @@ const BuatPesananModal = ({ dispatch, checkoutModalHidden }) => {
       centered
     >
       <div className="modal-title">
-        <h1>Buat pesanan</h1>
+        <h2>Buat pesanan</h2>
       </div>
       <BuatPesananForm />
     </Modal>

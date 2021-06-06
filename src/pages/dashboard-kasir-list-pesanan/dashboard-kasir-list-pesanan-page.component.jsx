@@ -3,6 +3,7 @@ import "./dashboard-kasir-list-pesanan-page.styles.scss";
 // Import Component
 import { LeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import DashboardKasirTablePesanan from "../../components/dashboard-kasir-table-pesanan/dashboard-kasir-table-pesanan.component";
 
 const DashboardKasirListPesananPage = () => {
   return (
@@ -16,6 +17,9 @@ const DashboardKasirListPesananPage = () => {
         <div className="title">
           <h1>List Pesanan</h1>
         </div>
+      </div>
+      <div className="list-pesanan-container">
+        <DashboardKasirTablePesanan />
       </div>
     </div>
   );

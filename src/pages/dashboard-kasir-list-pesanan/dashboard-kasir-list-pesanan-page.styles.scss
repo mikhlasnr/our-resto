@@ -2,6 +2,7 @@
   padding: 0 100px;
   .list-pesanan-header {
     margin-top: 82px;
+    margin-bottom: 70px;
     display: flex;
     align-items: center;
 
@@ -9,5 +10,9 @@
       flex-grow: 1;
       text-align: center;
     }
+  }
+  .list-pesanan-container {
+    width: 65%;
+    margin: 0 auto;
   }
 }
