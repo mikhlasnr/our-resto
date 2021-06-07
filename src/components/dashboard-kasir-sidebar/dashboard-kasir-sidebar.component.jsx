@@ -20,8 +20,8 @@ const DashboardKasirSidebar = ({ dispatch }) => {
           className="checkout-btn"
           block
           disabled={false}
-          onClick={() => {
-            console.log("lol");
+          onClick={e => {
+            e.preventDefault();
             dispatch(toggleCheckoutModalHidden());
           }}
         >

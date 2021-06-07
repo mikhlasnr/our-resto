@@ -10,7 +10,7 @@ import SignInKasirPage from "./pages/sign-in-kasir/sign-in-kasir-page.component"
 import SignInPemilikPage from "./pages/sign-in-pemilik/sign-in-pemilik-page.component";
 import NoMatchPage from "./pages/no-match/no-match-page.component";
 import DashboardKasirListPesananPage from "./pages/dashboard-kasir-list-pesanan/dashboard-kasir-list-pesanan-page.component";
-
+import DashboardPemilikPage from "./pages/dashboard-pemilik/dashboard-pemilik-page.component";
 class App extends Component {
   render() {
     return (
@@ -23,7 +23,13 @@ class App extends Component {
             path="/kasir/pesanan"
             component={DashboardKasirListPesananPage}
           />
-          <Route exact path="/pemilik/signin" component={SignInPemilikPage} />
+          <Route exact path="/pemilik" component={SignInPemilikPage} />
+          <Route
+            exact
+            path="/pemilik/dashboard"
+            component={DashboardPemilikPage}
+          />
+
           <Route path="*">
             <NoMatchPage />
           </Route>
