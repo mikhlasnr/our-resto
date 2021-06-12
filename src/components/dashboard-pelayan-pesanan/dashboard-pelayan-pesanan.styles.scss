@@ -1,0 +1,33 @@
+@import "../dashboard-pelayan-sidebar/sidebar-padding";
+.dashboard-pelayan-pesanan {
+  padding-bottom: 3em;
+  flex-grow: 1;
+  .divider-container {
+    padding-right: $sidebar-right-space;
+  }
+  .pesanan-list-items {
+    margin-top: 1em;
+    max-height: 40vh;
+    overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    scrollbar-width: none; /* Firefox */
+  }
+  .pesanan-total {
+    border-top: 1px solid black;
+    border-style: dashed none none none;
+    margin-top: 3em;
+    margin-right: $sidebar-right-space;
+    padding-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import "../../colors";
+#dashboard-pelayan-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  padding: 87px 0px 83px 73px;
+  .checkout-btn-container {
+    padding-right: 50px;
+  }
+}

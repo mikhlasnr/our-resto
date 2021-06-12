@@ -1,0 +1,51 @@
+@import "../../colors";
+@import "../dashboard-pelayan-sidebar/sidebar-padding";
+#dashboard-pelayan-profile {
+  margin-bottom: 3rem;
+  padding-right: $sidebar-right-space;
+  .dashboard-pelayan-profile-container {
+    display: flex;
+    // dot In avatar profile
+    .profile-image {
+      .ant-badge {
+        .ant-badge-dot {
+          top: 7px;
+          left: -12px;
+          width: 16px;
+          height: 16px;
+          box-shadow: none;
+        }
+      }
+    }
+    .profile-detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      .detail-user {
+        padding-left: 18px;
+        p {
+          margin: 0;
+
+          &:first-child {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 27px;
+          }
+          &:last-child {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+            color: $disabledColor;
+          }
+        }
+      }
+      .detail-dropdown {
+        position: relative;
+        span {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
