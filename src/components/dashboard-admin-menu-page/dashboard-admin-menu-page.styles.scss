@@ -1,0 +1,20 @@
+@import "../../colors";
+#dashboard-admin-menu-page {
+  h1 {
+    margin-bottom: 24px;
+  }
+  .daftar-menu-container {
+    margin-top: 5rem;
+    .ant-btn {
+      &.btn-tambah-menu {
+        width: 204px;
+        height: 56px;
+        border: 1px solid $secondaryColor;
+        border-radius: 10px;
+        span {
+          color: $secondaryColor;
+        }
+      }
+    }
+  }
+}

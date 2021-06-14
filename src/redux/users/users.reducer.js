@@ -1,6 +1,7 @@
 import UsersActionTypes from "./users.types";
 
 const INITIAL_STATE = {
+  currentUser: { nama: "admin", email: "admin", role: "admin" },
   createUserModalHidden: true,
 };
 

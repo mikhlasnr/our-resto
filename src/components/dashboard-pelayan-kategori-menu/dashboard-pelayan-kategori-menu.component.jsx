@@ -16,7 +16,10 @@ class DashboardPelayanKategoriMenu extends Component {
           <Col flex="auto">
             <div className="kategori-menu-item">
               <div className="kategori-menu-container">
-                <KategoriBurger />
+                <img
+                  src="https://ik.imagekit.io/upecbxjan8p/Burger/Soda_Cup_EuDoyaABDNz.png"
+                  alt="kategori"
+                />
                 <span className="kategori-menu-title">Burger</span>
               </div>
             </div>
@@ -24,7 +27,10 @@ class DashboardPelayanKategoriMenu extends Component {
           <Col flex="auto">
             <div className="kategori-menu-item kategori-menu-item-active">
               <div className="kategori-menu-container">
-                <KategoriBurger />
+                <img
+                  src="https://ik.imagekit.io/upecbxjan8p/Burger/Soda_Cup_EuDoyaABDNz.png"
+                  alt="kategori"
+                />
                 <span className="kategori-menu-title">Burger</span>
               </div>
             </div>
@@ -32,7 +38,10 @@ class DashboardPelayanKategoriMenu extends Component {
           <Col flex="auto">
             <div className="kategori-menu-item">
               <div className="kategori-menu-container">
-                <KategoriBurger />
+                <img
+                  src="https://ik.imagekit.io/upecbxjan8p/Burger/Soda_Cup_EuDoyaABDNz.png"
+                  alt="kategori"
+                />
                 <span className="kategori-menu-title">Burger</span>
               </div>
             </div>
@@ -40,7 +49,10 @@ class DashboardPelayanKategoriMenu extends Component {
           <Col flex="auto">
             <div className="kategori-menu-item">
               <div className="kategori-menu-container">
-                <KategoriBurger />
+                <img
+                  src="https://ik.imagekit.io/upecbxjan8p/Burger/Soda_Cup_EuDoyaABDNz.png"
+                  alt="kategori"
+                />
                 <span className="kategori-menu-title">Burger</span>
               </div>
             </div>
@@ -48,7 +60,10 @@ class DashboardPelayanKategoriMenu extends Component {
           <Col flex="auto">
             <div className="kategori-menu-item">
               <div className="kategori-menu-container">
-                <KategoriBurger />
+                <img
+                  src="https://ik.imagekit.io/upecbxjan8p/Burger/Soda_Cup_EuDoyaABDNz.png"
+                  alt="kategori"
+                />
                 <span className="kategori-menu-title">Burger</span>
               </div>
             </div>

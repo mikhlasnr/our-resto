@@ -1,0 +1,67 @@
+@import "../../colors";
+#kategori-menu {
+  &.ant-menu {
+    .ant-menu-item {
+      border: none;
+      margin-left: 0;
+      width: 15%;
+      height: 150px;
+      .kategori-card {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 4px 25px 0 rgba(141, 141, 141, 0.1);
+        user-select: none;
+        cursor: pointer;
+        border-radius: 14px;
+        padding: 28px 0;
+        img {
+          width: 48px;
+        }
+        p {
+          font-weight: 600;
+          font-size: 18px;
+          color: $textColorPrimary;
+        }
+      }
+
+      .kategori-card-add {
+        border: 2px solid $disabledColor;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        height: 100%;
+        .anticon {
+          color: $disabledColor;
+        }
+      }
+
+      &.ant-menu-item-active {
+        .kategori-card {
+          background: $primaryColor;
+          color: $textColorSecondary;
+          p {
+            color: $textColorSecondary;
+          }
+        }
+
+        .kategori-card-add {
+          border: 2px solid $secondaryColor;
+          .anticon {
+            color: $secondaryColor;
+          }
+        }
+      }
+
+      &.ant-menu-item-selected {
+        .kategori-card {
+          background: $primaryColor;
+          color: $textColorSecondary;
+          p {
+            color: $textColorSecondary;
+          }
+        }
+      }
+    }
+  }
+}

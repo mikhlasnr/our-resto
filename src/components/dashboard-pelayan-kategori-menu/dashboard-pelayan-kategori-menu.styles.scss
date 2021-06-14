@@ -9,6 +9,21 @@
       padding: 33px 0;
       border-radius: 14px;
 
+      .kategori-menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        img {
+          width: 48px;
+        }
+        .kategori-menu-title {
+          font-size: 18px;
+          font-weight: 600;
+          margin-top: 15px;
+        }
+      }
+
       &.kategori-menu-item-active {
         background-color: #ff5348;
         .kategori-menu-container {
@@ -23,18 +38,6 @@
           .kategori-menu-title {
             color: #ffffff;
           }
-        }
-      }
-
-      .kategori-menu-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        .kategori-menu-title {
-          font-size: 18px;
-          font-weight: 600;
-          margin-top: 15px;
         }
       }
     }

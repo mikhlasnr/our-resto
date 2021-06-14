@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import "./SignInKasirPage.scss";
+import "./sign-in-page.styles.scss";
 
 import { Row, Col } from "antd";
 
 import AvatarSignInKasir from "../../assets/images/AvatarSignInKasir.png";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
-import FormSignInKasir from "../../components/form-sign-in/form-sign-in.component";
+import FormSignIn from "../../components/form-sign-in/form-sign-in.component";
 
-class SignInPegawaiPage extends Component {
+class SignInPage extends Component {
   render() {
     return (
       <section id="sign-in-kasir-page">
@@ -26,7 +26,7 @@ class SignInPegawaiPage extends Component {
                 <h1>Masuk</h1>
                 <p>Selamat bekerja, semangat!!</p>
               </div>
-              <FormSignInKasir />
+              <FormSignIn />
             </div>
           </Col>
         </Row>
@@ -35,4 +35,4 @@ class SignInPegawaiPage extends Component {
   }
 }
 
-export default SignInPegawaiPage;
+export default SignInPage;

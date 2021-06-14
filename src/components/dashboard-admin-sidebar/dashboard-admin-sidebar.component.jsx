@@ -2,7 +2,7 @@ import React from "react";
 import "./dashboard-admin-sidebar.styles.scss";
 
 import DashboardAdminProfile from "../dashboard-admin-profile/dashboard-admin-profile.component";
-import DashboardAdminMenuOptions from "../dashboard-admin-menu-options/dashboard-admin-menu-options.component";
+import DashboardAdminOptions from "../dashboard-admin-options/dashboard-admin-options.component";
 
 import { Layout } from "antd";
 const { Sider } = Layout;
@@ -25,7 +25,7 @@ const DashboardAdminSidebar = () => {
       <div className="admin-sidebar-container">
         <div className="wrapper-top">
           <div className="logo" />
-          <DashboardAdminMenuOptions />
+          <DashboardAdminOptions />
         </div>
         <div className="wrapper-bottom">
           <DashboardAdminProfile />

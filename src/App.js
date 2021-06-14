@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import "./App.scss";
 
+// handling redux
+import { connect, useSelector } from "react-redux";
+
 // Router
 import { Switch, Route } from "react-router-dom";
 
 // Import Component Pages
 import DashBoardPelayanPage from "./pages/dashboard-pelayan/dashboard-pelayan-page.component";
-import SignInKasirPage from "./pages/sign-in-pegawai/sign-in-pegawai-page.component";
+import SignInPage from "./pages/sign-in/sign-in-page.component";
 import NoMatchPage from "./pages/no-match/no-match-page.component";
 import DashboardPemilikPage from "./pages/dashboard-pemilik/dashboard-pemilik-page.component";
 import DashboardAdminPage from "./pages/dashboard-admin/dashboard-admin-page.component";
 import DashboardKasir from "./pages/dashboard-kasir/dashboard-kasir-page.component";
 const App = () => {
-  const initialUser = { nama: "admin", email: "admin", role: "admin" };
-  const [currentUser, setCurrentUser] = useState(initialUser);
+  const currentUser = useSelector(state => state.users.currentUser);
 
   const handlingCurrentUserRole = () => {
-    if (currentUser.role === "admin") return <DashboardAdminPage />;
-    if (currentUser.role === "pemilik") return <DashboardPemilikPage />;
+    if (currentUser.role === "admin" || currentUser.role === "pemilik")
+      return <DashboardAdminPage />;
     if (currentUser.role === "pelayan") return <DashBoardPelayanPage />;
     if (currentUser.role === "kasir") return <DashboardKasir />;
     if (currentUser.role === "koki") return <DashboardKasir />;
@@ -26,13 +28,13 @@ const App = () => {
   return (
     <div>
       <Switch>
+        <Route exact path="/signin" component={SignInPage} />
         <Route
           path="/"
           render={() => {
             return handlingCurrentUserRole();
           }}
         />
-        <Route exact path="/signin" component={SignInKasirPage} />
         <Route path="*">
           <NoMatchPage />
         </Route>
@@ -41,4 +43,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect()(App);

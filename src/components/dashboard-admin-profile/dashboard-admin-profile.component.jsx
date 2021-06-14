@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "./dashboard-admin-profile.styles.scss";
+
+// handling redux
+import { connect, useSelector } from "react-redux";
+
 import avatarProfile from "../../assets/images/avatarProfile.png";
 import { Avatar, Image } from "antd";
 import { Menu, Dropdown } from "antd";
@@ -14,7 +18,8 @@ const menu = (
 );
 
 const DashboardPelayanProfile = () => {
-  const [login, setLogin] = useState(true);
+  const currentUser = useSelector(state => state.users.currentUser);
+
   return (
     <div id="dashboard-admin-profile">
       <div className="dashboard-admin-profile-container">
@@ -39,7 +44,7 @@ const DashboardPelayanProfile = () => {
             <p className="user-name">Hayin Ananta</p>
             <p
               className="user-status"
-              style={{ color: `${login ? "#23C65B" : ""}` }}
+              style={{ color: `${currentUser ? "#23C65B" : ""}` }}
             >
               Online
             </p>
@@ -57,4 +62,4 @@ const DashboardPelayanProfile = () => {
   );
 };
 
-export default DashboardPelayanProfile;
+export default connect()(DashboardPelayanProfile);

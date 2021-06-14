@@ -1,5 +1,4 @@
 import React from "react";
-import "./dashboard-pelayan-main.styles.scss";
 
 // import component
 import DashboardPelayanSearch from "../dashboard-pelayan-search/dashboard-pelayan-search.component";

@@ -1,0 +1,46 @@
+#dashboard-admin-options {
+  &.ant-menu {
+    border: none;
+    transition: none;
+    .ant-menu-item {
+      display: flex;
+      align-items: center;
+
+      height: 8vh;
+      border-radius: 10px;
+
+      .menu-icon {
+        path {
+          fill: #9e9e9e;
+        }
+      }
+
+      span {
+        font-weight: 600;
+        font-size: 18px;
+        color: #9e9e9e;
+      }
+
+      &.ant-menu-item-selected {
+        background: #ff5348;
+        border-radius: 10px;
+        .menu-icon {
+          path {
+            fill: #ffffff;
+          }
+        }
+        span {
+          color: #ffffff;
+        }
+      }
+
+      &.ant-menu-item-active {
+        background: #ff5348;
+        border-radius: 10px;
+        span {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
