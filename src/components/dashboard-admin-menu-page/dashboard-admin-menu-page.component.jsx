@@ -12,6 +12,7 @@ const DashboardAdminMenuPage = () => {
     <div id="dashboard-admin-menu-page">
       <h1>Kategori Menu</h1>
       <KategoriMenu />
+
       <div className="daftar-menu-container">
         <Button className="btn-tambah-menu" icon={<PlusOutlined />}>
           Tambah Menu

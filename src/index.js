@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
+import "react-multi-carousel/lib/styles.css";
 import "./index.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
