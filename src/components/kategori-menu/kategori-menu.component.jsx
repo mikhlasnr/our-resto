@@ -6,7 +6,7 @@ import { connect, useSelector } from "react-redux";
 import KategoriMenuCarousel from "./kategori-menu-carousel.component";
 import KategoriMenuCard from "../kategori-menu-card/kategori-menu-card.component";
 import KategoriMenuAdd from "../kategori-menu-add/kategori-menu-add.component";
-import DATA_KATEGORI from "./DATA_KATEGORI";
+import DATA_KATEGORI from "../../assets/data/DATA_KATEGORI";
 const KategoriMenu = () => {
   const currentUserRole = useSelector(state => state.users.currentUser.role);
 
