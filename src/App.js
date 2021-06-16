@@ -23,6 +23,7 @@ const App = () => {
     if (currentUser.role === "pelayan") return <DashBoardPelayanPage />;
     if (currentUser.role === "kasir") return <DashboardKasir />;
     if (currentUser.role === "koki") return <DashboardKasir />;
+    return <NoMatchPage />;
   };
 
   return (

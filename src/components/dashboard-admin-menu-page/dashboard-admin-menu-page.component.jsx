@@ -10,7 +10,6 @@ import DashboardAdminDaftarMenu from "../dashboard-admin-daftar-menu/dashboard-a
 const DashboardAdminMenuPage = () => {
   return (
     <div id="dashboard-admin-menu-page">
-      <h1>Kategori Menu</h1>
       <KategoriMenu />
 
       <div className="daftar-menu-container">

@@ -1,5 +1,7 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
+import "./kategori-menu.styles.scss";
+
 const KategoriMenuCarousel = ({ children }) => {
   return (
     <Carousel
@@ -8,12 +10,12 @@ const KategoriMenuCarousel = ({ children }) => {
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
-      containerClass="container"
+      containerClass="kategori-menu-carousel-container"
       dotListClass=""
       draggable
       focusOnSelect={false}
       infinite={false}
-      itemClass=""
+      itemClass="kategori-menu-carousel-item"
       keyBoardControl
       minimumTouchDrag={80}
       renderButtonGroupOutside={false}
@@ -27,25 +29,18 @@ const KategoriMenuCarousel = ({ children }) => {
           items: 5,
           partialVisibilityGutter: 40,
         },
-        mobile: {
-          breakpoint: {
-            max: 464,
-            min: 0,
-          },
-          items: 1,
-          partialVisibilityGutter: 30,
-        },
+
         tablet: {
           breakpoint: {
             max: 1024,
             min: 464,
           },
-          items: 2,
+          items: 5,
           partialVisibilityGutter: 30,
         },
       }}
       showDots={false}
-      sliderClass=""
+      sliderClass="kategori-menu-carousel-slider"
       slidesToSlide={1}
       swipeable
     >

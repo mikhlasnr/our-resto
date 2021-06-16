@@ -2,35 +2,36 @@ import React from "react";
 import "./kategori-menu.styles.scss";
 
 // handling redux
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import KategoriMenuCarousel from "./kategori-menu-carousel.component";
 import KategoriMenuCard from "../kategori-menu-card/kategori-menu-card.component";
-// handling router
+import KategoriMenuAdd from "../kategori-menu-add/kategori-menu-add.component";
+import DATA_KATEGORI from "./DATA_KATEGORI";
 const KategoriMenu = () => {
+  const currentUserRole = useSelector(state => state.users.currentUser.role);
+
+  const handlingRenderKategori = () => {
+    return DATA_KATEGORI.map((kategori, index) => (
+      <KategoriMenuCard
+        isDefaultActive={kategori.katTitle === "All"}
+        katImage={kategori.katImage}
+        katTitle={kategori.katTitle}
+      />
+    ));
+  };
+
   return (
-    <KategoriMenuCarousel>
-      <KategoriMenuCard
-        isDefaultActive={true}
-        katImage="https://ik.imagekit.io/upecbxjan8p/kategori/kentang.png"
-        katTitle="All"
-      />
-      <KategoriMenuCard
-        katImage="https://ik.imagekit.io/upecbxjan8p/kategori/burger.png"
-        katTitle="Burger"
-      />
-      <KategoriMenuCard
-        katImage="https://ik.imagekit.io/upecbxjan8p/kategori/minuman.png"
-        katTitle="Minuman"
-      />
-      <KategoriMenuCard
-        katImage="https://ik.imagekit.io/upecbxjan8p/kategori/donut.png"
-        katTitle="Donut"
-      />
-      <KategoriMenuCard
-        katImage="https://ik.imagekit.io/upecbxjan8p/kategori/hotdog.png"
-        katTitle="Hot Dog"
-      />
-    </KategoriMenuCarousel>
+    <div className="kategori-menu">
+      <h1>Kategori Menu</h1>
+      {currentUserRole !== "admin" ? (
+        <KategoriMenuCarousel>{handlingRenderKategori()}</KategoriMenuCarousel>
+      ) : (
+        <KategoriMenuCarousel>
+          <KategoriMenuAdd />
+          {handlingRenderKategori()}
+        </KategoriMenuCarousel>
+      )}
+    </div>
   );
 };
 

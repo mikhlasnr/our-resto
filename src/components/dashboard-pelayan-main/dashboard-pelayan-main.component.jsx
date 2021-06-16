@@ -1,29 +1,23 @@
 import React from "react";
-
+import "./dashboard-pelayan-main.styles.scss";
 // import component
 import DashboardPelayanSearch from "../dashboard-pelayan-search/dashboard-pelayan-search.component";
-import DashboardPelayanKategoriMenu from "../dashboard-pelayan-kategori-menu/dashboard-pelayan-kategori-menu.component";
+import KategoriMenu from "../kategori-menu/kategori-menu.component";
 import DashboardPelayanPilihMenu from "../dashboard-pelayan-pilih-menu/dashboard-pelayan-pilih-menu.component";
-
 import { Layout } from "antd";
-const { Content } = Layout;
 
 const DashboardPelayanMain = () => {
   return (
     <Layout
-      className="site-layout"
+      id="dashboard-pelayan-main"
       style={{
-        padding: "87px 524px 30px 100px",
+        padding: "80px 524px 30px 100px",
         background: "#FFFFFF",
       }}
     >
-      <Content>
-        <section id="dashboard-pelayan-main">
-          <DashboardPelayanSearch />
-          <DashboardPelayanKategoriMenu />
-          <DashboardPelayanPilihMenu />
-        </section>
-      </Content>
+      <DashboardPelayanSearch />
+      <KategoriMenu />
+      <DashboardPelayanPilihMenu />
     </Layout>
   );
 };

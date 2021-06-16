@@ -1,0 +1,19 @@
+@import "../../colors";
+.kategori-menu-add {
+  height: 150px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  margin-right: 24px;
+  border-radius: 14px;
+  border: 2px solid $disabledColor;
+  color: $disabledColor;
+  &.kategori-menu-add-hidden {
+    display: none;
+  }
+
+  &:hover {
+    border: 2px solid $secondaryColor;
+    color: $secondaryColor;
+  }
+}
