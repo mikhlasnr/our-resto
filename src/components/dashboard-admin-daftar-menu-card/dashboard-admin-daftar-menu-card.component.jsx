@@ -16,8 +16,10 @@ const DashboardAdminDaftarMenuCard = () => {
         />
       </Col>
       <Col flex="auto" className="menu-card-info">
-        <h2>Hot Dogs with Onions and Peppers</h2>
-        <p>Hotdog</p>
+        <div className="menu-card-info-title">
+          <h2>Hot Dogs with Onions and Peppers</h2>
+          <p>Hotdog</p>
+        </div>
         <span>Rp 17.000</span>
       </Col>
       <Col className="menu-card-action">

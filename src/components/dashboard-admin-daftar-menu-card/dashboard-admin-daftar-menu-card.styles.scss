@@ -1,10 +1,69 @@
+@import "../../colors";
 .dashboard-admin-daftar-menu-card {
+  margin-bottom: 24px;
   .menu-card-image {
     .ant-image-mask {
       border-radius: 15px;
     }
   }
   .menu-card-info {
-    padding: 0 23px;
+    padding: 8px 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h2 {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: $disabledColor;
+    }
+    span {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+      color: $secondaryColor;
+    }
+  }
+  .menu-card-action {
+    display: flex;
+    align-items: center;
+    .ant-btn {
+      padding: 15px 55px;
+      min-width: 144px;
+      min-height: 56px;
+      border-radius: 10px;
+
+      &:first-child {
+        margin-right: 20px;
+        border: 1px solid $textColorPrimary;
+        span {
+          color: $textColorPrimary;
+        }
+        &:hover {
+          border: 1px solid $secondaryColor;
+          span {
+            color: $secondaryColor;
+          }
+        }
+      }
+
+      &:last-child {
+        border: 1px solid $primaryColor;
+        span {
+          color: $primaryColor;
+        }
+        &:hover {
+          background: $primaryColor;
+          span {
+            color: $textColorSecondary;
+          }
+        }
+      }
+    }
   }
 }

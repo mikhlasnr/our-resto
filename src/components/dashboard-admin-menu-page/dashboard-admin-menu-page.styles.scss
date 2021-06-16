@@ -7,10 +7,11 @@
     margin-top: 5rem;
     .ant-btn {
       &.btn-tambah-menu {
-        width: 204px;
-        height: 56px;
+        min-width: 204px;
+        min-height: 56px;
         border: 1px solid $secondaryColor;
         border-radius: 10px;
+        margin-bottom: 30px;
         span {
           color: $secondaryColor;
         }
