@@ -1,0 +1,95 @@
+@import "../../colors";
+
+#table-pegawai-container {
+  margin-top: 24px;
+  background: #ffffff;
+  box-shadow: 0px 4px 96px rgba(141, 141, 141, 0.1);
+  border-radius: 22px;
+  padding: 25px;
+  // Tables Styles
+  .ant-table {
+    .ant-table-row {
+      .table-pegawai-profile {
+        display: flex;
+        align-items: center;
+        p {
+          padding-left: 35px;
+          font-weight: 500;
+          font-size: 18px;
+          color: $textColorPrimary;
+        }
+      }
+      .table-pegawai-border {
+        font-weight: 500;
+        font-size: 18px;
+        color: $textColorPrimary;
+      }
+      .table-pegawai-action {
+        .ant-btn {
+          padding: 15px 55px;
+          min-width: 144px;
+          min-height: 56px;
+          border-radius: 10px;
+
+          &.btn-action-primary {
+            border: 1px solid $textColorPrimary;
+            span {
+              color: $textColorPrimary;
+            }
+            &:hover {
+              border: 1px solid $secondaryColor;
+              span {
+                color: $secondaryColor;
+              }
+            }
+          }
+
+          &.btn-action-danger {
+            border: 1px solid $primaryColor;
+            span {
+              color: $primaryColor;
+            }
+            &:hover {
+              background: $primaryColor;
+              span {
+                color: $textColorSecondary;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // Pagination Styles
+  .ant-pagination {
+    .ant-pagination-item {
+      border: none;
+      &.ant-pagination-item-active {
+        a {
+          color: red;
+        }
+      }
+      a {
+        &:hover,
+        &:active {
+          color: red;
+        }
+      }
+    }
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      &:hover,
+      &:active {
+        color: $primaryColor;
+      }
+
+      &.ant-pagination-disabled {
+        color: $disabledColor;
+        &:hover,
+        &:active {
+          color: $disabledColor;
+        }
+      }
+    }
+  }
+}

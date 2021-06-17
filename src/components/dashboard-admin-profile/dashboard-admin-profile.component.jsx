@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./dashboard-admin-profile.styles.scss";
 
 // handling redux
 import { connect, useSelector } from "react-redux";
 
-import avatarProfile from "../../assets/images/avatarProfile.png";
-import { Avatar, Image } from "antd";
-import { Menu, Dropdown } from "antd";
+import { Avatar, Image, Menu, Dropdown } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 const menu = (
@@ -26,14 +24,16 @@ const DashboardPelayanProfile = () => {
         <div className="profile-image">
           <Avatar
             size={61}
-            shape="square"
             src={
               <Image
-                src={avatarProfile}
+                width={61}
+                shape="square"
+                src="https://ik.imagekit.io/upecbxjan8p/avatar/avatarProfile_i4T_C3T34.png"
                 preview={{
                   visible: false,
                   mask: null,
                 }}
+                fallback="https://ik.imagekit.io/upecbxjan8p/avatar/empty-image_6J-Ssa71Q.png"
               />
             }
             style={{ backgroundColor: "#FFB649", borderRadius: "20px" }}

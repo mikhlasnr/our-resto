@@ -4,8 +4,6 @@ import "./dashboard-pelayan-pesanan-list-item.styles.scss";
 import { Row, Col, Avatar, Image, Button } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteFilled } from "@ant-design/icons";
 
-import BurgerMantap from "../../assets/images/kategori-menu/burger/menu/mantap-burger.png";
-
 const DashboardPelayanPesananItem = () => {
   const handleShowDeleteBtn = e => {
     e.preventDefault();
@@ -31,7 +29,7 @@ const DashboardPelayanPesananItem = () => {
             src={
               <Image
                 width="40px"
-                src={BurgerMantap}
+                src={`https://ik.imagekit.io/upecbxjan8p/menu/00001_YqTGLrHQAl4.png`}
                 preview={{
                   visible: false,
                   mask: null,

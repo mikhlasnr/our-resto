@@ -1,14 +1,20 @@
 import React from "react";
-import { Input } from "antd";
+import { Input, Image } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { ReactComponent as Logo } from "../../assets/images/logo.svg";
+
 import "./dashboard-pelayan-search.styles.scss";
 
 const DashboardPelayanSearch = () => {
   return (
     <div id="dashboard-pelayan-search">
       <div className="search-logo">
-        <Logo />
+        <Image
+          src={`https://ik.imagekit.io/upecbxjan8p/logo_2-2nVUxlt.png`}
+          preview={{
+            visible: false,
+            mask: null,
+          }}
+        />
       </div>
       <Input
         placeholder="Cari menu"

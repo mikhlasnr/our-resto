@@ -38,7 +38,7 @@
       min-height: 56px;
       border-radius: 10px;
 
-      &:first-child {
+      &.btn-action-primary {
         margin-right: 20px;
         border: 1px solid $textColorPrimary;
         span {
@@ -52,7 +52,7 @@
         }
       }
 
-      &:last-child {
+      &.btn-action-danger {
         border: 1px solid $primaryColor;
         span {
           color: $primaryColor;

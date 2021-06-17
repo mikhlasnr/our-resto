@@ -29,13 +29,8 @@ const App = () => {
   return (
     <div>
       <Switch>
+        <Route path="/" component={handlingCurrentUserRole} />
         <Route exact path="/signin" component={SignInPage} />
-        <Route
-          path="/"
-          render={() => {
-            return handlingCurrentUserRole();
-          }}
-        />
         <Route path="*">
           <NoMatchPage />
         </Route>

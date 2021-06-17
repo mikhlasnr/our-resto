@@ -13,6 +13,7 @@ const KategoriMenu = () => {
   const handlingRenderKategori = () => {
     return DATA_KATEGORI.map((kategori, index) => (
       <KategoriMenuCard
+        key={index}
         isDefaultActive={kategori.katTitle === "All"}
         katImage={kategori.katImage}
         katTitle={kategori.katTitle}

@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 
 import { Layout } from "antd";
 import DashboardAdminMenuPage from "../dashboard-admin-menu-page/dashboard-admin-menu-page.component";
+import DashboardAdminPegawaiPage from "../dashboard-admin-pegawai-page/dashboard-admin-pegawai-page.component";
 
 // handling redux
 import { connect, useSelector } from "react-redux";
@@ -18,18 +19,17 @@ const DashboardAdminMain = () => {
         background: "#FFFFFF",
       }}
     >
-      {isPemilik && (
-        <Route exact path="/">
-          <h1>Ini Dashboard</h1>
-        </Route>
-      )}
+      {isPemilik ? (
+        <Route exact path="/" render={() => <h1>Ini Dashboard</h1>} />
+      ) : null}
 
-      <Route exact path={isPemilik ? "/menu" : "/"}>
-        <DashboardAdminMenuPage />
-      </Route>
-      <Route exact path="/pegawai">
-        <h1>ini pegawai</h1>
-      </Route>
+      <Route
+        exact
+        path={!isPemilik ? "/" : `/menu`}
+        component={DashboardAdminMenuPage}
+      />
+
+      <Route exact path={`/pegawai`} component={DashboardAdminPegawaiPage} />
     </Layout>
   );
 };

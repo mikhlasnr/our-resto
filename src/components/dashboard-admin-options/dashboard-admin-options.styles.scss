@@ -1,7 +1,7 @@
 #dashboard-admin-options {
   &.ant-menu {
     border: none;
-    transition: none;
+    transition: 0.5 all ease-in-out;
     .ant-menu-item {
       display: flex;
       align-items: center;

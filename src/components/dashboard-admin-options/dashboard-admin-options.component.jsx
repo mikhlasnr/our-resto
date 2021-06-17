@@ -10,29 +10,36 @@ import { withRouter } from "react-router";
 import { HomeOutlined, TeamOutlined, ProfileOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 
-const DashboardAdminOptions = ({ history, match }) => {
+const DashboardAdminOptions = ({ history, match, location }) => {
   const currentUser = useSelector(state => state.users.currentUser);
   const isPemilik = currentUser.role === "pemilik";
+
+  const currentOption = location.pathname.split("/")[1];
+  const handlingOption = currentOption === "" ? "defaultOption" : currentOption;
+
   const handlingMenu = ({ key }) => {
-    if (key === "dashboard") history.push("/");
-    if (key === "menu") history.push(`${isPemilik ? "/menu" : "/"}`);
-    if (key === "pegawai") history.push("/pegawai");
+    if (key === "defaultOption") history.push(match.path);
+    if (key === "menu") history.push(`${match.path}menu`);
+    if (key === "pegawai") history.push(`${match.path}pegawai`);
   };
 
   return (
     <Menu
       id="dashboard-admin-options"
       mode="vertical"
-      defaultSelectedKeys={isPemilik ? ["dashboard"] : ["menu"]}
+      defaultSelectedKeys={handlingOption}
       onSelect={handlingMenu}
     >
-      {isPemilik && (
-        <Menu.Item key="dashboard" icon={<HomeOutlined />}>
+      {isPemilik ? (
+        <Menu.Item key="defaultOption" icon={<HomeOutlined />}>
           Dashboard
         </Menu.Item>
-      )}
+      ) : null}
 
-      <Menu.Item key="menu" icon={<ProfileOutlined />}>
+      <Menu.Item
+        key={!isPemilik ? "defaultOption" : "menu"}
+        icon={<ProfileOutlined />}
+      >
         Menu
       </Menu.Item>
       <Menu.Item key="pegawai" icon={<TeamOutlined />}>

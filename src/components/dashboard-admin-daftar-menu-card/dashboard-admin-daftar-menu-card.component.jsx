@@ -2,8 +2,7 @@ import React from "react";
 import "./dashboard-admin-daftar-menu-card.styles.scss";
 
 import { Row, Col, Button, Image } from "antd";
-import MenuFoto from "../../assets/images/kategori-menu/burger/menu/Double-Whopper-min.png";
-import { EmptyImage } from "../../ENDPOINT";
+
 const DashboardAdminDaftarMenuCard = () => {
   return (
     <Row className="dashboard-admin-daftar-menu-card">
@@ -12,7 +11,7 @@ const DashboardAdminDaftarMenuCard = () => {
           style={{ backgroundColor: "#FFB649", borderRadius: "15px" }}
           width={121}
           src={""}
-          fallback={EmptyImage}
+          fallback="https://ik.imagekit.io/upecbxjan8p/avatar/empty-image_6J-Ssa71Q.png"
         />
       </Col>
       <Col flex="auto" className="menu-card-info">
@@ -23,8 +22,8 @@ const DashboardAdminDaftarMenuCard = () => {
         <span>Rp 17.000</span>
       </Col>
       <Col className="menu-card-action">
-        <Button>Edit</Button>
-        <Button>Hapus</Button>
+        <Button className="btn-action-primary">Edit</Button>
+        <Button className="btn-action-danger">Hapus</Button>
       </Col>
     </Row>
   );

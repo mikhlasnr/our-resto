@@ -3,14 +3,16 @@ import "./dashboard-pelayan-pilih-menu-item.styles.scss";
 
 // Import Component
 import { Row, Col } from "antd";
-import BurgerMantap from "../../assets/images/kategori-menu/burger/menu/mantap-burger.png";
 
 const DashboardPelayanPilihMenuItem = () => {
   return (
     <div className="pilih-menu-item">
       <div className="image-item">
         <div className="image-item-container">
-          <img src={BurgerMantap} alt="menu" />
+          <img
+            src={`https://ik.imagekit.io/upecbxjan8p/menu/00005_wU17mn9oP.png`}
+            alt="menu"
+          />
         </div>
       </div>
       <div className="detail-item">
