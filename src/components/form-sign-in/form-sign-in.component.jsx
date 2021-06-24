@@ -7,70 +7,60 @@ import { withRouter } from "react-router-dom";
 // Import Component
 import { Form, Input, Button } from "antd";
 
-class FormSignIn extends Component {
-  onFinish = values => {
-    console.log("Success:", values);
-    this.props.history.push("/");
+const FormSignIn = ({ history }) => {
+  const validateMessages = {
+    required: "${label} diperlukan!",
+    types: {
+      email: "${label} is not a valid email!",
+      number: "${label} is not a valid number!",
+    },
   };
 
-  onFinishFailed = errorInfo => {
+  const onFinish = values => {
+    console.log("Success:", values);
+    history.push("/dashboard");
+  };
+
+  const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
 
-  render() {
-    return (
-      <section id="form-sign-in-kasir">
-        <Form
-          layout="vertical"
-          name="basic"
-          onFinish={this.onFinish}
-          onFinishFailed={this.onFinishFailed}
-          requiredMark={"optional"}
+  return (
+    <section id="form-sign-in-kasir">
+      <Form
+        layout="vertical"
+        name="nest-messages"
+        validateMessages={validateMessages}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <Form.Item
+          name={["user", "email"]}
+          label="Email"
+          rules={[{ required: true, type: "email" }]}
         >
-          <Form.Item
-            label="Username"
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: "Username yang Anda Masukkan tidak terhubung ke akun",
-              },
-            ]}
+          <Input className="input" />
+        </Form.Item>
+        <Form.Item
+          name={["user", "kataSandi"]}
+          label="Kata Sandi"
+          rules={[{ required: true }]}
+        >
+          <Input.Password className="input" />
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            block
+            className="custom-default-button primary-button"
           >
-            <Input placeholder="Masukkan Username-mu" className="input" />
-          </Form.Item>
-
-          <Form.Item
-            label="Kata Sandi"
-            name="kataSandi"
-            rules={[
-              {
-                required: true,
-                message: "Kata sandi yang Anda masukkan salah",
-              },
-            ]}
-            className="form-item-password"
-          >
-            <Input.Password
-              placeholder="Masukkan Kata sandimu"
-              className="input"
-            />
-          </Form.Item>
-
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              block
-              className="custom-default-button primary-button"
-            >
-              Masuk
-            </Button>
-          </Form.Item>
-        </Form>
-      </section>
-    );
-  }
-}
+            Masuk
+          </Button>
+        </Form.Item>
+      </Form>
+    </section>
+  );
+};
 
 export default withRouter(FormSignIn);

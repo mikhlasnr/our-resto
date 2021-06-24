@@ -7,15 +7,13 @@ import FormSignIn from "../../components/form-sign-in/form-sign-in.component";
 class SignInPage extends Component {
   render() {
     return (
-      <section id="sign-in-kasir-page">
+      <section id="sign-in-page">
         <Row>
-          <Col span={12} className="background">
-            <div className="left-box-container">
-              <img
-                src={`https://ik.imagekit.io/upecbxjan8p/avatar/AvatarSignInKasir__rx69pv1m_M.png`}
-                alt="avatar"
-              />
-            </div>
+          <Col span={12} className="left-box-container">
+            <img
+              src={`https://ik.imagekit.io/upecbxjan8p/avatar/AvatarSignInKasir__rx69pv1m_M.png`}
+              alt="avatar"
+            />
           </Col>
           <Col span={12} className="sign-in">
             <div className="right-box-container">

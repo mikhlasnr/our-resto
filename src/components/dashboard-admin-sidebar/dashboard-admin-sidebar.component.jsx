@@ -24,7 +24,6 @@ const DashboardAdminSidebar = () => {
     >
       <div className="admin-sidebar-container">
         <div className="wrapper-top">
-          <div className="logo" />
           <DashboardAdminOptions />
         </div>
         <div className="wrapper-bottom">

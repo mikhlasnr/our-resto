@@ -3,21 +3,24 @@ import "./table-pagawai.styles.scss";
 import Data from "../../assets/data/table-pegawai.data";
 
 // import component
-import { Table, Button, Space } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Avatar, Image } from "antd";
+import { Table, Button, Space, Avatar, Image } from "antd";
+import { LeftOutlined, RightOutlined, PlusOutlined } from "@ant-design/icons";
+import TablePegawaiAdd from "../table-pegawai-add/table-pegawai-add.component";
 
 const TablePegawai = () => {
   const [searchText, setSearchText] = useState("");
+  const [totalPegawai, setTotalPegawai] = useState("0");
+  const [rangePagawai, setRangePagawai] = useState("0");
+
   // ! handling colum value
   const columns = [
     {
       key: "email",
       dataIndex: "nama",
+      className: "table-pegawai-profile",
       render: (text, record, index) => {
-        console.log(record);
         return (
-          <div className="table-pegawai-profile">
+          <div className="table-pegawai-profile-container">
             <Avatar
               size={44}
               src={
@@ -41,16 +44,18 @@ const TablePegawai = () => {
     {
       key: "noHp",
       dataIndex: "noHp",
-      className: "table-pegawai-border",
+      className: "table-pegawai-kontak",
       align: "center",
-      width: "50%",
+      render: text => <p>{text}</p>,
+      width: "30%",
     },
     {
       key: "action",
       className: "table-pegawai-action",
+      align: "right",
       render: (text, record, index) => {
         return (
-          <Space size="middle">
+          <Space>
             <Button className="btn-action-primary">Lihat</Button>
             <Button className="btn-action-danger">Hapus</Button>
           </Space>
@@ -73,9 +78,15 @@ const TablePegawai = () => {
     if (type === "next") return <RightOutlined />;
     return originalElement;
   };
-
   return (
     <div id="table-pegawai-container">
+      <div className="table-pegawai-header">
+        <p className="table-total-pegawai">
+          {rangePagawai}/{totalPegawai}
+          <span>Pegawai</span>
+        </p>
+        <TablePegawaiAdd />
+      </div>
       <Table
         showHeader={false}
         className="table-list-pegawai"
@@ -83,6 +94,10 @@ const TablePegawai = () => {
           position: ["none", "bottomCenter"],
           defaultPageSize: 7,
           itemRender: handlingPagination,
+          showTotal: (total, range) => {
+            setTotalPegawai(total);
+            setRangePagawai(range[1]);
+          },
         }}
         columns={columns}
         dataSource={filteredData}

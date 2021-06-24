@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./dashboard-admin-options.styles.scss";
 
 // handling redux
@@ -13,31 +13,32 @@ import { Menu } from "antd";
 const DashboardAdminOptions = ({ history, match, location }) => {
   const currentUser = useSelector(state => state.users.currentUser);
   const isPemilik = currentUser.role === "pemilik";
-
-  const currentOption = location.pathname.split("/")[1];
-  const handlingOption = currentOption === "" ? "defaultOption" : currentOption;
+  const currentOption = location.pathname
+    .replace(`${match.path}/`, "")
+    .replace("/", "");
+  console.log(currentOption);
 
   const handlingMenu = ({ key }) => {
-    if (key === "defaultOption") history.push(match.path);
-    if (key === "menu") history.push(`${match.path}menu`);
-    if (key === "pegawai") history.push(`${match.path}pegawai`);
+    if (key === "dashboard") history.push(`${match.path}`);
+    if (key === "menu") history.push(`${match.path}/menu`);
+    if (key === "pegawai") history.push(`${match.path}/pegawai`);
   };
 
   return (
     <Menu
       id="dashboard-admin-options"
       mode="vertical"
-      defaultSelectedKeys={handlingOption}
+      defaultSelectedKeys={currentOption}
       onSelect={handlingMenu}
     >
       {isPemilik ? (
-        <Menu.Item key="defaultOption" icon={<HomeOutlined />}>
+        <Menu.Item key="dashboard" icon={<HomeOutlined />}>
           Dashboard
         </Menu.Item>
       ) : null}
 
       <Menu.Item
-        key={!isPemilik ? "defaultOption" : "menu"}
+        key={!isPemilik ? "dashboard" : "menu"}
         icon={<ProfileOutlined />}
       >
         Menu

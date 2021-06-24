@@ -1,13 +1,17 @@
 @import "../../colors";
-#sign-in-kasir-page {
-  width: 100%;
-  .background {
+#sign-in-page {
+  .left-box-container {
+    width: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
     background-color: $primaryColor;
-    min-height: 1024px;
-    .left-box-container {
-      display: flex;
-      justify-content: flex-end;
-      padding: 207px 23px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+    img {
+      max-width: 100%;
+      height: auto;
     }
   }
   .sign-in {

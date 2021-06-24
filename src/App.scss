@@ -95,7 +95,7 @@ h2 {
     background: $secondaryColor;
     border-color: $secondaryColor;
     border-radius: 140px;
-    height: 70px;
+    min-height: 70px;
     span {
       color: $textColorSecondary;
       font-weight: 600;
@@ -106,6 +106,23 @@ h2 {
       background: $secondaryColor;
       border-color: $secondaryColor;
       box-shadow: 0px 8px 30px rgba(35, 198, 91, 0.35);
+    }
+  }
+
+  &.btn-tambah {
+    min-width: 204px;
+    min-height: 56px;
+    border: 1px solid $secondaryColor;
+    border-radius: 10px;
+    span {
+      color: $secondaryColor;
+    }
+
+    &:hover {
+      background: $secondaryColor;
+      span {
+        color: $textColorSecondary;
+      }
     }
   }
 }
@@ -130,7 +147,7 @@ h2 {
 
 // Modal Styles
 .ant-modal {
-  width: 642px;
+  min-width: 50%;
   .ant-modal-content {
     border-radius: 30px;
     .ant-modal-body {
@@ -145,12 +162,6 @@ h2 {
 
 // Form Styles
 .ant-form {
-  &#form-buat-pesanan {
-    label {
-      font-weight: 600;
-      font-size: 18px;
-    }
-  }
   .ant-form-item {
     .ant-form-item-label {
       label {
@@ -162,9 +173,46 @@ h2 {
     }
     .ant-form-item-control {
       .input {
+        &:hover,
+        &:focus,
+        &:active {
+          border-color: $secondaryColor;
+        }
         border-radius: 9px;
         height: 55px;
       }
+      .ant-select {
+        .ant-select-selector {
+          &:hover,
+          &:focus,
+          &:active {
+            border-color: $secondaryColor;
+          }
+          border-radius: 9px;
+          height: 55px;
+          .ant-select-selection-item {
+            display: flex;
+            align-items: center;
+          }
+        }
+        &:hover,
+        &:focus,
+        &:active {
+          border-color: $secondaryColor;
+        }
+      }
     }
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  body {
+    -webkit-transform: rotate(90deg);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }

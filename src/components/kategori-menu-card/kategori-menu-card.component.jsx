@@ -12,6 +12,7 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
     event.target.className += "kategori-menu-item-active";
     console.log(event.target);
   };
+
   return (
     <div
       className={`kategori-menu-item ${

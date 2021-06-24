@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const menu = (
   <Menu>
     <Menu.Item key="1">
-      <Link to="/signin">Logout</Link>
+      <Link to="/">Logout</Link>
     </Menu.Item>
   </Menu>
 );
