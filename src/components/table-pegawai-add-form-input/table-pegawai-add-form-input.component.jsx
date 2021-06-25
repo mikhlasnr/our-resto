@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./table-pegawai-add-form-input.styles.scss";
 
 // Import Component

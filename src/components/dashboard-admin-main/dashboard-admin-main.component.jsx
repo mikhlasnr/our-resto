@@ -5,7 +5,6 @@ import { withRouter } from "react-router";
 import { Layout } from "antd";
 import DashboardAdminMenuPage from "../dashboard-admin-menu-page/dashboard-admin-menu-page.component";
 import DashboardAdminPegawaiPage from "../dashboard-admin-pegawai-page/dashboard-admin-pegawai-page.component";
-import NoMatchPage from "../../pages/no-match/no-match-page.component";
 
 // handling redux
 import { connect, useSelector } from "react-redux";
@@ -13,7 +12,7 @@ import { connect, useSelector } from "react-redux";
 const DashboardAdminMain = ({ match, location }) => {
   console.log(match);
   const currentUser = useSelector(state => state.users.currentUser);
-  const isPemilik = currentUser.role === "pemilik";
+  const isPemilik = currentUser.NamaRole.toLowerCase() === "pemilik";
   return (
     <Layout
       className="site-layout"
@@ -23,7 +22,11 @@ const DashboardAdminMain = ({ match, location }) => {
       }}
     >
       {isPemilik ? (
-        <Route path={`${match.path}`} render={() => <h1>Ini Dashboard</h1>} />
+        <Route
+          exact
+          path={`${match.path}`}
+          render={() => <h1>Ini Dashboard</h1>}
+        />
       ) : null}
 
       <Route

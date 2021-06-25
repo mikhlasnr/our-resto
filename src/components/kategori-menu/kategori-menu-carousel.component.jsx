@@ -34,7 +34,6 @@ const KategoriMenuCarousel = ({ children }) => {
           items: 5,
           partialVisibilityGutter: 40,
         },
-
         tablet: {
           breakpoint: {
             max: 1440,
@@ -42,10 +41,6 @@ const KategoriMenuCarousel = ({ children }) => {
           },
           items: 4,
           partialVisibilityGutter: 30,
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 3,
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },

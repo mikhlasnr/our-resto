@@ -1,25 +1,35 @@
 import React from "react";
 import "./dashboard-pelayan-profile.styles.scss";
 
+// handling redux
+import { useSelector, useDispatch } from "react-redux";
+import { removeCurrentUser } from "../../redux/users/users.action";
+
 // import components
 import { Avatar, Badge, Image } from "antd";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <Link to="/">List Pesanan</Link>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="1">
-      <Link to="/signin">Logout</Link>
-    </Menu.Item>
-  </Menu>
-);
-
 const DashboardPelayanProfile = () => {
+  const currentUser = useSelector(state => state.users.currentUser) || null;
+  const { Nama, NamaRole } = currentUser;
+  const dispatch = useDispatch();
+
+  const handlingMenuClick = ({ key }) => {
+    if (key === "logout") dispatch(removeCurrentUser());
+  };
+  const menu = (
+    <Menu onClick={handlingMenuClick}>
+      <Menu.Item key="list-pesanan">
+        <span>List Pesanan</span>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="logout">
+        <span>Logout</span>
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <div id="dashboard-pelayan-profile">
       <div className="dashboard-pelayan-profile-container">
@@ -45,8 +55,8 @@ const DashboardPelayanProfile = () => {
         </div>
         <div className="profile-detail">
           <div className="detail-user">
-            <p className="user-name">Muhammad Ilham</p>
-            <p className="user-role">Kasir 1</p>
+            <p className="user-name">{Nama}</p>
+            <p className="user-role">{NamaRole}</p>
           </div>
           <div className="detail-dropdown">
             <Dropdown

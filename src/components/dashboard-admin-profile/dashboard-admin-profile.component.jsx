@@ -2,21 +2,30 @@ import React from "react";
 import "./dashboard-admin-profile.styles.scss";
 
 // handling redux
-import { connect, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeCurrentUser } from "../../redux/users/users.action";
 
+// Import Component
 import { Avatar, Image, Menu, Dropdown } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-const menu = (
-  <Menu>
-    <Menu.Item key="1">
-      <Link to="/">Logout</Link>
-    </Menu.Item>
-  </Menu>
-);
 
 const DashboardPelayanProfile = () => {
-  const currentUser = useSelector(state => state.users.currentUser);
+  const currentUser =
+    useSelector(state => state.users.currentUser.Nama) || null;
+  const dispatch = useDispatch();
+
+  const handlingMenuClick = ({ key }) => {
+    if (key === "logout") dispatch(removeCurrentUser());
+  };
+
+  // ! Dropdown Menu Option
+  const menu = (
+    <Menu onClick={handlingMenuClick}>
+      <Menu.Item key="logout">
+        <span>Logout</span>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <div id="dashboard-admin-profile">
@@ -41,7 +50,7 @@ const DashboardPelayanProfile = () => {
         </div>
         <div className="profile-detail">
           <div className="detail-user">
-            <p className="user-name">Hayin Ananta</p>
+            <p className="user-name">{currentUser}</p>
             <p
               className="user-status"
               style={{ color: `${currentUser ? "#23C65B" : ""}` }}
@@ -62,4 +71,4 @@ const DashboardPelayanProfile = () => {
   );
 };
 
-export default connect()(DashboardPelayanProfile);
+export default DashboardPelayanProfile;

@@ -1,13 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import "./form-sign-in.styles.scss";
+// import endpoint API
+import API_URL from "../../db";
 
-// Dependencies
+// Handilng Redux
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../../redux/users/users.action";
+// Handling Route
 import { withRouter } from "react-router-dom";
 
 // Import Component
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 
 const FormSignIn = ({ history }) => {
+  const dispatch = useDispatch();
+
+  const [form] = Form.useForm(); //form antd component
   const validateMessages = {
     required: "${label} diperlukan!",
     types: {
@@ -17,8 +25,26 @@ const FormSignIn = ({ history }) => {
   };
 
   const onFinish = values => {
-    console.log("Success:", values);
-    history.push("/dashboard");
+    const { email, kataSandi } = values.user;
+    fetch(`${API_URL}/signin`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        kataSandi: kataSandi,
+      }),
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user.Email) {
+          dispatch(setCurrentUser(user));
+          message.success("Berhasil Login");
+          history.push("/dashboard");
+        } else message.error("Email atau Password Salah");
+      })
+      .catch(error => console.log(error));
+    form.resetFields();
+    // Remove input field
   };
 
   const onFinishFailed = errorInfo => {
@@ -28,8 +54,9 @@ const FormSignIn = ({ history }) => {
   return (
     <section id="form-sign-in-kasir">
       <Form
+        form={form}
         layout="vertical"
-        name="nest-messages"
+        name="login-form"
         validateMessages={validateMessages}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}

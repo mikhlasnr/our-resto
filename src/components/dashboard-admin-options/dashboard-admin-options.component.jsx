@@ -12,7 +12,7 @@ import { Menu } from "antd";
 
 const DashboardAdminOptions = ({ history, match, location }) => {
   const currentUser = useSelector(state => state.users.currentUser);
-  const isPemilik = currentUser.role === "pemilik";
+  const isPemilik = currentUser.NamaRole.toLowerCase() === "pemilik";
   const currentOption = location.pathname
     .replace(`${match.path}/`, "")
     .replace("/", "");

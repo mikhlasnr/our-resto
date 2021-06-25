@@ -4,7 +4,7 @@ import Data from "../../assets/data/table-pegawai.data";
 
 // import component
 import { Table, Button, Space, Avatar, Image } from "antd";
-import { LeftOutlined, RightOutlined, PlusOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import TablePegawaiAdd from "../table-pegawai-add/table-pegawai-add.component";
 
 const TablePegawai = () => {
@@ -63,10 +63,6 @@ const TablePegawai = () => {
       },
     },
   ];
-
-  const handleDetailAction = selectedKeys => {
-    console.log(selectedKeys);
-  };
 
   const filteredData = Data.filter(item => {
     return item.nama.toLowerCase().includes(searchText.toLowerCase());

@@ -1,7 +1,7 @@
 import UsersActionTypes from "./users.types";
 
 const INITIAL_STATE = {
-  currentUser: { nama: "admin", email: "admin", role: "admin" },
+  currentUser: null,
   createUserModalHidden: true,
 };
 
@@ -12,7 +12,16 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         ...state,
         createUserModalHidden: !state.createUserModalHidden,
       };
-
+    case UsersActionTypes.SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+    case UsersActionTypes.REMOVE_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: null,
+      };
     default:
       return state;
   }

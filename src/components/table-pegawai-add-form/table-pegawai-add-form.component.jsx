@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Import Component
-import { Form, Input, Button } from "antd";
 import { Row, Col } from "antd";
 import TablePegawaiAddFormProfile from "../table-pegawai-add-form-profile/table-pegawai-add-form-profile.component";
 import TablePegawaiAddFormInput from "../table-pegawai-add-form-input/table-pegawai-add-form-input.component";

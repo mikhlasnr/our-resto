@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./table-pegawai-add-form-profile.styles.scss";
 
-import { Button, Row, Col, Upload, message } from "antd";
+import { Upload, message } from "antd";
 import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
