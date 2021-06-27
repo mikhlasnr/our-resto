@@ -2,7 +2,7 @@ import React from "react";
 import "./buat-pesanan-form.styles.scss";
 // handling redux
 import { connect } from "react-redux";
-import { toggleCreateUserModalHidden } from "../../redux/users/users.action";
+import { toggleCreateUserModalHidden } from "../../redux/user/user.action";
 
 // Import Component
 import { Form, Input, Button } from "antd";

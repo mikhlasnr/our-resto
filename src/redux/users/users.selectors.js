@@ -2,9 +2,19 @@
 //! and called in mapTopProps
 import { createSelector } from "reselect";
 
-const selectPesanan = state => state.pesanan;
+const selectUsers = state => state.users;
 
-export const selectCheckoutModaltHidden = createSelector(
-  [selectPesanan],
-  pesanan => pesanan.checkoutModalHidden
+export const selectPegawai = createSelector(
+  [selectUsers],
+  users => users.pegawai
+);
+
+export const selectUsersIsFetching = createSelector(
+  [selectUsers],
+  users => users.isFetching
+);
+
+export const selectUsersErrorMessage = createSelector(
+  [selectUsers],
+  users => users.errorMessage
 );

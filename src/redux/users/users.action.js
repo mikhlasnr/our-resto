@@ -1,13 +1,29 @@
 import UsersActionTypes from "./users.types";
+import axios from "axios";
 
-export const toggleCreateUserModalHidden = () => ({
-  type: UsersActionTypes.TOGGLE_CREATE_USER_MODAL_HIDDEN,
+export const fetchDataPegawai = () => {
+  return dispatch => {
+    dispatch(fetchPegawaiStart());
+    axios("/users")
+      .then(res => {
+        dispatch(fetchPegawaiSuccess(res.data));
+      })
+      .catch(error => {
+        dispatch(fetchPegawaiFailure(error.message));
+      });
+  };
+};
+
+const fetchPegawaiStart = () => ({
+  type: UsersActionTypes.FETCH_PEGAWAI_START,
 });
 
-export const setCurrentUser = user => ({
-  type: UsersActionTypes.SET_CURRENT_USER,
-  payload: user,
+const fetchPegawaiSuccess = data => ({
+  type: UsersActionTypes.FETCH_PEGAWAI_SUCCESS,
+  payload: data,
 });
-export const removeCurrentUser = () => ({
-  type: UsersActionTypes.REMOVE_CURRENT_USER,
+
+const fetchPegawaiFailure = message => ({
+  type: UsersActionTypes.FETCH_PEGAWAI_FAILURE,
+  payload: message,
 });

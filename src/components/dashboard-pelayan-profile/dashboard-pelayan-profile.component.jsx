@@ -3,16 +3,15 @@ import "./dashboard-pelayan-profile.styles.scss";
 
 // handling redux
 import { useSelector, useDispatch } from "react-redux";
-import { removeCurrentUser } from "../../redux/users/users.action";
+import { removeCurrentUser } from "../../redux/user/user.action";
 
 // import components
 import { Avatar, Badge, Image } from "antd";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 
 const DashboardPelayanProfile = () => {
-  const currentUser = useSelector(state => state.users.currentUser) || null;
+  const currentUser = useSelector(state => state.user.currentUser) || null;
   const { Nama, NamaRole } = currentUser;
   const dispatch = useDispatch();
 

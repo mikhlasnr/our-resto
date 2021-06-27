@@ -2,7 +2,7 @@ import React from "react";
 import "./sign-in-page.styles.scss";
 
 import { Row, Col, Image } from "antd";
-import FormSignIn from "../../components/form-sign-in/form-sign-in.component";
+import FormSignIn from "../../components/sign-in-form/sign-in-form.component";
 
 const SignInPage = () => {
   return (

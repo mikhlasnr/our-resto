@@ -4,13 +4,13 @@ import "./buat-pesanan-modal.styles.scss";
 // handling redux
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
-import { toggleCreateUserModalHidden } from "../../redux/users/users.action";
+import { toggleCreateUserModalHidden } from "../../redux/user/user.action";
 // import component
 import { Modal } from "antd";
 import CreateUserForm from "../create-user-form/create-user-form.component";
 const CreateUserModal = ({ dispatch }) => {
   const createUserModalHidden = useSelector(
-    state => state.users.createUserModalHidden
+    state => state.user.createUserModalHidden
   );
 
   return (

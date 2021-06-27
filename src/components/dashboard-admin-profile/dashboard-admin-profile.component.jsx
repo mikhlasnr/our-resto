@@ -3,15 +3,14 @@ import "./dashboard-admin-profile.styles.scss";
 
 // handling redux
 import { useSelector, useDispatch } from "react-redux";
-import { removeCurrentUser } from "../../redux/users/users.action";
+import { removeCurrentUser } from "../../redux/user/user.action";
 
 // Import Component
 import { Avatar, Image, Menu, Dropdown } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
 
 const DashboardPelayanProfile = () => {
-  const currentUser =
-    useSelector(state => state.users.currentUser.Nama) || null;
+  const currentUser = useSelector(state => state.user.currentUser.Nama) || null;
   const dispatch = useDispatch();
 
   const handlingMenuClick = ({ key }) => {

@@ -9,7 +9,6 @@ const DashboardPelayanPesananItem = () => {
     e.preventDefault();
     const itemCard = e.target.parentElement;
     const btnDelete = itemCard.nextSibling;
-    console.log(itemCard.nextSibling);
     itemCard.classList.toggle("sliding-card");
     btnDelete.classList.toggle("show-delete-btn");
   };

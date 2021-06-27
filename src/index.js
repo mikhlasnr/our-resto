@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
+import "antd/dist/antd.css";
 import "react-multi-carousel/lib/styles.css";
 import "./index.css";
 
@@ -12,6 +12,11 @@ import { store, persistor } from "./redux/store";
 
 import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
+
+import API_URL from "./BASE_URL";
+import axios from "axios";
+axios.defaults.baseURL = API_URL;
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 ReactDOM.render(
   <Provider store={store}>

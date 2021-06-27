@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./dashboard-admin-options.styles.scss";
 
 // handling redux
@@ -11,12 +11,11 @@ import { HomeOutlined, TeamOutlined, ProfileOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 
 const DashboardAdminOptions = ({ history, match, location }) => {
-  const currentUser = useSelector(state => state.users.currentUser);
+  const currentUser = useSelector(state => state.user.currentUser);
   const isPemilik = currentUser.NamaRole.toLowerCase() === "pemilik";
   const currentOption = location.pathname
     .replace(`${match.path}/`, "")
     .replace("/", "");
-  console.log(currentOption);
 
   const handlingMenu = ({ key }) => {
     if (key === "dashboard") history.push(`${match.path}`);

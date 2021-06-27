@@ -12,7 +12,6 @@ import { Form, Input, Button } from "antd";
 
 const BuatPesananForm = ({ history, dispatch }) => {
   const onFinish = values => {
-    console.log("Success:", values);
     history.push("/kasir/pesanan");
     dispatch(toggleCheckoutModalHidden());
   };

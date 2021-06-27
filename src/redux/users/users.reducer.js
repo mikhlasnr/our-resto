@@ -1,26 +1,29 @@
 import UsersActionTypes from "./users.types";
 
 const INITIAL_STATE = {
-  currentUser: null,
-  createUserModalHidden: true,
+  pegawai: null,
+  isFetching: false,
+  errorMessage: undefined,
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UsersActionTypes.TOGGLE_CREATE_USER_MODAL_HIDDEN:
+    case UsersActionTypes.FETCH_PEGAWAI_START:
       return {
         ...state,
-        createUserModalHidden: !state.createUserModalHidden,
+        isFetching: true,
       };
-    case UsersActionTypes.SET_CURRENT_USER:
+    case UsersActionTypes.FETCH_PEGAWAI_SUCCESS:
       return {
         ...state,
-        currentUser: action.payload,
+        isFetching: false,
+        pegawai: action.payload,
       };
-    case UsersActionTypes.REMOVE_CURRENT_USER:
+    case UsersActionTypes.FETCH_PEGAWAI_FAILURE:
       return {
         ...state,
-        currentUser: null,
+        isFetching: false,
+        errorMessage: action.payload,
       };
     default:
       return state;

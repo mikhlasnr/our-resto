@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage"; // get local storage
 
 // import reducer
 import pesananReducer from "./pesanan/pesanan.reducer";
+import userReducer from "./user/user.reducer";
 import usersReducer from "./users/users.reducer";
 
 //create persist config
@@ -13,11 +14,12 @@ import usersReducer from "./users/users.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["users"],
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({
   pesanan: pesananReducer,
+  user: userReducer,
   users: usersReducer,
 });
 

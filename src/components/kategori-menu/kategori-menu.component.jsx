@@ -8,7 +8,9 @@ import KategoriMenuCard from "../kategori-menu-card/kategori-menu-card.component
 import KategoriMenuAdd from "../kategori-menu-add/kategori-menu-add.component";
 import DATA_KATEGORI from "../../assets/data/DATA_KATEGORI";
 const KategoriMenu = () => {
-  const currentUserRole = useSelector(state => state.users.currentUser.role);
+  const currentUserRole = useSelector(state =>
+    state.user.currentUser.NamaRole.toLowerCase()
+  );
 
   const handlingRenderKategori = () => {
     return DATA_KATEGORI.map((kategori, index) => (
