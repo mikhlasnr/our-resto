@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 // Handling Redux
 import { useDispatch } from "react-redux";
 import { fetchDataPegawai } from "../../redux/users/users.action";
+import { fetchDataRoles } from "../../redux/roles/roles.action";
 
 // import component
 import AdminPegawaiTable from "../admin-pegawai-table/admin-pegawai-table.component";
@@ -12,6 +13,7 @@ const AdminPegawaiPage = () => {
 
   useEffect(() => {
     dispatch(fetchDataPegawai());
+    dispatch(fetchDataRoles());
   }, []);
 
   return (

@@ -1,13 +1,15 @@
 import React from "react";
 import "./admin-pegawai-form-input.styles.scss";
 
+// Handling Redux
+import { useSelector } from "react-redux";
+import { selectRoles } from "../../redux/roles/roles.selectors";
 // Import Component
 import { Form, Input, Select, Button } from "antd";
 
-// import data
-import DATA_ROLE from "../../assets/data/DATA_ROLE";
-
 const AdminPegawaiFormInput = () => {
+  const rolesData = useSelector(selectRoles);
+
   const validateMessages = {
     required: "${label} diperlukan!",
     types: {
@@ -25,11 +27,12 @@ const AdminPegawaiFormInput = () => {
   };
 
   const handlingOptionRole = () =>
-    DATA_ROLE.map(data => (
-      <Select.Option key={data.id} value={data.idRole}>
-        {data.namaRole}
+    rolesData.map(role => (
+      <Select.Option key={role.IdRole} value={role.IdRole}>
+        {role.NamaRole}
       </Select.Option>
     ));
+
   return (
     <section className="table-pegawai-add-form-input">
       <Form

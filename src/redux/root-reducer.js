@@ -7,6 +7,7 @@ import storage from "redux-persist/lib/storage"; // get local storage
 import pesananReducer from "./pesanan/pesanan.reducer";
 import userReducer from "./user/user.reducer";
 import usersReducer from "./users/users.reducer";
+import rolesReducer from "./roles/roles.reducer";
 
 //create persist config
 // its persist with local storage so when refresh the data won't disappeared
@@ -14,13 +15,14 @@ import usersReducer from "./users/users.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user"],
+  whitelist: ["user", "roles"],
 };
 
 const rootReducer = combineReducers({
   pesanan: pesananReducer,
   user: userReducer,
   users: usersReducer,
+  roles: rolesReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
