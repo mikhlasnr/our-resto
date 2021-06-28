@@ -6,7 +6,7 @@ import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 
-const AdminPegawaiFormProfile = () => {
+const AdminPegawaiFormProfile = ({ setInputProfile }) => {
   const [isUploadLoading, setIsUploadLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
   const getBase64 = (img, callback) => {
@@ -24,6 +24,8 @@ const AdminPegawaiFormProfile = () => {
 
     if (isJpgOrPng && isLt2M) {
       getBase64(file, imageUrl => setImageUrl(imageUrl));
+      // getBase64(file, imageUrl => setInputProfile(imageUrl));
+      setInputProfile(file);
     }
 
     return false;
@@ -31,10 +33,6 @@ const AdminPegawaiFormProfile = () => {
 
   const handleChange = info => {
     if (info.file.status === "uploading") {
-      // getBase64(info.file.originFileObj, imageUrl => {
-      //   setImageUrl(imageUrl);
-      // });
-      setIsUploadLoading(true);
       return;
     }
     if (info.file.status === "done") {

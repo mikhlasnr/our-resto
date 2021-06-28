@@ -103,7 +103,7 @@ const AdminPegawaiTable = () => {
       <div className="admin-pegawai-table-container">
         <Table
           loading={usersIsFetching}
-          rowKey={record => record.id}
+          rowKey={record => record.IdUser}
           showHeader={false}
           className="table-list-pegawai"
           pagination={{

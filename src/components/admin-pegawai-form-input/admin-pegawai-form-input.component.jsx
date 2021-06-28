@@ -7,7 +7,7 @@ import { selectRoles } from "../../redux/roles/roles.selectors";
 // Import Component
 import { Form, Input, Select, Button } from "antd";
 
-const AdminPegawaiFormInput = () => {
+const AdminPegawaiFormInput = ({ onFinish }) => {
   const rolesData = useSelector(selectRoles);
 
   const validateMessages = {
@@ -16,10 +16,6 @@ const AdminPegawaiFormInput = () => {
       email: "${label} is not a valid email!",
       number: "${label} is not a valid number!",
     },
-  };
-
-  const onFinish = values => {
-    console.log("Success:", values);
   };
 
   const onFinishFailed = errorInfo => {
@@ -44,42 +40,42 @@ const AdminPegawaiFormInput = () => {
       >
         <div className="table-pegawai-add-form-input">
           <Form.Item
-            name={["user", "nama"]}
+            name={["user", "Nama"]}
             label="Nama"
             rules={[{ required: true }]}
           >
             <Input className="input" />
           </Form.Item>
           <Form.Item
-            name={["user", "email"]}
+            name={["user", "Email"]}
             label="Email"
             rules={[{ required: true, type: "email" }]}
           >
             <Input className="input" />
           </Form.Item>
           <Form.Item
-            name={["user", "noHp"]}
-            label="No Hp"
+            name={["user", "NoTelp"]}
+            label="No Telp"
             rules={[{ required: true, types: "number" }]}
           >
             <Input className="input" maxLength={13} />
           </Form.Item>
           <Form.Item
-            name={["user", "alamat"]}
+            name={["user", "Alamat"]}
             label="Alamat"
             rules={[{ required: true }]}
           >
             <Input className="input" />
           </Form.Item>
           <Form.Item
-            name={["user", "role"]}
+            name={["user", "IdRole"]}
             label="Posisi"
             rules={[{ required: true }]}
           >
             <Select>{handlingOptionRole()}</Select>
           </Form.Item>
           <Form.Item
-            name={["user", "kataSandi"]}
+            name={["user", "Password"]}
             label="Kata Sandi"
             rules={[{ required: true }]}
           >

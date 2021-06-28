@@ -1,16 +1,19 @@
 import React from "react";
 import "./buat-pesanan-form.styles.scss";
-// handling redux
-import { connect } from "react-redux";
+
+// Handling redux
+import { useDispatch } from "react-redux";
 import { toggleCheckoutModalHidden } from "../../redux/pesanan/pesanan.action";
 
-// Dependencies
-import { withRouter } from "react-router-dom";
+// Handling Route
+import { useHistory } from "react-router-dom";
 
 // Import Component
 import { Form, Input, Button } from "antd";
 
-const BuatPesananForm = ({ history, dispatch }) => {
+const BuatPesananForm = () => {
+  let history = useHistory();
+  const dispatch = useDispatch();
   const onFinish = values => {
     history.push("/kasir/pesanan");
     dispatch(toggleCheckoutModalHidden());
@@ -58,4 +61,4 @@ const BuatPesananForm = ({ history, dispatch }) => {
   );
 };
 
-export default withRouter(connect()(BuatPesananForm));
+export default BuatPesananForm;
