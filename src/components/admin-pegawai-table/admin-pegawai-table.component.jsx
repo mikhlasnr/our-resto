@@ -20,7 +20,6 @@ const AdminPegawaiTable = () => {
   const [showRangeData, setShowRangeData] = useState(0);
 
   const usersIsFetching = useSelector(selectUsersIsFetching);
-  const usersErrorMessage = useSelector(selectUsersErrorMessage);
   const usersData = useSelector(selectPegawai);
 
   // ! handling colum value

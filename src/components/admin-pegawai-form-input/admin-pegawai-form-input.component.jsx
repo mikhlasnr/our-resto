@@ -3,12 +3,16 @@ import "./admin-pegawai-form-input.styles.scss";
 
 // Handling Redux
 import { useSelector } from "react-redux";
-import { selectRoles } from "../../redux/roles/roles.selectors";
+import {
+  selectRoles,
+  selectRolesIsFetching,
+} from "../../redux/roles/roles.selectors";
 // Import Component
 import { Form, Input, Select, Button } from "antd";
 
 const AdminPegawaiFormInput = ({ onFinish }) => {
   const rolesData = useSelector(selectRoles);
+  const rolesDataIsFetching = useSelector(selectRolesIsFetching);
 
   const validateMessages = {
     required: "${label} diperlukan!",
@@ -21,13 +25,6 @@ const AdminPegawaiFormInput = ({ onFinish }) => {
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
-
-  const handlingOptionRole = () =>
-    rolesData.map(role => (
-      <Select.Option key={role.IdRole} value={role.IdRole}>
-        {role.NamaRole}
-      </Select.Option>
-    ));
 
   return (
     <section className="table-pegawai-add-form-input">
@@ -72,7 +69,15 @@ const AdminPegawaiFormInput = ({ onFinish }) => {
             label="Posisi"
             rules={[{ required: true }]}
           >
-            <Select>{handlingOptionRole()}</Select>
+            <Select loading={rolesDataIsFetching}>
+              {rolesData
+                ? rolesData.map(role => (
+                    <Select.Option key={role.IdRole} value={role.IdRole}>
+                      {role.NamaRole}
+                    </Select.Option>
+                  ))
+                : null}
+            </Select>
           </Form.Item>
           <Form.Item
             name={["user", "Password"]}
