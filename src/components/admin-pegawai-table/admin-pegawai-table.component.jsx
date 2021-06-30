@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import {
   selectPegawai,
   selectUsersIsFetching,
-  selectUsersErrorMessage,
 } from "../../redux/users/users.selectors";
 
 // import component
@@ -36,7 +35,10 @@ const AdminPegawaiTable = () => {
               src={
                 <Image
                   width={44}
-                  src={record.foto}
+                  src={
+                    record.Foto ||
+                    "https://ik.imagekit.io/upecbxjan8p/avatar/empty-image_6J-Ssa71Q.png"
+                  }
                   preview={{
                     visible: false,
                     mask: null,
@@ -84,7 +86,6 @@ const AdminPegawaiTable = () => {
   const handlingShowTotal = (total, range) => {
     setShowTotalData(total);
     setShowRangeData(range[1]);
-
     return null;
   };
 

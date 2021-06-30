@@ -17,8 +17,8 @@ const AdminPegawaiFormInput = ({ onFinish }) => {
   const validateMessages = {
     required: "${label} diperlukan!",
     types: {
-      email: "${label} is not a valid email!",
-      number: "${label} is not a valid number!",
+      email: "${label} format tidak valid!",
+      number: "${label} format tidak valid!",
     },
   };
 

@@ -15,7 +15,7 @@ import rolesReducer from "./roles/roles.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "roles"],
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({
