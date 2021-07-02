@@ -5,7 +5,11 @@ import { storage } from "../../firebase";
 // Handling Redux
 import { useDispatch } from "react-redux";
 import { fetchDataRoles } from "../../redux/roles/roles.action";
-import { handlingIsEmailExist } from "../../redux/users/users.action";
+import {
+  handlingIsEmailExist,
+  toggleShowModalPegawai,
+} from "../../redux/users/users.action";
+import { fetchDataPegawai } from "../../redux/users/users.action";
 
 // Import Component
 import { Form, Row, Col, message, Spin } from "antd";
@@ -55,6 +59,8 @@ const AdminPegawaiForm = () => {
           message.success("Tambah Pegawai Berhasil!");
           setIsUploading(false);
           form.resetFields();
+          dispatch(fetchDataPegawai());
+          dispatch(toggleShowModalPegawai());
         }
       })
       .catch(error => {
@@ -82,7 +88,8 @@ const AdminPegawaiForm = () => {
             axios
               .post(`/user/add/image/${IdUser}`, { ImageUrl: url })
               .then(response => {
-                console.log(url);
+                dispatch(fetchDataPegawai());
+                dispatch(toggleShowModalPegawai());
                 message.success("Tambah Pegawai Berhasil!");
                 setIsUploading(false);
                 setImageUrl(null);

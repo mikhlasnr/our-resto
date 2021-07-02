@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   isFetching: false,
   errorMessage: undefined,
   isEmailExist: false,
+  showModalPegawai: false,
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -30,6 +31,11 @@ const usersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isEmailExist: action.payload,
+      };
+    case UsersActionTypes.TOGGLE_SHOW_MODAL_PEGAWAI:
+      return {
+        ...state,
+        showModalPegawai: !state.showModalPegawai,
       };
     default:
       return state;

@@ -86,7 +86,6 @@ const AdminPegawaiTable = () => {
   const handlingShowTotal = (total, range) => {
     setShowTotalData(total);
     setShowRangeData(range[1]);
-    return null;
   };
 
   return (

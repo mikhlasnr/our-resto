@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 // Handling Redux
 import { useDispatch } from "react-redux";
-import { fetchDataRoles } from "../../redux/roles/roles.action";
 import { fetchDataPegawai } from "../../redux/users/users.action";
+import AdminPegawaiModal from "../admin-pegawai-modal/admin-pegawai-modal.component";
 
 // import component
 import AdminPegawaiTable from "../admin-pegawai-table/admin-pegawai-table.component";
@@ -13,12 +13,13 @@ const AdminPegawaiPage = () => {
 
   useEffect(() => {
     dispatch(fetchDataPegawai());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="dashboard-admin-pegawai-page">
       <h1>Daftar Pegawai</h1>
       <AdminPegawaiTable />
+      <AdminPegawaiModal />
     </div>
   );
 };

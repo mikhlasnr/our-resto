@@ -1,6 +1,7 @@
 import UsersActionTypes from "./users.types";
 import axios from "axios";
 
+// START Action Fetch Data Pegawai
 export const fetchDataPegawai = () => {
   return dispatch => {
     dispatch(fetchPegawaiStart());
@@ -31,4 +32,10 @@ const fetchPegawaiFailure = message => ({
 export const handlingIsEmailExist = response => ({
   type: UsersActionTypes.IS_EMAIL_EXIST,
   payload: response,
+});
+// END Action Fetch Data Pegawai
+
+// handling add pggawai modal
+export const toggleShowModalPegawai = () => ({
+  type: UsersActionTypes.TOGGLE_SHOW_MODAL_PEGAWAI,
 });

@@ -23,3 +23,8 @@ export const selectIsEmailExist = createSelector(
   [selectUsers],
   users => users.isEmailExist
 );
+
+export const selectShowModalPegawai = createSelector(
+  [selectUsers],
+  users => users.showModalPegawai
+);
