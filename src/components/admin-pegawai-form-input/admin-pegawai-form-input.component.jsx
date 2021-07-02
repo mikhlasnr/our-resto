@@ -7,12 +7,17 @@ import {
   selectRoles,
   selectRolesIsFetching,
 } from "../../redux/roles/roles.selectors";
+import { selectIsEmailExist } from "../../redux/users/users.selectors";
+
 // Import Component
 import { Form, Input, Select, Button } from "antd";
 
-const AdminPegawaiFormInput = ({ onFinish }) => {
+const AdminPegawaiFormInput = ({ onFinish, form }) => {
+  // const [form] = Form.useForm();
+
   const rolesData = useSelector(selectRoles);
   const rolesDataIsFetching = useSelector(selectRolesIsFetching);
+  const isEmailExist = useSelector(selectIsEmailExist);
 
   const validateMessages = {
     required: "${label} diperlukan!",
@@ -20,20 +25,24 @@ const AdminPegawaiFormInput = ({ onFinish }) => {
       email: "${label} format tidak valid!",
       number: "${label} format tidak valid!",
     },
+    emailExist: "email sudah ada",
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log("Failed:", errorInfo);
+  const handlingIsEmailExist = () => {
+    if (isEmailExist) {
+      console.log("email exist");
+      return "error";
+    }
   };
 
   return (
     <section className="table-pegawai-add-form-input">
       <Form
+        form={form}
         layout="vertical"
-        name="nest-messages"
+        name="tambah-pegawai"
         validateMessages={validateMessages}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
       >
         <div className="table-pegawai-add-form-input">
           <Form.Item
@@ -47,6 +56,8 @@ const AdminPegawaiFormInput = ({ onFinish }) => {
             name={["user", "Email"]}
             label="Email"
             rules={[{ required: true, type: "email" }]}
+            validateStatus={handlingIsEmailExist()}
+            hasFeedback={true}
           >
             <Input className="input" />
           </Form.Item>

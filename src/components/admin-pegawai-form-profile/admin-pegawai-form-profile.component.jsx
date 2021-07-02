@@ -6,9 +6,11 @@ import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 
-const AdminPegawaiFormProfile = ({ setInputProfile }) => {
-  const [isUploadLoading, setIsUploadLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null);
+const AdminPegawaiFormProfile = ({
+  setInputProfile,
+  imageUrl,
+  setImageUrl,
+}) => {
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
@@ -19,10 +21,10 @@ const AdminPegawaiFormProfile = ({ setInputProfile }) => {
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
     if (!isJpgOrPng) message.error("hanya bisa upload JPG/PNG file!");
 
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) message.error("gambar harus kurang dari 2MB!");
+    const isLt1M = file.size / 1024 / 1024 < 1;
+    if (!isLt1M) message.error("gambar harus kurang dari 1MB!");
 
-    if (isJpgOrPng && isLt2M) {
+    if (isJpgOrPng && isLt1M) {
       getBase64(file, imageUrl => setImageUrl(imageUrl));
       // getBase64(file, imageUrl => setInputProfile(imageUrl));
       setInputProfile(file);
@@ -31,19 +33,9 @@ const AdminPegawaiFormProfile = ({ setInputProfile }) => {
     return false;
   };
 
-  const handleChange = info => {
-    if (info.file.status === "uploading") {
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      return;
-    }
-  };
-
   const uploadButton = (
     <div>
-      {isUploadLoading ? <LoadingOutlined /> : <PlusOutlined />}
+      <PlusOutlined />
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
@@ -54,7 +46,6 @@ const AdminPegawaiFormProfile = ({ setInputProfile }) => {
       className="avatar-uploader pegawai-add-form-profile"
       showUploadList={false}
       beforeUpload={beforeUpload}
-      onChange={handleChange}
     >
       {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
     </Dragger>

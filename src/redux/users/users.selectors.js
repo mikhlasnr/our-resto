@@ -18,3 +18,8 @@ export const selectUsersErrorMessage = createSelector(
   [selectUsers],
   users => users.errorMessage
 );
+
+export const selectIsEmailExist = createSelector(
+  [selectUsers],
+  users => users.isEmailExist
+);

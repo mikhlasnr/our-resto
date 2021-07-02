@@ -27,3 +27,8 @@ const fetchPegawaiFailure = message => ({
   type: UsersActionTypes.FETCH_PEGAWAI_FAILURE,
   payload: message,
 });
+
+export const handlingIsEmailExist = response => ({
+  type: UsersActionTypes.IS_EMAIL_EXIST,
+  payload: response,
+});

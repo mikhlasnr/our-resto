@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   pegawai: null,
   isFetching: false,
   errorMessage: undefined,
+  isEmailExist: false,
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -24,6 +25,11 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         errorMessage: action.payload,
+      };
+    case UsersActionTypes.IS_EMAIL_EXIST:
+      return {
+        ...state,
+        isEmailExist: action.payload,
       };
     default:
       return state;
