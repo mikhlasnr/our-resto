@@ -107,7 +107,6 @@ const AdminPegawaiTable = () => {
           className="table-list-pegawai"
           pagination={{
             position: ["bottomCenter"],
-            hideOnSinglePage: true,
             defaultPageSize: 7,
             itemRender: handlingPagination,
             showTotal: handlingShowTotal,

@@ -27,12 +27,8 @@ const FormSignIn = ({ history }) => {
   };
 
   const onFinish = values => {
-    const { email, kataSandi } = values.user;
     axios
-      .post("/signin", {
-        email,
-        kataSandi,
-      })
+      .post("/signin", values.user)
       .then(response => {
         if (response.data.Email) {
           dispatch(setCurrentUser(response.data));
@@ -58,15 +54,15 @@ const FormSignIn = ({ history }) => {
         onFinish={onFinish}
       >
         <Form.Item
-          name={["user", "email"]}
+          name={["user", "Email"]}
           label="Email"
           rules={[{ required: true, type: "email" }]}
         >
           <Input className="input" />
         </Form.Item>
         <Form.Item
-          name={["user", "kataSandi"]}
-          label="Kata Sandi"
+          name={["user", "Password"]}
+          label="Password"
           rules={[{ required: true }]}
         >
           <Input.Password className="input" />
