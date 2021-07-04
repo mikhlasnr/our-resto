@@ -39,3 +39,7 @@ export const handlingIsEmailExist = response => ({
 export const toggleShowModalPegawai = () => ({
   type: UsersActionTypes.TOGGLE_SHOW_MODAL_PEGAWAI,
 });
+// handling update pggawai modal
+export const toggleShowModalUpdatePegawai = () => ({
+  type: UsersActionTypes.TOGGLE_SHOW_MODAL_UPDATE_PEGAWAI,
+});

@@ -28,3 +28,8 @@ export const selectShowModalPegawai = createSelector(
   [selectUsers],
   users => users.showModalPegawai
 );
+
+export const selectShowModalUpdatePegawai = createSelector(
+  [selectUsers],
+  users => users.showModalUpdatePegawai
+);

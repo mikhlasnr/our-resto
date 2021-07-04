@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchDataPegawai } from "../../redux/users/users.action";
 import AdminPegawaiModal from "../admin-pegawai-modal/admin-pegawai-modal.component";
-
 // import component
 import AdminPegawaiTable from "../admin-pegawai-table/admin-pegawai-table.component";
+import AdminPegawaiUpdateModal from "../admin-pegawai-update-modal/admin-pegawai-update-modal.component";
 
 const AdminPegawaiPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const AdminPegawaiPage = () => {
       <h1>Daftar Pegawai</h1>
       <AdminPegawaiTable />
       <AdminPegawaiModal />
+      <AdminPegawaiUpdateModal />
     </div>
   );
 };

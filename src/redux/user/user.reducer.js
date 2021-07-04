@@ -3,7 +3,6 @@ import UserActionTypes from "./user.types";
 const INITIAL_STATE = {
   currentUser: null,
   createUserModalHidden: true,
-  pegawai: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {

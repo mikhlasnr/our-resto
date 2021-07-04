@@ -6,6 +6,8 @@ const INITIAL_STATE = {
   errorMessage: undefined,
   isEmailExist: false,
   showModalPegawai: false,
+  showModalUpdatePegawai: false,
+  userById: [],
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -36,6 +38,16 @@ const usersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         showModalPegawai: !state.showModalPegawai,
+      };
+    case UsersActionTypes.TOGGLE_SHOW_MODAL_UPDATE_PEGAWAI:
+      return {
+        ...state,
+        showModalUpdatePegawai: !state.showModalUpdatePegawai,
+      };
+    case UsersActionTypes.GET_USER_BY_ID:
+      return {
+        ...state,
+        userById: action.payload,
       };
     default:
       return state;
