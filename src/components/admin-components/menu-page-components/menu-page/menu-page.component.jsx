@@ -5,7 +5,7 @@ import "./menu-page.styles.scss";
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import KategoriMenu from "../../../kategori-menu/kategori-menu.component";
-import AdminMenuList from "../admin-menu-list/admin-menu-list.component";
+import MenuList from "../menu-list/menu-list.component";
 
 const MenuPage = () => {
   return (
@@ -16,7 +16,7 @@ const MenuPage = () => {
         <Button className="btn-tambah" icon={<PlusOutlined />}>
           Tambah Menu
         </Button>
-        <AdminMenuList />
+        <MenuList />
       </div>
     </div>
   );

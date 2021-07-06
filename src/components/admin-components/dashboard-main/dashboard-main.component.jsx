@@ -8,7 +8,7 @@ import { useRouteMatch } from "react-router-dom";
 
 // Import Component
 import MenuPage from "../menu-page-components/menu-page/menu-page.component";
-import AdminPegawaiPage from "../admin-pegawai-page-components/admin-pegawai-page/admin-pegawai-page.component";
+import PegawaiPage from "../pegawai-page-components/pegawai-page/admin-pegawai-page.component";
 
 const DashboardMain = () => {
   let match = useRouteMatch();
@@ -32,11 +32,7 @@ const DashboardMain = () => {
         component={MenuPage}
       />
 
-      <Route
-        exact
-        path={`${match.path}/pegawai`}
-        component={AdminPegawaiPage}
-      />
+      <Route exact path={`${match.path}/pegawai`} component={PegawaiPage} />
     </>
   );
 };
