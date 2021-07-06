@@ -1,8 +1,8 @@
 import React from "react";
 
 // Import Component
-import AdminDashboardSidebar from "../../components/admin-dashboard-sidebar/admin-dashboard-sidebar.component";
-import AdminDashboardMain from "../../components/admin-dashboard-main/admin-dashboard-main.component";
+import DashboardSidebar from "../../components/admin-components/sidebar-components/dashboard-sidebar/dashboard-sidebar.component";
+import DashboardMain from "../../components/admin-components/dashboard-main/dashboard-main.component";
 import { Layout } from "antd";
 const { Sider } = Layout;
 
@@ -23,7 +23,7 @@ const AdminDashboardPage = () => {
           boxShadow: "12px 4px 68px rgba(215, 215, 215, 0.26)",
         }}
       >
-        <AdminDashboardSidebar />
+        <DashboardSidebar />
       </Sider>
       <Layout
         className="admin-dashboard-main"
@@ -33,7 +33,7 @@ const AdminDashboardPage = () => {
           background: "#FFFFFF",
         }}
       >
-        <AdminDashboardMain />
+        <DashboardMain />
       </Layout>
     </Layout>
   );

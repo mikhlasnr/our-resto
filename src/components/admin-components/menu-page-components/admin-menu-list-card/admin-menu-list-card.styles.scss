@@ -1,0 +1,69 @@
+@import "../../../../colors";
+.admin-menu-list-card {
+  margin-bottom: 24px;
+  .card-image {
+    .ant-image-mask {
+      border-radius: 15px;
+    }
+  }
+  .card-info {
+    padding: 8px 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h2 {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: $disabledColor;
+    }
+    span {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+      color: $secondaryColor;
+    }
+  }
+  .card-action {
+    display: flex;
+    align-items: center;
+    .ant-btn {
+      padding: 15px 55px;
+      min-width: 144px;
+      min-height: 56px;
+      border-radius: 10px;
+
+      &.btn-action-primary {
+        margin-right: 20px;
+        border: 1px solid $textColorPrimary;
+        span {
+          color: $textColorPrimary;
+        }
+        &:hover {
+          border: 1px solid $secondaryColor;
+          span {
+            color: $secondaryColor;
+          }
+        }
+      }
+
+      &.btn-action-danger {
+        border: 1px solid $primaryColor;
+        span {
+          color: $primaryColor;
+        }
+        &:hover {
+          background: $primaryColor;
+          span {
+            color: $textColorSecondary;
+          }
+        }
+      }
+    }
+  }
+}
