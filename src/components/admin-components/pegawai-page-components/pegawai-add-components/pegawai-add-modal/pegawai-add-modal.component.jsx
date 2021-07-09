@@ -2,8 +2,8 @@ import React from "react";
 
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectShowModalPegawai } from "../../../../../redux/users/users.selectors";
-import { toggleShowModalPegawai } from "../../../../../redux/users/users.action";
+import { selectShowModalAddPegawai } from "../../../../../redux/pegawai/pegawai.selectors";
+import { toggleShowModalAddPegawai } from "../../../../../redux/pegawai/pegawai.action";
 
 // Import Component
 import { Modal } from "antd";
@@ -11,9 +11,9 @@ import PegawaiAddForm from "../pegawai-add-form/pegawai-add-form.component";
 
 const PegawaiAddModal = () => {
   const dispatch = useDispatch();
-  const isModalVisible = useSelector(selectShowModalPegawai);
+  const isModalVisible = useSelector(selectShowModalAddPegawai);
   const handlingModalOnCancel = () => {
-    dispatch(toggleShowModalPegawai());
+    dispatch(toggleShowModalAddPegawai());
   };
   return (
     <Modal

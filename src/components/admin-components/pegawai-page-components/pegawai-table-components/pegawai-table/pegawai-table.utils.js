@@ -1,5 +1,5 @@
-import AdminPegawaiTableProfile from "../admin-pegawai-table-profile/admin-pegawai-table-profile.component";
-import AdminPegawaiTableAction from "../admin-pegawai-table-action/admin-pegawai-table-action.component";
+import PegawaiTableProfile from "../pegawai-table-profile/pegawai-table-profile.component";
+import PegawaiTableAction from "../pegawai-table-action/pegawai-table-action.component";
 // ! handling colum value
 const Columns = [
   {
@@ -7,7 +7,7 @@ const Columns = [
     dataIndex: "Nama",
     className: "table-pegawai-profile",
     render: (text, record) => (
-      <AdminPegawaiTableProfile text={text} record={record} />
+      <PegawaiTableProfile text={text} record={record} />
     ),
   },
   {
@@ -22,7 +22,7 @@ const Columns = [
     key: "action",
     className: "table-pegawai-action",
     align: "right",
-    render: () => <AdminPegawaiTableAction />,
+    render: (text, record) => <PegawaiTableAction record={record} />,
   },
 ];
 

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Avatar, Image } from "antd";
 
-const AdminPegawaiTableProfile = ({ text, record }) => {
+const PegawaiTableProfile = ({ text, record }) => {
   return (
     <div className="table-pegawai-profile-container">
       <Avatar
@@ -28,4 +28,4 @@ const AdminPegawaiTableProfile = ({ text, record }) => {
   );
 };
 
-export default AdminPegawaiTableProfile;
+export default PegawaiTableProfile;

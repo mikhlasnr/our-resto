@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./pegawai-update-form-profile.styles.scss";
 
+// Handling Redux
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setInputProfile,
+  removeInputProfile,
+} from "../../../../../redux/pegawai/pegawai.action";
+import {
+  selectUserByIdIsFetching,
+  selectUserData,
+} from "../../../../../redux/userById/userById.selectors";
+
+// Import Components
 import { Upload, message } from "antd";
-import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 
-const PegawaiUpdateFormProfile = ({
-  setInputProfile,
-  imageUrl,
-  setImageUrl,
-}) => {
+const PegawaiUpdateFormProfile = () => {
+  const [imageUrl, setImageUrl] = useState(null);
+
+  // Start Handling Redux
+  const dispatch = useDispatch();
+  const isDataFetching = useSelector(selectUserByIdIsFetching);
+  const userByIdData = useSelector(selectUserData);
+  // END Handling Redux
+
+  useEffect(() => {
+    // listening to userById Reducer
+    if (userByIdData && userByIdData.Foto) {
+      setImageUrl(userByIdData.Foto);
+    }
+    return () => {
+      setImageUrl(null);
+      dispatch(removeInputProfile());
+    };
+  }, [userByIdData]);
+
+  // Method for handling read image file
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
@@ -22,12 +50,11 @@ const PegawaiUpdateFormProfile = ({
     if (!isJpgOrPng) message.error("hanya bisa upload JPG/PNG file!");
 
     const isLt1M = file.size / 1024 / 1024 < 1;
-    if (!isLt1M) message.error("gambar harus kurang dari 1MB!");
+    if (!isLt1M) message.error("Gambar harus kurang dari 1MB!");
 
     if (isJpgOrPng && isLt1M) {
       getBase64(file, imageUrl => setImageUrl(imageUrl));
-      // getBase64(file, imageUrl => setInputProfile(imageUrl));
-      setInputProfile(file);
+      dispatch(setInputProfile(file));
     }
 
     return false;
@@ -39,6 +66,7 @@ const PegawaiUpdateFormProfile = ({
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+
   return (
     <Dragger
       name="avatar"

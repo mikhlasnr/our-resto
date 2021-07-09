@@ -18,18 +18,3 @@ export const selectUsersErrorMessage = createSelector(
   [selectUsers],
   users => users.errorMessage
 );
-
-export const selectIsEmailExist = createSelector(
-  [selectUsers],
-  users => users.isEmailExist
-);
-
-export const selectShowModalPegawai = createSelector(
-  [selectUsers],
-  users => users.showModalPegawai
-);
-
-export const selectShowModalUpdatePegawai = createSelector(
-  [selectUsers],
-  users => users.showModalUpdatePegawai
-);

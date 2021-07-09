@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { fetchDataPegawai } from "../../../../redux/users/users.action";
 
 // import component
-import PegawaiTable from "../pegawai-table/pegawai-table.component";
+import PegawaiTable from "../pegawai-table-components/pegawai-table/pegawai-table.component";
 import PegawaiAddModal from "../pegawai-add-components/pegawai-add-modal/pegawai-add-modal.component";
 import PegawaiUpdateModal from "../pegawai-update-components/pegawai-update-modal/admin-pegawai-update-modal.component";
 

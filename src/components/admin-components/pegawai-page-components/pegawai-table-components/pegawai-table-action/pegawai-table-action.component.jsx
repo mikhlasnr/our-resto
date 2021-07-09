@@ -1,12 +1,16 @@
 import React from "react";
 
 import { useDispatch } from "react-redux";
-import { toggleShowModalUpdatePegawai } from "../../../../redux/users/users.action";
+import { toggleShowModalUpdatePegawai } from "../../../../../redux/pegawai/pegawai.action";
+import { fetchUserById } from "../../../../../redux/userById/userById.action";
 import { Button, Space } from "antd";
-const AdminPegawaiTableAction = () => {
+
+const PegawaiTableAction = ({ record: { IdUser } }) => {
   const dispatch = useDispatch();
   const handlingUpdatePegawai = () => {
+    dispatch(fetchUserById(IdUser));
     dispatch(toggleShowModalUpdatePegawai());
+    console.log(IdUser);
   };
   return (
     <Space>
@@ -18,4 +22,4 @@ const AdminPegawaiTableAction = () => {
   );
 };
 
-export default AdminPegawaiTableAction;
+export default PegawaiTableAction;

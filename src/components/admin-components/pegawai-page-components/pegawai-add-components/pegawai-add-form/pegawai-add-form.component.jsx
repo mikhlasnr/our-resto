@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 import { fetchDataRoles } from "../../../../../redux/roles/roles.action";
 import {
   handlingIsEmailExist,
-  toggleShowModalPegawai,
-} from "../../../../../redux/users/users.action";
+  toggleShowModalAddPegawai,
+} from "../../../../../redux/pegawai/pegawai.action";
 import { fetchDataPegawai } from "../../../../../redux/users/users.action";
 
 // Import Component
@@ -60,7 +60,7 @@ const PegawaiAddForm = () => {
           setIsUploading(false);
           form.resetFields();
           dispatch(fetchDataPegawai());
-          dispatch(toggleShowModalPegawai());
+          dispatch(toggleShowModalAddPegawai());
         }
       })
       .catch(error => {
@@ -89,7 +89,7 @@ const PegawaiAddForm = () => {
               .post(`/user/add/image/${IdUser}`, { ImageUrl: url })
               .then(response => {
                 dispatch(fetchDataPegawai());
-                dispatch(toggleShowModalPegawai());
+                dispatch(toggleShowModalAddPegawai());
                 message.success("Tambah Pegawai Berhasil!");
                 setIsUploading(false);
                 setImageUrl(null);

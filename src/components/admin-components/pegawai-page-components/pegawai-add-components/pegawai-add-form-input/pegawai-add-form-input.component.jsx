@@ -7,7 +7,7 @@ import {
   selectRoles,
   selectRolesIsFetching,
 } from "../../../../../redux/roles/roles.selectors";
-import { selectIsEmailExist } from "../../../../../redux/users/users.selectors";
+import { selectIsEmailExist } from "../../../../../redux/pegawai/pegawai.selectors";
 
 // Import Component
 import { Form, Input, Select, Button } from "antd";

@@ -29,17 +29,4 @@ const fetchPegawaiFailure = message => ({
   payload: message,
 });
 
-export const handlingIsEmailExist = response => ({
-  type: UsersActionTypes.IS_EMAIL_EXIST,
-  payload: response,
-});
 // END Action Fetch Data Pegawai
-
-// handling add pggawai modal
-export const toggleShowModalPegawai = () => ({
-  type: UsersActionTypes.TOGGLE_SHOW_MODAL_PEGAWAI,
-});
-// handling update pggawai modal
-export const toggleShowModalUpdatePegawai = () => ({
-  type: UsersActionTypes.TOGGLE_SHOW_MODAL_UPDATE_PEGAWAI,
-});

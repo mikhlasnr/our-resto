@@ -6,12 +6,12 @@ import { useSelector } from "react-redux";
 import {
   selectPegawai,
   selectUsersIsFetching,
-} from "../../../../redux/users/users.selectors";
+} from "../../../../../redux/users/users.selectors";
 
 // import component
 import { Table } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import PegawaiAddBtn from "../pegawai-add-components/pegawai-add-btn/pegawai-add-btn.component";
+import PegawaiAddBtn from "../../pegawai-add-components/pegawai-add-btn/pegawai-add-btn.component";
 import Columns from "./pegawai-table.utils";
 
 const PegawaiTable = () => {

@@ -3,7 +3,7 @@ import "./pegawai-add-btn.styles.scss";
 
 // Handling Redux
 import { useDispatch } from "react-redux";
-import { toggleShowModalPegawai } from "../../../../../redux/users/users.action";
+import { toggleShowModalAddPegawai } from "../../../../../redux/pegawai/pegawai.action";
 
 // Import Components
 import { Button } from "antd";
@@ -12,7 +12,7 @@ import { PlusOutlined } from "@ant-design/icons";
 const PegawaiAddBtn = () => {
   const dispatch = useDispatch();
   const showModal = () => {
-    dispatch(toggleShowModalPegawai());
+    dispatch(toggleShowModalAddPegawai());
   };
 
   return (
