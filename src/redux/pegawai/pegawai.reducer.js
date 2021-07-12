@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   isEmailExist: false,
   showModalAddPegawai: false,
   showModalUpdatePegawai: false,
+  showModalDeletePegawai: false,
   inputProfile: null,
   isUploading: false,
 };
@@ -26,6 +27,11 @@ const pegawaiReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         showModalUpdatePegawai: !state.showModalUpdatePegawai,
+      };
+    case PegawaiActionTypes.TOGGLE_SHOW_MODAL_DELETE_PEGAWAI:
+      return {
+        ...state,
+        showModalDeletePegawai: !state.showModalDeletePegawai,
       };
     case PegawaiActionTypes.SET_INPUT_PROFILE:
       return {

@@ -8,7 +8,7 @@ import { fetchDataPegawai } from "../../../../redux/users/users.action";
 import PegawaiTable from "../pegawai-table-components/pegawai-table/pegawai-table.component";
 import PegawaiAddModal from "../pegawai-add-components/pegawai-add-modal/pegawai-add-modal.component";
 import PegawaiUpdateModal from "../pegawai-update-components/pegawai-update-modal/admin-pegawai-update-modal.component";
-
+import PegawaiDeleteModal from "../pegawai-delete-modal/admin-pegawai-delete-modal.component";
 const PegawaiPage = () => {
   const dispatch = useDispatch();
 
@@ -22,6 +22,7 @@ const PegawaiPage = () => {
       <PegawaiTable />
       <PegawaiAddModal />
       <PegawaiUpdateModal />
+      <PegawaiDeleteModal />
     </div>
   );
 };

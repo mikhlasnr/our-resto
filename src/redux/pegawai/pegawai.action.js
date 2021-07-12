@@ -15,6 +15,11 @@ export const toggleShowModalUpdatePegawai = () => ({
   type: PegawaiActionTypes.TOGGLE_SHOW_MODAL_UPDATE_PEGAWAI,
 });
 
+// handling delete pegawai modal
+export const toggleShowModalDeletePegawai = () => ({
+  type: PegawaiActionTypes.TOGGLE_SHOW_MODAL_DELETE_PEGAWAI,
+});
+
 // START handling get input profile for uploading
 export const setInputProfile = imgFile => ({
   type: PegawaiActionTypes.SET_INPUT_PROFILE,

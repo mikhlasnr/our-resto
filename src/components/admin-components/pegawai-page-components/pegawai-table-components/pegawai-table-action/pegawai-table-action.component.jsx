@@ -1,23 +1,31 @@
 import React from "react";
 
 import { useDispatch } from "react-redux";
-import { toggleShowModalUpdatePegawai } from "../../../../../redux/pegawai/pegawai.action";
+import {
+  toggleShowModalUpdatePegawai,
+  toggleShowModalDeletePegawai,
+} from "../../../../../redux/pegawai/pegawai.action";
 import { fetchUserById } from "../../../../../redux/userById/userById.action";
 import { Button, Space } from "antd";
 
 const PegawaiTableAction = ({ record: { IdUser } }) => {
   const dispatch = useDispatch();
-  const handlingUpdatePegawai = () => {
+  const handlingActionLihat = () => {
     dispatch(fetchUserById(IdUser));
     dispatch(toggleShowModalUpdatePegawai());
-    console.log(IdUser);
+  };
+  const handlingActionHapus = () => {
+    dispatch(fetchUserById(IdUser));
+    dispatch(toggleShowModalDeletePegawai());
   };
   return (
     <Space>
-      <Button className="btn-action-primary" onClick={handlingUpdatePegawai}>
+      <Button className="btn-action-primary" onClick={handlingActionLihat}>
         Lihat
       </Button>
-      <Button className="btn-action-danger">Hapus</Button>
+      <Button className="btn-action-danger" onClick={handlingActionHapus}>
+        Hapus
+      </Button>
     </Space>
   );
 };

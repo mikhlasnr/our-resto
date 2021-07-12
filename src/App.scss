@@ -162,15 +162,10 @@ h2 {
 
 // Modal Styles
 .ant-modal {
-  min-width: 50%;
   .ant-modal-content {
     border-radius: 30px;
     .ant-modal-body {
       padding: 30px 32px;
-      .modal-title {
-        margin-bottom: 46px;
-        text-align: center;
-      }
     }
   }
 }
