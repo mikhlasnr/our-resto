@@ -10,7 +10,7 @@ import { Avatar, Image, Menu, Dropdown } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
 
 const SidebarProfile = () => {
-  const currentUser = useSelector(state => state.user.currentUser.Nama) || null;
+  const currentUser = useSelector(state => state.user.currentUser) || null;
   const dispatch = useDispatch();
 
   const handlingMenuClick = ({ key }) => {
@@ -35,7 +35,7 @@ const SidebarProfile = () => {
             <Image
               width={61}
               shape="square"
-              src="https://ik.imagekit.io/upecbxjan8p/avatar/avatarProfile_i4T_C3T34.png"
+              src={currentUser.Foto}
               preview={{
                 visible: false,
                 mask: null,
@@ -48,7 +48,7 @@ const SidebarProfile = () => {
       </div>
       <div className="profile-detail">
         <div className="detail-user">
-          <p className="user-name">{currentUser}</p>
+          <p className="user-name">{currentUser.Nama}</p>
           <p
             className="user-status"
             style={{ color: `${currentUser ? "#23C65B" : ""}` }}

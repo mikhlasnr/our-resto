@@ -12,10 +12,7 @@ import {
   selectRolesIsFetching,
 } from "../../../../../redux/roles/roles.selectors";
 import { selectInputProfile } from "../../../../../redux/pegawai/pegawai.selectors";
-import {
-  selectUserData,
-  selectUserByIdIsFetching,
-} from "../../../../../redux/userById/userById.selectors";
+import { selectUserData } from "../../../../../redux/userById/userById.selectors";
 
 import {
   toggleShowModalUpdatePegawai,
@@ -31,16 +28,27 @@ const PegawaiUpdateFormInput = () => {
   const dispatch = useDispatch();
 
   const userById = useSelector(selectUserData);
-  const isDataFetching = useSelector(selectUserByIdIsFetching);
   const inputProfile = useSelector(selectInputProfile);
   const rolesData = useSelector(selectRoles);
   const rolesDataIsFetching = useSelector(selectRolesIsFetching);
+
+  const [isFormChange, setIsFormChange] = useState(false);
 
   useEffect(() => {
     if (userById) {
       form.setFieldsValue({ ...userById });
     }
+    return () => {
+      setIsFormChange(false);
+    };
   }, [userById]);
+
+  useEffect(() => {
+    if (inputProfile) setIsFormChange(true);
+    return () => {
+      setIsFormChange(false);
+    };
+  }, [inputProfile]);
 
   // Validate Message for Form antd
   const validateMessages = {
@@ -53,10 +61,31 @@ const PegawaiUpdateFormInput = () => {
   };
 
   // START Method for uploadihg data user
-  const handlingUpdatePegawai = userData => {};
+  const handlingUpdatePegawai = userData => {
+    dispatch(toggleIsUploading());
+    console.log(userData);
+    axios
+      .post(`/user/update/${userById.IdUser}`, userData)
+      .then(response => {
+        if (inputProfile) {
+          handlingUploaImage();
+        } else {
+          dispatch(fetchDataPegawai());
+          dispatch(toggleIsUploading());
+          message.success("Tambah Pegawai Berhasil!");
+          dispatch(toggleShowModalUpdatePegawai());
+        }
+      })
+      .catch(err => {
+        message.error("Pembaharuan pegawai gagal!");
+        dispatch(toggleIsUploading());
+      });
+  };
 
-  const handlingUploaImage = IdUser => {
-    const uploadTask = storage.ref(`userImages/${IdUser}`).put(inputProfile);
+  const handlingUploaImage = () => {
+    const uploadTask = storage
+      .ref(`userImages/${userById.IdUser}`)
+      .put(inputProfile);
     uploadTask.on(
       "state_changed",
       snapshot => {},
@@ -67,19 +96,16 @@ const PegawaiUpdateFormInput = () => {
       () => {
         storage
           .ref("userImages")
-          .child(`${IdUser}`)
+          .child(`${userById.IdUser}`)
           .getDownloadURL()
           .then(url => {
             axios
-              .post(`/user/add/image/${IdUser}`, { ImageUrl: url })
+              .post(`/user/add/image/${userById.IdUser}`, { ImageUrl: url })
               .then(response => {
                 dispatch(fetchDataPegawai());
                 message.success("Tambah Pegawai Berhasil!");
-
                 dispatch(toggleShowModalUpdatePegawai());
                 dispatch(toggleIsUploading());
-
-                form.resetFields();
               })
               .catch(err => {
                 message.error("Gagal Upload Gambar Ke Database");
@@ -97,7 +123,12 @@ const PegawaiUpdateFormInput = () => {
   // END Method for uploadihg data user
 
   const onFinish = values => {
-    console.log(values);
+    let dataInput = {};
+    if (userById.Password === values.Password) {
+      const { Password, ...otherValues } = values;
+      dataInput = otherValues;
+    } else dataInput = values;
+    handlingUpdatePegawai(dataInput);
   };
 
   return (
@@ -108,6 +139,9 @@ const PegawaiUpdateFormInput = () => {
         name="tambah-pegawai"
         validateMessages={validateMessages}
         onFinish={onFinish}
+        onFieldsChange={() => {
+          setIsFormChange(true);
+        }}
       >
         <div className="table-pegawai-add-form-input">
           <Form.Item name="Nama" label="Nama" rules={[{ required: true }]}>
@@ -117,7 +151,6 @@ const PegawaiUpdateFormInput = () => {
             name="Email"
             label="Email"
             rules={[{ required: true, type: "email" }]}
-            hasFeedback={true}
           >
             <Input className="input" />
           </Form.Item>
@@ -152,12 +185,12 @@ const PegawaiUpdateFormInput = () => {
         </div>
         <Form.Item className="btn-submit ">
           <Button
-            type="primary"
             htmlType="submit"
             block
             className="custom-default-button secondary-button"
+            disabled={!isFormChange}
           >
-            Tambah Pegawai
+            Simpan
           </Button>
         </Form.Item>
       </Form>

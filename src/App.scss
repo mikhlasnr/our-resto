@@ -46,6 +46,7 @@ h2 {
     border-radius: 9px;
     height: 55px;
   }
+
   &.list-pesanan-search-btn {
     background: $primaryColor;
     border-color: $primaryColor;
@@ -126,7 +127,21 @@ h2 {
     }
   }
 }
+.ant-btn[disabled] {
+  background: $disabledColor;
+  border-color: $disabledColor;
 
+  span {
+    color: $textColorSecondary;
+  }
+
+  &:hover,
+  &:focus {
+    background: $disabledColor;
+    border-color: $disabledColor;
+    box-shadow: 0px 8px 30px rgba(136, 136, 136, 0.356);
+  }
+}
 // Divider Styles
 .ant-divider-horizontal {
   &.ant-divider-with-text {

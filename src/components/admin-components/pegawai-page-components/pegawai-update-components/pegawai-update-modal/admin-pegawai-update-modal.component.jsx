@@ -31,6 +31,7 @@ const AdminPegawaiUpdateModal = () => {
       onCancel={handlingModalOnCancel}
       footer={null}
       closable={false}
+      centered={true}
     >
       <h1>Update Pegawai</h1>
       <PegawaiUpdateForm />
