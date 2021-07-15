@@ -170,7 +170,7 @@ h2 {
   }
 }
 
-// Form Styles
+// START Form Styles
 .ant-form {
   .ant-form-item {
     .ant-form-item-label {
@@ -215,14 +215,59 @@ h2 {
   }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  body {
-    -webkit-transform: rotate(90deg);
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
+.pegawai-select-role {
+  padding: 1rem;
+  background-color: $secondaryColor;
+  border-radius: 20px;
+  .ant-select-item-option-active {
+    background-color: $secondaryColor;
+    .pegawai-select-role-item {
+      .dote {
+        .dote-inner {
+          position: absolute;
+          border-radius: 50%;
+          height: 10px;
+          width: 10px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
+  .ant-select-item-option-selected {
+    background-color: $secondaryColor;
+    .pegawai-select-role-item {
+      .dote {
+        .dote-inner {
+          position: absolute;
+          border-radius: 50%;
+          height: 10px;
+          width: 10px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
+  .pegawai-select-role-item {
+    display: flex;
+    justify-content: space-between;
+    span {
+      color: $textColorSecondary;
+    }
+    .dote {
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid #ffffff;
+      position: relative;
+    }
   }
 }
+
+// END Form Styles

@@ -109,9 +109,20 @@ const PegawaiAddForm = () => {
     );
   };
   // END Method for uploadihg data user
-
+  const validatePhoneNumber = value => {
+    const reg = /^-?\d*(\.\d*)?$/;
+    if (!isNaN(value) && reg.test(value)) {
+      if (value.length < 12) {
+        message.error("Nomor harus diantara 12 sampai 13 angka!");
+        return false;
+      } else return true;
+    } else {
+      message.error("Format Nomor Telpon Salah!");
+      return false;
+    }
+  };
   const onFinish = values => {
-    handlingDuplicateEmail(values.user);
+    if (validatePhoneNumber(values.NoTelp)) handlingDuplicateEmail(values);
   };
 
   return (

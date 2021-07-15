@@ -15,18 +15,18 @@
       }
 
       &.btn-action-cancel {
-        border-color: $textColorPrimary;
-        background: #ffffff;
+        border-color: $primaryColor;
 
         span {
-          color: $textColorPrimary;
+          color: $primaryColor;
         }
 
         &:hover,
         &:focus {
-          border-color: $secondaryColor;
+          background: $primaryColor;
+          box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
           span {
-            color: $secondaryColor;
+            color: $textColorSecondary;
           }
         }
       }
@@ -41,7 +41,12 @@
 
         &:hover,
         &:focus {
-          box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
+          background-color: #fff;
+          border-color: $primaryColor;
+
+          span {
+            color: $primaryColor;
+          }
         }
       }
     }

@@ -64,7 +64,7 @@ const PegawaiAddFormInput = ({ onFinish, form }) => {
           <Form.Item
             name={["user", "NoTelp"]}
             label="No Telp"
-            rules={[{ required: true, types: "number" }]}
+            rules={[{ required: true }]}
           >
             <Input className="input" maxLength={13} />
           </Form.Item>
@@ -80,11 +80,20 @@ const PegawaiAddFormInput = ({ onFinish, form }) => {
             label="Posisi"
             rules={[{ required: true }]}
           >
-            <Select loading={rolesDataIsFetching}>
+            <Select
+              loading={rolesDataIsFetching}
+              dropdownClassName="pegawai-select-role"
+              dropdownMatchSelectWidth={false}
+            >
               {rolesData
                 ? rolesData.map(role => (
                     <Select.Option key={role.IdRole} value={role.IdRole}>
-                      {role.NamaRole}
+                      <div className="pegawai-select-role-item">
+                        <span>{role.NamaRole}</span>
+                        <span className="dote">
+                          <span className="dote-inner"></span>
+                        </span>
+                      </div>
                     </Select.Option>
                   ))
                 : null}

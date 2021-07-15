@@ -35,6 +35,7 @@ const PegawaiUpdateFormInput = () => {
   const [isFormChange, setIsFormChange] = useState(false);
 
   useEffect(() => {
+    console.log(userById);
     if (userById) {
       form.setFieldsValue({ ...userById });
     }
@@ -58,6 +59,19 @@ const PegawaiUpdateFormInput = () => {
       number: "${label} format tidak valid!",
     },
     emailExist: "email sudah ada",
+  };
+
+  const validatePhoneNumber = value => {
+    const reg = /^-?\d*(\.\d*)?$/;
+    if (!isNaN(value) && reg.test(value)) {
+      if (value.length < 12) {
+        message.error("Nomor harus diantara 12 sampai 13 angka!");
+        return false;
+      } else return true;
+    } else {
+      message.error("Format Nomor Telpon Salah!");
+      return false;
+    }
   };
 
   // START Method for uploadihg data user
@@ -123,12 +137,14 @@ const PegawaiUpdateFormInput = () => {
   // END Method for uploadihg data user
 
   const onFinish = values => {
-    let dataInput = {};
-    if (userById.Password === values.Password) {
-      const { Password, ...otherValues } = values;
-      dataInput = otherValues;
-    } else dataInput = values;
-    handlingUpdatePegawai(dataInput);
+    if (validatePhoneNumber(values.NoTelp)) {
+      let dataInput = {};
+      if (userById.Password === values.Password) {
+        const { Password, ...otherValues } = values;
+        dataInput = otherValues;
+      } else dataInput = values;
+      handlingUpdatePegawai(dataInput);
+    }
   };
 
   return (
@@ -159,7 +175,7 @@ const PegawaiUpdateFormInput = () => {
             label="No Telp"
             rules={[{ required: true, types: "number" }]}
           >
-            <Input className="input" maxLength={13} value="0831810" />
+            <Input className="input" maxLength={13} />
           </Form.Item>
           <Form.Item name="Alamat" label="Alamat" rules={[{ required: true }]}>
             <Input className="input" />
