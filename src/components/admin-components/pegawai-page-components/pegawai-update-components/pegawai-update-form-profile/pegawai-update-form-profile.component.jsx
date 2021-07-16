@@ -3,14 +3,8 @@ import "./pegawai-update-form-profile.styles.scss";
 
 // Handling Redux
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setInputProfile,
-  removeInputProfile,
-} from "../../../../../redux/pegawai/pegawai.action";
-import {
-  selectUserByIdIsFetching,
-  selectUserData,
-} from "../../../../../redux/userById/userById.selectors";
+import { setInputProfile } from "../../../../../redux/pegawai/pegawai.action";
+import { selectUserData } from "../../../../../redux/userById/userById.selectors";
 
 // Import Components
 import { Upload, message } from "antd";
@@ -23,7 +17,6 @@ const PegawaiUpdateFormProfile = () => {
 
   // Start Handling Redux
   const dispatch = useDispatch();
-  const isDataFetching = useSelector(selectUserByIdIsFetching);
   const userByIdData = useSelector(selectUserData);
   // END Handling Redux
 
@@ -34,7 +27,6 @@ const PegawaiUpdateFormProfile = () => {
     }
     return () => {
       setImageUrl(null);
-      dispatch(removeInputProfile());
     };
   }, [userByIdData]);
 

@@ -3,7 +3,7 @@ import "./pegawai-add-btn.styles.scss";
 
 // Handling Redux
 import { useDispatch } from "react-redux";
-import { toggleShowModalAddPegawai } from "../../../../../redux/pegawai/pegawai.action";
+import { toggleShowModalAddPegawai } from "../../../../redux/pegawai/pegawai.action";
 
 // Import Components
 import { Button } from "antd";

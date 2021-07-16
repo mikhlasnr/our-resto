@@ -1,11 +1,9 @@
-.table-pegawai-add-form-input {
+.table-pegawai-update-form-input {
   width: 100%;
-  .table-pegawai-add-form-input {
+  .container {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     column-gap: 20px;
     row-gap: 15px;
-    .btn-submit {
-    }
   }
 }

@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./pegawai-add-form-profile.styles.scss";
 
+// Handling Redux
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setInputProfile,
+  removeInputProfile,
+} from "../../../../../redux/pegawai/pegawai.action";
+import { selectShowModalAddPegawai } from "../../../../../redux/pegawai/pegawai.selectors";
+
+// Import Components
 import { Upload, message } from "antd";
-import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 
-const PegawaiAddFormProfile = ({ setInputProfile, imageUrl, setImageUrl }) => {
+const PegawaiAddFormProfile = () => {
+  const [imageUrl, setImageUrl] = useState(null);
+
+  // Start Handling Redux
+  const dispatch = useDispatch();
+  const isModalVisible = useSelector(selectShowModalAddPegawai);
+  // END Handling Redux
+
+  useEffect(() => {
+    return () => {
+      setImageUrl(null);
+    };
+  }, [isModalVisible]);
+
+  // Method for handling read image file
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
@@ -18,12 +41,11 @@ const PegawaiAddFormProfile = ({ setInputProfile, imageUrl, setImageUrl }) => {
     if (!isJpgOrPng) message.error("hanya bisa upload JPG/PNG file!");
 
     const isLt1M = file.size / 1024 / 1024 < 1;
-    if (!isLt1M) message.error("gambar harus kurang dari 1MB!");
+    if (!isLt1M) message.error("Gambar harus kurang dari 1MB!");
 
     if (isJpgOrPng && isLt1M) {
       getBase64(file, imageUrl => setImageUrl(imageUrl));
-      // getBase64(file, imageUrl => setInputProfile(imageUrl));
-      setInputProfile(file);
+      dispatch(setInputProfile(file));
     }
 
     return false;
@@ -35,6 +57,7 @@ const PegawaiAddFormProfile = ({ setInputProfile, imageUrl, setImageUrl }) => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+
   return (
     <Dragger
       name="avatar"

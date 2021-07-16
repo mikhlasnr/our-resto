@@ -7,17 +7,23 @@ import { storage } from "../../../../../firebase";
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
 
+// ROLES REDUCER
 import {
   selectRoles,
   selectRolesIsFetching,
 } from "../../../../../redux/roles/roles.selectors";
-import { selectInputProfile } from "../../../../../redux/pegawai/pegawai.selectors";
-import { selectUserData } from "../../../../../redux/userById/userById.selectors";
 
+// PEGAWAI REDUCER
+import { selectInputProfile } from "../../../../../redux/pegawai/pegawai.selectors";
 import {
   toggleShowModalUpdatePegawai,
   toggleIsUploading,
 } from "../../../../../redux/pegawai/pegawai.action";
+
+// USEBYID REDUCER
+import { selectUserData } from "../../../../../redux/userById/userById.selectors";
+
+// USER REDUCER
 import { fetchDataPegawai } from "../../../../../redux/users/users.action";
 
 // Import Component
@@ -29,16 +35,14 @@ const PegawaiUpdateFormInput = () => {
 
   const userById = useSelector(selectUserData);
   const inputProfile = useSelector(selectInputProfile);
+
   const rolesData = useSelector(selectRoles);
   const rolesDataIsFetching = useSelector(selectRolesIsFetching);
 
   const [isFormChange, setIsFormChange] = useState(false);
 
   useEffect(() => {
-    console.log(userById);
-    if (userById) {
-      form.setFieldsValue({ ...userById });
-    }
+    if (userById) form.setFieldsValue({ ...userById });
     return () => {
       setIsFormChange(false);
     };
@@ -61,6 +65,7 @@ const PegawaiUpdateFormInput = () => {
     emailExist: "email sudah ada",
   };
 
+  // Handling Validate format Nn Telpon
   const validatePhoneNumber = value => {
     const reg = /^-?\d*(\.\d*)?$/;
     if (!isNaN(value) && reg.test(value)) {
@@ -74,25 +79,41 @@ const PegawaiUpdateFormInput = () => {
     }
   };
 
+  const handlingEmailExistOnUpdate = userData => {
+    const { Email } = userData;
+    axios
+      .post("/user/validation-email/on-update", {
+        NewEmail: Email,
+        OldEmail: userById.Email,
+      })
+      .then(res => {
+        if (res.data.exist) message.error("Email sudah tersedia!");
+        else handlingUpdatePegawai(userData);
+      })
+      .catch(error => {
+        console.log(error.message);
+        message.error("Tambah Pegawai Gagal!");
+      });
+  };
+
   // START Method for uploadihg data user
   const handlingUpdatePegawai = userData => {
     dispatch(toggleIsUploading());
-    console.log(userData);
     axios
-      .post(`/user/update/${userById.IdUser}`, userData)
+      .put(`/user/update/${userById.IdUser}`, userData)
       .then(response => {
         if (inputProfile) {
           handlingUploaImage();
         } else {
-          dispatch(fetchDataPegawai());
           dispatch(toggleIsUploading());
-          message.success("Tambah Pegawai Berhasil!");
+          dispatch(fetchDataPegawai());
           dispatch(toggleShowModalUpdatePegawai());
+          message.success("Pembaharuan Pegawai Berhasil!");
         }
       })
       .catch(err => {
-        message.error("Pembaharuan pegawai gagal!");
         dispatch(toggleIsUploading());
+        message.error("Pembaharuan pegawai gagal!");
       });
   };
 
@@ -105,6 +126,7 @@ const PegawaiUpdateFormInput = () => {
       snapshot => {},
       error => {
         console.log(error);
+        message.error("Pembaharuan pegawai gagal!");
         dispatch(toggleIsUploading());
       },
       () => {
@@ -114,21 +136,21 @@ const PegawaiUpdateFormInput = () => {
           .getDownloadURL()
           .then(url => {
             axios
-              .post(`/user/add/image/${userById.IdUser}`, { ImageUrl: url })
+              .put(`/user/add/image/${userById.IdUser}`, { ImageUrl: url })
               .then(response => {
+                message.success("Pembaharuan Pegawai Berhasil!");
                 dispatch(fetchDataPegawai());
-                message.success("Tambah Pegawai Berhasil!");
                 dispatch(toggleShowModalUpdatePegawai());
                 dispatch(toggleIsUploading());
               })
               .catch(err => {
-                message.error("Gagal Upload Gambar Ke Database");
+                message.error("Upload Gambar Gagal!");
                 dispatch(toggleIsUploading());
               });
           })
           .catch(err => {
             console.log(err);
-            message.error("Gagal Upload Gambar");
+            message.error("Upload Gambar Gagal!");
             dispatch(toggleIsUploading());
           });
       }
@@ -139,16 +161,22 @@ const PegawaiUpdateFormInput = () => {
   const onFinish = values => {
     if (validatePhoneNumber(values.NoTelp)) {
       let dataInput = {};
+
+      // START Handling Password Is Same Or Not
       if (userById.Password === values.Password) {
         const { Password, ...otherValues } = values;
         dataInput = otherValues;
       } else dataInput = values;
-      handlingUpdatePegawai(dataInput);
+
+      // END Handling Password Is Same Or Not
+      if (dataInput.Email === userById.Email) {
+        handlingUpdatePegawai(dataInput);
+      } else handlingEmailExistOnUpdate(dataInput);
     }
   };
 
   return (
-    <section className="table-pegawai-add-form-input">
+    <section className="table-pegawai-update-form-input">
       <Form
         form={form}
         layout="vertical"
@@ -159,7 +187,7 @@ const PegawaiUpdateFormInput = () => {
           setIsFormChange(true);
         }}
       >
-        <div className="table-pegawai-add-form-input">
+        <div className="container">
           <Form.Item name="Nama" label="Nama" rules={[{ required: true }]}>
             <Input className="input" />
           </Form.Item>

@@ -3,8 +3,9 @@ import React from "react";
 // Handling Redux
 import { useSelector } from "react-redux";
 
-import { selectUserByIdIsFetching } from "../../../../../redux/userById/userById.selectors";
 import { selectIsUploading } from "../../../../../redux/pegawai/pegawai.selectors";
+
+import { selectUserByIdIsFetching } from "../../../../../redux/userById/userById.selectors";
 
 // Import Component
 import { Row, Col, Spin } from "antd";
@@ -13,6 +14,7 @@ import PegawaiUpdateFormInput from "../pegawai-update-form-input/pegawai-update-
 
 const PegawaiUpdateForm = () => {
   // Handling Redux
+
   const isDataFetching = useSelector(selectUserByIdIsFetching);
   const isUploading = useSelector(selectIsUploading);
 

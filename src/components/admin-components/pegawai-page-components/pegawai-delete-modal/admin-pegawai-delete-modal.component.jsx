@@ -47,7 +47,7 @@ const PegawaiDeleteModal = () => {
   const handlingDeletePegawai = () => {
     dispatch(toggleIsUploading());
     axios
-      .post(`/user/delete/${userById.IdUser}`)
+      .delete(`/user/delete/${userById.IdUser}`)
       .then(response => {
         if (userById.Foto) {
           handlingDeleteImageRef();

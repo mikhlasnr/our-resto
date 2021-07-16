@@ -1,24 +1,38 @@
 import React from "react";
 import "./pegawai-add-form-input.styles.scss";
 
+import axios from "axios";
+import { storage } from "../../../../../firebase";
+
 // Handling Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import {
   selectRoles,
   selectRolesIsFetching,
 } from "../../../../../redux/roles/roles.selectors";
-import { selectIsEmailExist } from "../../../../../redux/pegawai/pegawai.selectors";
+
+import { selectInputProfile } from "../../../../../redux/pegawai/pegawai.selectors";
+
+import {
+  toggleShowModalAddPegawai,
+  toggleIsUploading,
+  handlingIsEmailExist,
+} from "../../../../../redux/pegawai/pegawai.action";
+import { fetchDataPegawai } from "../../../../../redux/users/users.action";
 
 // Import Component
-import { Form, Input, Select, Button } from "antd";
+import { Form, Input, Select, Button, message } from "antd";
 
-const PegawaiAddFormInput = ({ onFinish, form }) => {
-  // const [form] = Form.useForm();
+const PegawaiUpdateFormInput = () => {
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
 
+  const inputProfile = useSelector(selectInputProfile);
   const rolesData = useSelector(selectRoles);
   const rolesDataIsFetching = useSelector(selectRolesIsFetching);
-  const isEmailExist = useSelector(selectIsEmailExist);
 
+  // Validate Message for Form antd
   const validateMessages = {
     required: "${label} diperlukan!",
     types: {
@@ -28,11 +42,103 @@ const PegawaiAddFormInput = ({ onFinish, form }) => {
     emailExist: "email sudah ada",
   };
 
-  const handlingIsEmailExist = () => {
-    if (isEmailExist) {
-      console.log("email exist");
-      return "error";
+  const validatePhoneNumber = value => {
+    const reg = /^-?\d*(\.\d*)?$/;
+    if (!isNaN(value) && reg.test(value)) {
+      if (value.length < 12) {
+        message.error("Nomor harus diantara 12 sampai 13 angka!");
+        return false;
+      } else return true;
+    } else {
+      message.error("Format Nomor Telpon Salah!");
+      return false;
     }
+  };
+
+  // START Method for uploadihg data user
+  const handlingDuplicateEmail = userData => {
+    const { Email } = userData;
+    axios
+      .post("/user/validation-email", { Email })
+      .then(res => {
+        dispatch(handlingIsEmailExist(res.data.exist));
+        if (res.data.exist) {
+          console.log(res.data);
+          message.error("Email sudah tersedia!");
+        } else {
+          dispatch(toggleIsUploading());
+          handlingAddPegawai(userData);
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
+        message.error("Tambah Pegawai Gagal!");
+      });
+  };
+
+  const handlingAddPegawai = userData => {
+    axios
+      .post("/user/add", userData)
+      .then(response => {
+        const IdUser = response.data[0];
+        if (inputProfile) {
+          handlingUploaImage(IdUser);
+        } else {
+          form.resetFields();
+          message.success("Tambah Pegawai Berhasil!");
+          dispatch(toggleIsUploading());
+          dispatch(fetchDataPegawai());
+          dispatch(toggleShowModalAddPegawai());
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        message.error("Tambah Pegawai Gagal!");
+        dispatch(toggleIsUploading());
+      });
+  };
+
+  const handlingUploaImage = IdUser => {
+    const uploadTask = storage.ref(`userImages/${IdUser}`).put(inputProfile);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        console.log(error);
+        dispatch(toggleIsUploading());
+      },
+      () => {
+        storage
+          .ref("userImages")
+          .child(`${IdUser}`)
+          .getDownloadURL()
+          .then(url => {
+            axios
+              .put(`/user/add/image/${IdUser}`, { ImageUrl: url })
+              .then(response => {
+                message.success("Tambah Pegawai Berhasil!");
+                dispatch(fetchDataPegawai());
+                dispatch(toggleShowModalAddPegawai());
+                dispatch(toggleIsUploading());
+                form.resetFields();
+              })
+              .catch(err => {
+                message.error("Gagal Upload Gambar Ke Database");
+                dispatch(toggleIsUploading());
+              });
+          })
+          .catch(err => {
+            console.log(err);
+            message.error("Gagal Upload Gambar");
+            dispatch(toggleIsUploading());
+          });
+      }
+    );
+  };
+  // END Method for uploadihg data user
+
+  const onFinish = values => {
+    if (validatePhoneNumber(values.NoTelp)) handlingDuplicateEmail(values);
   };
 
   return (
@@ -45,62 +151,35 @@ const PegawaiAddFormInput = ({ onFinish, form }) => {
         onFinish={onFinish}
       >
         <div className="table-pegawai-add-form-input">
-          <Form.Item
-            name={["user", "Nama"]}
-            label="Nama"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="Nama" label="Nama" rules={[{ required: true }]}>
             <Input className="input" />
           </Form.Item>
           <Form.Item
-            name={["user", "Email"]}
+            name="Email"
             label="Email"
             rules={[{ required: true, type: "email" }]}
-            validateStatus={handlingIsEmailExist()}
-            hasFeedback={true}
           >
             <Input className="input" />
           </Form.Item>
-          <Form.Item
-            name={["user", "NoTelp"]}
-            label="No Telp"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="NoTelp" label="No Telp" rules={[{ required: true }]}>
             <Input className="input" maxLength={13} />
           </Form.Item>
-          <Form.Item
-            name={["user", "Alamat"]}
-            label="Alamat"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="Alamat" label="Alamat" rules={[{ required: true }]}>
             <Input className="input" />
           </Form.Item>
-          <Form.Item
-            name={["user", "IdRole"]}
-            label="Posisi"
-            rules={[{ required: true }]}
-          >
-            <Select
-              loading={rolesDataIsFetching}
-              dropdownClassName="pegawai-select-role"
-              dropdownMatchSelectWidth={false}
-            >
+          <Form.Item name="IdRole" label="Posisi" rules={[{ required: true }]}>
+            <Select loading={rolesDataIsFetching}>
               {rolesData
                 ? rolesData.map(role => (
                     <Select.Option key={role.IdRole} value={role.IdRole}>
-                      <div className="pegawai-select-role-item">
-                        <span>{role.NamaRole}</span>
-                        <span className="dote">
-                          <span className="dote-inner"></span>
-                        </span>
-                      </div>
+                      {role.NamaRole}
                     </Select.Option>
                   ))
                 : null}
             </Select>
           </Form.Item>
           <Form.Item
-            name={["user", "Password"]}
+            name="Password"
             label="Kata Sandi"
             rules={[{ required: true }]}
           >
@@ -109,12 +188,11 @@ const PegawaiAddFormInput = ({ onFinish, form }) => {
         </div>
         <Form.Item className="btn-submit ">
           <Button
-            type="primary"
             htmlType="submit"
             block
             className="custom-default-button secondary-button"
           >
-            Tambah Pegawai
+            Simpan
           </Button>
         </Form.Item>
       </Form>
@@ -122,4 +200,4 @@ const PegawaiAddFormInput = ({ onFinish, form }) => {
   );
 };
 
-export default PegawaiAddFormInput;
+export default PegawaiUpdateFormInput;
