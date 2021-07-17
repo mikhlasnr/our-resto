@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   dataKategoriMenu: null,
   isFetching: false,
   errorMessage: undefined,
-  currenKategoriMenu: "all",
+  currentKategoriMenu: "all",
+  showModalAddKategoriMenu: false,
 };
 
 const kategoriMenuReducer = (state = INITIAL_STATE, action) => {
@@ -29,13 +30,18 @@ const kategoriMenuReducer = (state = INITIAL_STATE, action) => {
     case KategoriMenuActionTypes.SET_CURRENT_KATEGORI_MENU:
       return {
         ...state,
-        currenKategoriMenu: action.payload,
+        currentKategoriMenu: action.payload,
       };
 
     case KategoriMenuActionTypes.SET_CURRENT_KATEGORI_MENU_TO_DEFAULT:
       return {
         ...state,
-        currenKategoriMenu: "all",
+        currentKategoriMenu: "all",
+      };
+    case KategoriMenuActionTypes.TOGGLE_SHOW_MODAL_ADD_KATEGORI_MENU:
+      return {
+        ...state,
+        showModalAddKategoriMenu: !state.showModalAddKategoriMenu,
       };
 
     default:
