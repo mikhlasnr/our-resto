@@ -1,6 +1,16 @@
 import React from "react";
 import "./kategori-menu-card.styles.scss";
+
+// Handling redux
+import { useSelector } from "react-redux";
+import { selectCurrentUserRole } from "../../../redux/user/user.selectors";
+
+// Import Components
+import { ReactComponent as DeleteIcon } from "../delete-icon.svg";
+
 const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
+  const currentUserRole = useSelector(selectCurrentUserRole);
+
   const handlingCapitalizeEachWord = text => {
     const arr = text.toLowerCase().split(" ");
     for (let i = 0; i < arr.length; i++) {
@@ -9,7 +19,9 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
     const textResult = arr.join(" ");
     return textResult;
   };
-  const handlingActiveCard = event => {
+
+  const handlingActiveCard = e => {
+    console.log("click");
     const currentCard = document.getElementsByClassName(
       "kategori-menu-item-active"
     );
@@ -17,7 +29,11 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
       "kategori-menu-item-active",
       ""
     );
-    event.target.className += "kategori-menu-item-active";
+    e.currentTarget.className += "kategori-menu-item-active";
+  };
+
+  const handlingDeletButton = e => {
+    console.log(e.currentTarget);
   };
 
   return (
@@ -35,6 +51,11 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
         alt="kategori"
       />
       <p>{handlingCapitalizeEachWord(katTitle) || "title"}</p>
+      {currentUserRole !== "admin" ? null : (
+        <div className="delete-container" onClick={handlingDeletButton}>
+          <DeleteIcon />
+        </div>
+      )}
     </div>
   );
 };

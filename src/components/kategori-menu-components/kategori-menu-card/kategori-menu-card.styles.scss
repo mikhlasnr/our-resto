@@ -11,19 +11,12 @@
   align-items: center;
   justify-content: center;
   margin-right: 24px;
-
-  img {
-    width: 48px;
+  position: relative;
+  background-color: #ffffff;
+  &.kategori-menu-item-active {
+    cursor: default;
     pointer-events: none;
   }
-
-  p {
-    font-weight: 600;
-    font-size: 18px;
-    padding-top: 6px;
-    pointer-events: none;
-  }
-
   &.kategori-menu-item-active,
   &:hover {
     background: $primaryColor;
@@ -31,5 +24,30 @@
     p {
       color: $textColorSecondary;
     }
+    .delete-container {
+      z-index: 0;
+      color: $secondaryColor;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  img {
+    width: 48px;
+  }
+
+  p {
+    font-weight: 600;
+    font-size: 18px;
+    padding-top: 1rem;
+  }
+
+  .delete-container {
+    position: absolute;
+    top: 12px;
+    right: 13px;
+    z-index: -1;
+    pointer-events: auto;
   }
 }

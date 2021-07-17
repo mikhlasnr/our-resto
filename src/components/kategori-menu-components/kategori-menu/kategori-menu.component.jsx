@@ -11,8 +11,7 @@ import KategoriMenuCarousel from "./kategori-menu-carousel.component";
 import KategoriMenuCard from "../kategori-menu-card/kategori-menu-card.component";
 import KategoriMenuAdd from "../kategori-menu-add/kategori-menu-add.component";
 import KategoriMenuCardSkeleton from "../kategori-menu-card-skeleton/kategori-menu-card-skeleton.components";
-import DATA_KATEGORI from "../../../assets/data/DATA_KATEGORI";
-import { NumberOutlined } from "@ant-design/icons";
+
 const KategoriMenu = () => {
   const currentUserRole = useSelector(selectCurrentUserRole);
   const dataKategoriMenu = useSelector(selectDataKategoriMenu);
