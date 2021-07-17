@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 // Handling Redux
 import { useDispatch } from "react-redux";
-import { fetchDataPegawai } from "../../../../redux/users/users.action";
+import { fetchDataPegawai } from "../../../../redux/pegawai/pegawai.action";
 import { fetchDataRoles } from "../../../../redux/roles/roles.action";
 
 // import component
@@ -16,7 +16,7 @@ const PegawaiPage = () => {
   useEffect(() => {
     dispatch(fetchDataPegawai());
     dispatch(fetchDataRoles());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="dashboard-admin-pegawai-page">

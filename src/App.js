@@ -2,8 +2,8 @@ import React from "react";
 import "./App.scss";
 
 // handling redux
-import { connect, useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
+import { selectCurrentUserRole } from "./redux/user/user.selectors";
 // Router
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -14,15 +14,14 @@ import NoMatchPage from "./pages/no-match/no-match-page.component";
 import AdminDashboardPage from "./pages/admin-dashboard-page/admin-dashboard-page.component";
 import DashboardKasir from "./pages/dashboard-kasir/dashboard-kasir-page.component";
 const App = () => {
-  const currentUser = useSelector(state => state.user.currentUser);
+  const currentUserRole = useSelector(selectCurrentUserRole);
 
   const handlingCurrentUserRole = () => {
-    const role = currentUser.NamaRole.toLowerCase();
-    console.log(role);
-    if (role === "admin" || role === "pemilik") return <AdminDashboardPage />;
-    if (role === "pelayan") return <DashBoardPelayanPage />;
-    if (role === "kasir") return <DashboardKasir />;
-    if (role === "koki") return <DashboardKasir />;
+    if (currentUserRole === "admin" || currentUserRole === "pemilik")
+      return <AdminDashboardPage />;
+    if (currentUserRole === "pelayan") return <DashBoardPelayanPage />;
+    if (currentUserRole === "kasir") return <DashboardKasir />;
+    if (currentUserRole === "koki") return <DashboardKasir />;
     return <NoMatchPage />;
   };
 
@@ -32,14 +31,14 @@ const App = () => {
         <Route
           path="/dashboard"
           render={() =>
-            currentUser ? handlingCurrentUserRole() : <Redirect to="/" />
+            currentUserRole ? handlingCurrentUserRole() : <Redirect to="/" />
           }
         />
         <Route
           exact
           path="/"
           render={() =>
-            currentUser ? <Redirect to="/dashboard" /> : <SignInPage />
+            currentUserRole ? <Redirect to="/dashboard" /> : <SignInPage />
           }
         />
 
@@ -51,4 +50,4 @@ const App = () => {
   );
 };
 
-export default connect()(App);
+export default App;

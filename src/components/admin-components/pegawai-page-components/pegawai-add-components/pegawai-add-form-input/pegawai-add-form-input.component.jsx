@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import React from "react";
 import "./pegawai-add-form-input.styles.scss";
 
@@ -19,7 +20,7 @@ import {
   toggleIsUploading,
   handlingIsEmailExist,
 } from "../../../../../redux/pegawai/pegawai.action";
-import { fetchDataPegawai } from "../../../../../redux/users/users.action";
+import { fetchDataPegawai } from "../../../../../redux/pegawai/pegawai.action";
 
 // Import Component
 import { Form, Input, Select, Button, message } from "antd";

@@ -2,34 +2,48 @@
 //! and called in mapTopProps
 import { createSelector } from "reselect";
 
-const selectUsers = state => state.pegawai;
+const selectPegawai = state => state.pegawai;
+
+export const selectDataPegawai = createSelector(
+  [selectPegawai],
+  pegawai => pegawai.dataPegawai
+);
+
+export const selectPegawaiIsFetching = createSelector(
+  [selectPegawai],
+  pegawai => pegawai.isFetching
+);
+
+export const selectPegawaiErrorMessage = createSelector(
+  [selectPegawai],
+  pegawai => pegawai.errorMessage
+);
 
 export const selectIsEmailExist = createSelector(
-  [selectUsers],
-  users => users.isEmailExist
+  [selectPegawai],
+  pegawai => pegawai.isEmailExist
 );
 // START HANDLING SELECTOR MODAL
 export const selectShowModalAddPegawai = createSelector(
-  [selectUsers],
+  [selectPegawai],
   pegawai => pegawai.showModalAddPegawai
 );
-
 export const selectShowModalUpdatePegawai = createSelector(
-  [selectUsers],
+  [selectPegawai],
   pegawai => pegawai.showModalUpdatePegawai
 );
 export const selectShowModalDeletePegawai = createSelector(
-  [selectUsers],
+  [selectPegawai],
   pegawai => pegawai.showModalDeletePegawai
 );
 // END HANDLING SELECTOR MODAL
 
 export const selectInputProfile = createSelector(
-  [selectUsers],
+  [selectPegawai],
   pegawai => pegawai.inputProfile
 );
 
 export const selectIsUploading = createSelector(
-  [selectUsers],
+  [selectPegawai],
   pegawai => pegawai.isUploading
 );

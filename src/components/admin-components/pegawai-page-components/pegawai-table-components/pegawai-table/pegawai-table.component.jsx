@@ -4,9 +4,9 @@ import "./pegawai-table.styles.scss";
 // Handling Redux
 import { useSelector } from "react-redux";
 import {
-  selectPegawai,
-  selectUsersIsFetching,
-} from "../../../../../redux/users/users.selectors";
+  selectDataPegawai,
+  selectPegawaiIsFetching,
+} from "../../../../../redux/pegawai/pegawai.selectors";
 
 // import component
 import { Table } from "antd";
@@ -18,8 +18,8 @@ const PegawaiTable = () => {
   const [showTotalData, setShowTotalData] = useState(0);
   const [showRangeData, setShowRangeData] = useState(0);
 
-  const usersIsFetching = useSelector(selectUsersIsFetching);
-  const usersData = useSelector(selectPegawai);
+  const usersIsFetching = useSelector(selectPegawaiIsFetching);
+  const usersData = useSelector(selectDataPegawai);
 
   // !handling pagination
   const handlingPagination = (current, type, originalElement) => {

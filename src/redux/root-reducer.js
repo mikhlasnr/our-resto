@@ -7,9 +7,9 @@ import storage from "redux-persist/lib/storage"; // get local storage
 import pesananReducer from "./pesanan/pesanan.reducer";
 import userReducer from "./user/user.reducer";
 import userByIdReducer from "./userById/userById.reducer";
-import usersReducer from "./users/users.reducer";
 import rolesReducer from "./roles/roles.reducer";
 import pegawaiReducer from "./pegawai/pegawai.reducer";
+import kategoriMenuReducer from "./kategoriMenu/kategoriMenu.reducer";
 //create persist config
 // its persist with local storage so when refresh the data won't disappeared
 // in this case we persist cart reducer
@@ -22,10 +22,10 @@ const persistConfig = {
 const rootReducer = combineReducers({
   pesanan: pesananReducer,
   user: userReducer,
-  users: usersReducer,
   roles: rolesReducer,
   pegawai: pegawaiReducer,
   userById: userByIdReducer,
+  kategoriMenu: kategoriMenuReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

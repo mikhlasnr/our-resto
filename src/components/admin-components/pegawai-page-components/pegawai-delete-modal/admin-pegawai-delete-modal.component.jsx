@@ -20,29 +20,28 @@ import {
   selectUserData,
   selectUserByIdIsFetching,
 } from "../../../../redux/userById/userById.selectors";
-import { fetchDataPegawai } from "../../../../redux/users/users.action";
+import { fetchDataPegawai } from "../../../../redux/pegawai/pegawai.action";
 
 // Import Component
 import { Modal, Button, Space, message, Spin } from "antd";
 import { ReactComponent as WarningIcon } from "../../../../assets/icons/warningIcon.svg";
-import { WarningOutlined } from "@ant-design/icons";
 
 const PegawaiDeleteModal = () => {
+  const dispatch = useDispatch();
   const userById = useSelector(selectUserData);
   const isDataFetching = useSelector(selectUserByIdIsFetching);
   const isUploading = useSelector(selectIsUploading);
   const isModalVisible = useSelector(selectShowModalDeletePegawai);
-  const dispatch = useDispatch();
-
-  const handlingModalOnCancel = () => {
-    dispatch(removeCurrentUserById());
-    dispatch(toggleShowModalDeletePegawai());
-  };
   useEffect(() => {
     if (userById) {
       console.log(userById.Foto);
     }
   }, [userById]);
+
+  const handlingModalOnCancel = () => {
+    dispatch(removeCurrentUserById());
+    dispatch(toggleShowModalDeletePegawai());
+  };
 
   const handlingDeletePegawai = () => {
     dispatch(toggleIsUploading());

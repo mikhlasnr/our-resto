@@ -7,12 +7,6 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UserActionTypes.TOGGLE_CREATE_USER_MODAL_HIDDEN:
-      return {
-        ...state,
-        createUserModalHidden: !state.createUserModalHidden,
-      };
-
     case UserActionTypes.SET_CURRENT_USER:
       return {
         ...state,

@@ -24,7 +24,7 @@ import {
 import { selectUserData } from "../../../../../redux/userById/userById.selectors";
 
 // USER REDUCER
-import { fetchDataPegawai } from "../../../../../redux/users/users.action";
+import { fetchDataPegawai } from "../../../../../redux/pegawai/pegawai.action";
 
 // Import Component
 import { Form, Input, Select, Button, message } from "antd";

@@ -11,8 +11,8 @@ const Columns = [
     ),
   },
   {
-    key: "NoTelp",
-    dataIndex: "NoTelp",
+    key: "NamaRole",
+    dataIndex: "NamaRole",
     className: "table-pegawai-kontak",
     align: "center",
     render: text => <p>{text}</p>,

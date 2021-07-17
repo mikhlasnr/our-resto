@@ -21,7 +21,7 @@ const PegawaiAddModal = () => {
   useEffect(() => {
     if (inputProfile !== null && isModalVisible === false)
       dispatch(removeInputProfile());
-  }, [isModalVisible]);
+  }, [dispatch, isModalVisible]);
 
   const handlingModalOnCancel = () => {
     dispatch(toggleShowModalAddPegawai());

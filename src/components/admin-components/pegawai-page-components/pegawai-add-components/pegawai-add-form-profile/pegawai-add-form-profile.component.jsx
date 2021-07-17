@@ -3,10 +3,7 @@ import "./pegawai-add-form-profile.styles.scss";
 
 // Handling Redux
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setInputProfile,
-  removeInputProfile,
-} from "../../../../../redux/pegawai/pegawai.action";
+import { setInputProfile } from "../../../../../redux/pegawai/pegawai.action";
 import { selectShowModalAddPegawai } from "../../../../../redux/pegawai/pegawai.selectors";
 
 // Import Components

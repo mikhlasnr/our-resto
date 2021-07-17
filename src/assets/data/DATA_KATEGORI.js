@@ -1,9 +1,5 @@
 const DATA_KATEGORI = [
   {
-    katImage: "https://ik.imagekit.io/upecbxjan8p/kategori/kentang.png",
-    katTitle: "All",
-  },
-  {
     katImage: "https://ik.imagekit.io/upecbxjan8p/kategori/burger.png",
     katTitle: "Burger",
   },

@@ -1,6 +1,14 @@
 import React from "react";
 import "./kategori-menu-card.styles.scss";
 const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
+  const handlingCapitalizeEachWord = text => {
+    const arr = text.toLowerCase().split(" ");
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    const textResult = arr.join(" ");
+    return textResult;
+  };
   const handlingActiveCard = event => {
     const currentCard = document.getElementsByClassName(
       "kategori-menu-item-active"
@@ -26,7 +34,7 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
         }
         alt="kategori"
       />
-      <p>{katTitle || "title"}</p>
+      <p>{handlingCapitalizeEachWord(katTitle) || "title"}</p>
     </div>
   );
 };

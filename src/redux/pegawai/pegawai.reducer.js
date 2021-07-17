@@ -1,6 +1,9 @@
 import PegawaiActionTypes from "./pegawai.types";
 
 const INITIAL_STATE = {
+  dataPegawai: null,
+  isFetching: false,
+  errorMessage: "",
   isEmailExist: false,
   showModalAddPegawai: false,
   showModalUpdatePegawai: false,
@@ -11,18 +14,33 @@ const INITIAL_STATE = {
 
 const pegawaiReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case PegawaiActionTypes.FETCH_PEGAWAI_START:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case PegawaiActionTypes.FETCH_PEGAWAI_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        dataPegawai: action.payload,
+      };
+    case PegawaiActionTypes.FETCH_PEGAWAI_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.payload,
+      };
     case PegawaiActionTypes.IS_EMAIL_EXIST:
       return {
         ...state,
         isEmailExist: action.payload,
       };
-
     case PegawaiActionTypes.TOGGLE_SHOW_MODAL_ADD_PEGAWAI:
       return {
         ...state,
         showModalAddPegawai: !state.showModalAddPegawai,
       };
-
     case PegawaiActionTypes.TOGGLE_SHOW_MODAL_UPDATE_PEGAWAI:
       return {
         ...state,

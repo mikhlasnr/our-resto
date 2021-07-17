@@ -4,15 +4,15 @@ import "./sidebar-options.styles.scss";
 // handling redux
 import { useSelector, useDispatch } from "react-redux";
 import { removeCurrentUser } from "../../../../redux/user/user.action";
+import { selectCurrentUser } from "../../../../redux/user/user.selectors";
 
 // Import Component
 import { Avatar, Image, Menu, Dropdown } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
 
 const SidebarProfile = () => {
-  const currentUser = useSelector(state => state.user.currentUser) || null;
+  const currentUser = useSelector(selectCurrentUser) || null;
   const dispatch = useDispatch();
-
   const handlingMenuClick = ({ key }) => {
     if (key === "logout") dispatch(removeCurrentUser());
   };

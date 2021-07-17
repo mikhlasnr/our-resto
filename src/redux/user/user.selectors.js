@@ -2,9 +2,14 @@
 //! and called in mapTopProps
 import { createSelector } from "reselect";
 
-const selectPesanan = state => state.pesanan;
+const selectUser = state => state.user;
 
-export const selectCheckoutModaltHidden = createSelector(
-  [selectPesanan],
-  pesanan => pesanan.checkoutModalHidden
+export const selectCurrentUser = createSelector(
+  [selectUser],
+  user => user.currentUser
+);
+
+export const selectCurrentUserRole = createSelector(
+  [selectCurrentUser],
+  currentUser => (currentUser ? currentUser.NamaRole.toLowerCase() : null)
 );
