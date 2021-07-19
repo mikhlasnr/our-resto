@@ -43,7 +43,7 @@ const KategoriMenuAddForm = () => {
   const handlingAddKategoriMenu = NamaKategori => {
     dispatch(toggleIsUploading());
     axios
-      .post("/kategori-menu/add", { NamaKategori })
+      .post("/kategori-menu/add", { NamaKategori: NamaKategori.toLowerCase() })
       .then(response => {
         const IdKategori = response.data[0];
         handlingUploaImage(IdKategori);

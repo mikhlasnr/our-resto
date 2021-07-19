@@ -15,6 +15,8 @@ import KategoriMenuCard from "../kategori-menu-card-component/kategori-menu-card
 import KategoriMenuCardAdd from "../kategori-menu-card-component/kategori-menu-card-add/kategori-menu-card-add.component";
 import KategoriMenuCardSkeleton from "../kategori-menu-card-component/kategori-menu-card-skeleton/kategori-menu-card-skeleton.components";
 import KategoriMenuAddModal from "../kategori-menu-add-compnents/kategori-menu-add-modal/kategori-menu-add-modal.component";
+import KategoriMenuDeleteModal from "../kategori-menu-delete-modal/kategori-menu-delete-modal.component";
+
 const KategoriMenu = () => {
   const currentUserRole = useSelector(selectCurrentUserRole);
   const dataKategoriMenu = useSelector(selectDataKategoriMenu);
@@ -25,6 +27,8 @@ const KategoriMenu = () => {
       <KategoriMenuCard
         key={index}
         isDefaultActive={false}
+        IdKategori={kategori.IdKategori}
+        allowDelete={true}
         katImage={kategori.Foto}
         katTitle={kategori.NamaKategori}
       />
@@ -36,6 +40,7 @@ const KategoriMenu = () => {
       <KategoriMenuCarousel>
         <KategoriMenuCard
           isDefaultActive={true}
+          allowDelete={false}
           katImage="https://firebasestorage.googleapis.com/v0/b/our-resto.appspot.com/o/kategoriImages%2Fall.png?alt=media&token=15eb8007-bd64-400f-abbd-982d876b5067"
           katTitle="all"
         />
@@ -46,6 +51,7 @@ const KategoriMenu = () => {
         <KategoriMenuCardAdd />
         <KategoriMenuCard
           isDefaultActive={true}
+          allowDelete={false}
           katImage="https://firebasestorage.googleapis.com/v0/b/our-resto.appspot.com/o/kategoriImages%2Fall.png?alt=media&token=15eb8007-bd64-400f-abbd-982d876b5067"
           katTitle="ALL"
         />
@@ -73,6 +79,7 @@ const KategoriMenu = () => {
             ? handlingRenderKategoriSkeleton()
             : handlingRenderKategori()}
           <KategoriMenuAddModal />
+          <KategoriMenuDeleteModal />
         </>
       ) : (
         handlingRenderKategoriSkeleton()

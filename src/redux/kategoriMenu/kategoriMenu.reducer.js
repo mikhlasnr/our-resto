@@ -5,8 +5,10 @@ const INITIAL_STATE = {
   isFetching: false,
   errorMessage: undefined,
   showModalAddKategoriMenu: false,
+  showModalDeleteKategoriMenu: false,
   inputProfile: null,
   isUploading: false,
+  deleteKategoriById: null,
 };
 
 const kategoriMenuReducer = (state = INITIAL_STATE, action) => {
@@ -36,6 +38,11 @@ const kategoriMenuReducer = (state = INITIAL_STATE, action) => {
         ...state,
         showModalAddKategoriMenu: !state.showModalAddKategoriMenu,
       };
+    case KategoriMenuActionTypes.TOGGLE_SHOW_MODAL_DELETE_KATEGORI_MENU:
+      return {
+        ...state,
+        showModalDeleteKategoriMenu: !state.showModalDeleteKategoriMenu,
+      };
     // *====START HANDLING UPLOAD====
     case KategoriMenuActionTypes.SET_INPUT_PROFILE:
       return {
@@ -53,6 +60,18 @@ const kategoriMenuReducer = (state = INITIAL_STATE, action) => {
         isUploading: !state.isUploading,
       };
     // *====END HANDLING UPLOAD====
+    // *====START HANDLING DELETE====
+    case KategoriMenuActionTypes.SET_DELETE_KATEGORI_BY_ID:
+      return {
+        ...state,
+        deleteKategoriById: action.payload,
+      };
+    case KategoriMenuActionTypes.REMOVE_DELETE_KATEGORI_BY_ID:
+      return {
+        ...state,
+        deleteKategoriById: null,
+      };
+    // *====END HANDLING DELETE====
 
     default:
       return state;

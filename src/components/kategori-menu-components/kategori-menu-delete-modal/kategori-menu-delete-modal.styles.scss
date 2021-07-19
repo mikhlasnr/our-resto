@@ -1,0 +1,54 @@
+@import "../../../colors";
+.delete-modal {
+  .delete-modal-container {
+    text-align: center;
+    padding: 2rem;
+    h2 {
+      padding-top: 0.7rem;
+      padding-bottom: 2.5rem;
+    }
+    .ant-btn {
+      &.btn-default {
+        min-width: 144px;
+        min-height: 55px;
+        border-radius: 10px;
+      }
+
+      &.btn-action-cancel {
+        border-color: $primaryColor;
+
+        span {
+          color: $primaryColor;
+        }
+
+        &:hover,
+        &:focus {
+          background: $primaryColor;
+          box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
+          span {
+            color: $textColorSecondary;
+          }
+        }
+      }
+
+      &.btn-action-delete {
+        background: $primaryColor;
+        border-color: $primaryColor;
+
+        span {
+          color: $textColorSecondary;
+        }
+
+        &:hover,
+        &:focus {
+          background-color: #fff;
+          border-color: $primaryColor;
+
+          span {
+            color: $primaryColor;
+          }
+        }
+      }
+    }
+  }
+}

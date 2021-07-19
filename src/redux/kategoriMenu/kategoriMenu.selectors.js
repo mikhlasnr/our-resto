@@ -23,6 +23,10 @@ export const selectShowModalAddKategoriMenu = createSelector(
   [selectKategoriMenu],
   kategoriMenu => kategoriMenu.showModalAddKategoriMenu
 );
+export const selectShowModalDeleteKategoriMenu = createSelector(
+  [selectKategoriMenu],
+  kategoriMenu => kategoriMenu.showModalDeleteKategoriMenu
+);
 // *====END SELECTOR HANDLING MODAL====
 // *====START SELECTOR HANDLING FOR UPLOADING====
 export const selectInputProfile = createSelector(
@@ -34,3 +38,7 @@ export const selectIsUploading = createSelector(
   kategoriMenu => kategoriMenu.isUploading
 );
 // *====END SELECTOR HANDLING FOR UPLOADING====
+export const selectDeleteKategoriById = createSelector(
+  [selectKategoriMenu],
+  kategoriMenu => kategoriMenu.deleteKategoriById
+);

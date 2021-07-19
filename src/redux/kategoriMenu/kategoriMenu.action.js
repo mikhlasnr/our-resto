@@ -31,6 +31,9 @@ const fetchKategoriMenuFailure = message => ({
 export const toggleShowModalAddKategoriMenu = () => ({
   type: KategoriMenuActionTypes.TOGGLE_SHOW_MODAL_ADD_KATEGORI_MENU,
 });
+export const toggleShowModalDeleteKategoriMenu = () => ({
+  type: KategoriMenuActionTypes.TOGGLE_SHOW_MODAL_DELETE_KATEGORI_MENU,
+});
 // *====END HANDLING SHOW MODAL====
 
 // *====START HANDLING UPLOAD====
@@ -45,3 +48,11 @@ export const toggleIsUploading = () => ({
   type: KategoriMenuActionTypes.TOGGLE_IS_UPLOADING,
 });
 // *====END HANDLING UPLOAD====
+// *====START HANDLING DELETE====
+export const setDeleteKategoriById = idKategori => ({
+  type: KategoriMenuActionTypes.SET_DELETE_KATEGORI_BY_ID,
+  payload: idKategori,
+});
+export const removeDeleteKategoriById = () => ({
+  type: KategoriMenuActionTypes.REMOVE_DELETE_KATEGORI_BY_ID,
+});

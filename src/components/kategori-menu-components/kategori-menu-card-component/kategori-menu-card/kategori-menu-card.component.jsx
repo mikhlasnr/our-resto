@@ -2,13 +2,24 @@ import React from "react";
 import "./kategori-menu-card.styles.scss";
 
 // Handling redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUserRole } from "../../../../redux/user/user.selectors";
+import {
+  toggleShowModalDeleteKategoriMenu,
+  setDeleteKategoriById,
+} from "../../../../redux/kategoriMenu/kategoriMenu.action";
 
 // Import Components
 import { ReactComponent as DeleteIcon } from "../delete-icon.svg";
 
-const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
+const KategoriMenuCard = ({
+  IdKategori,
+  allowDelete,
+  isDefaultActive,
+  katImage,
+  katTitle,
+}) => {
+  const dispatch = useDispatch();
   const currentUserRole = useSelector(selectCurrentUserRole);
 
   const handlingCapitalizeEachWord = text => {
@@ -21,7 +32,6 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
   };
 
   const handlingActiveCard = e => {
-    console.log("click");
     const currentCard = document.getElementsByClassName(
       "kategori-menu-item-active"
     );
@@ -33,7 +43,9 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
   };
 
   const handlingDeletButton = e => {
-    console.log(e.currentTarget);
+    console.log(IdKategori);
+    dispatch(setDeleteKategoriById(IdKategori));
+    dispatch(toggleShowModalDeleteKategoriMenu());
   };
 
   return (
@@ -51,11 +63,11 @@ const KategoriMenuCard = ({ isDefaultActive, katImage, katTitle }) => {
         alt="kategori"
       />
       <p>{handlingCapitalizeEachWord(katTitle) || "title"}</p>
-      {currentUserRole !== "admin" ? null : (
+      {currentUserRole === "admin" && allowDelete ? (
         <div className="delete-container" onClick={handlingDeletButton}>
           <DeleteIcon />
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
