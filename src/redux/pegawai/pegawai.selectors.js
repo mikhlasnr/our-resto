@@ -3,7 +3,7 @@
 import { createSelector } from "reselect";
 
 const selectPegawai = state => state.pegawai;
-
+// *====START HANDLING SELECTOR FETCH DATA PEGAWAI====
 export const selectDataPegawai = createSelector(
   [selectPegawai],
   pegawai => pegawai.dataPegawai
@@ -18,12 +18,9 @@ export const selectPegawaiErrorMessage = createSelector(
   [selectPegawai],
   pegawai => pegawai.errorMessage
 );
+// *====END HANDLING SELECTOR FETCH DATA PEGAWAI====
 
-export const selectIsEmailExist = createSelector(
-  [selectPegawai],
-  pegawai => pegawai.isEmailExist
-);
-// START HANDLING SELECTOR MODAL
+// *====START HANDLING SELECTOR MODAL====
 export const selectShowModalAddPegawai = createSelector(
   [selectPegawai],
   pegawai => pegawai.showModalAddPegawai
@@ -36,8 +33,12 @@ export const selectShowModalDeletePegawai = createSelector(
   [selectPegawai],
   pegawai => pegawai.showModalDeletePegawai
 );
-// END HANDLING SELECTOR MODAL
-
+// *====END HANDLING SELECTOR MODAL====
+// *====START HANDLING SELECTOR FOR UPLOADING====
+export const selectIsEmailExist = createSelector(
+  [selectPegawai],
+  pegawai => pegawai.isEmailExist
+);
 export const selectInputProfile = createSelector(
   [selectPegawai],
   pegawai => pegawai.inputProfile
@@ -47,3 +48,4 @@ export const selectIsUploading = createSelector(
   [selectPegawai],
   pegawai => pegawai.isUploading
 );
+// *====END HANDLING SELECTOR FOR UPLOADING====

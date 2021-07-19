@@ -14,6 +14,7 @@ const INITIAL_STATE = {
 
 const pegawaiReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    // *====START FETCH DATA PEGAWAI====
     case PegawaiActionTypes.FETCH_PEGAWAI_START:
       return {
         ...state,
@@ -31,11 +32,8 @@ const pegawaiReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
-    case PegawaiActionTypes.IS_EMAIL_EXIST:
-      return {
-        ...state,
-        isEmailExist: action.payload,
-      };
+    // *====END FETCH DATA PEGAWAI====
+    // *====START HANDLING SHOW MODAL====
     case PegawaiActionTypes.TOGGLE_SHOW_MODAL_ADD_PEGAWAI:
       return {
         ...state,
@@ -50,6 +48,13 @@ const pegawaiReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         showModalDeletePegawai: !state.showModalDeletePegawai,
+      };
+    // *====END HANDLING SHOW MODAL====
+    // *====START HANDLING UPLOAD====
+    case PegawaiActionTypes.IS_EMAIL_EXIST:
+      return {
+        ...state,
+        isEmailExist: action.payload,
       };
     case PegawaiActionTypes.SET_INPUT_PROFILE:
       return {
@@ -66,6 +71,8 @@ const pegawaiReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isUploading: !state.isUploading,
       };
+    // *====END HANDLING UPLOAD====
+
     default:
       return state;
   }

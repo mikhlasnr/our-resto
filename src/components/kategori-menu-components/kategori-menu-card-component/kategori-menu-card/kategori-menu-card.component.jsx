@@ -3,7 +3,7 @@ import "./kategori-menu-card.styles.scss";
 
 // Handling redux
 import { useSelector } from "react-redux";
-import { selectCurrentUserRole } from "../../../redux/user/user.selectors";
+import { selectCurrentUserRole } from "../../../../redux/user/user.selectors";
 
 // Import Components
 import { ReactComponent as DeleteIcon } from "../delete-icon.svg";

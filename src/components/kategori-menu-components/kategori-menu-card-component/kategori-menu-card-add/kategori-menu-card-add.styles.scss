@@ -1,0 +1,20 @@
+@import "../../../../colors";
+.kategori-menu-add {
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  margin-right: 24px;
+  border-radius: 14px;
+  border: 2px solid $secondaryColor;
+  color: $secondaryColor;
+  -webkit-transition: all 0.5s 0s ease;
+  -moz-transition: all 0.5s 0s ease;
+  -o-transition: all 0.5s 0s ease;
+  transition: all 0.5s 0s ease;
+
+  &:hover {
+    color: $textColorSecondary;
+    background-color: $secondaryColor;
+  }
+}

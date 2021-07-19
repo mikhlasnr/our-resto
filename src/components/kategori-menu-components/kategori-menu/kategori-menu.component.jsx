@@ -8,10 +8,10 @@ import { selectDataKategoriMenu } from "../../../redux/kategoriMenu/kategoriMenu
 
 // Import Components
 import KategoriMenuCarousel from "./kategori-menu-carousel.component";
-import KategoriMenuCard from "../kategori-menu-card/kategori-menu-card.component";
-import KategoriMenuAdd from "../kategori-menu-add/kategori-menu-add.component";
-import KategoriMenuCardSkeleton from "../kategori-menu-card-skeleton/kategori-menu-card-skeleton.components";
-
+import KategoriMenuCard from "../kategori-menu-card-component/kategori-menu-card/kategori-menu-card.component";
+import KategoriMenuCardAdd from "../kategori-menu-card-component/kategori-menu-card-add/kategori-menu-card-add.component";
+import KategoriMenuCardSkeleton from "../kategori-menu-card-component/kategori-menu-card-skeleton/kategori-menu-card-skeleton.components";
+import KategoriMenuAddModal from "../kategori-menu-add-compnents/kategori-menu-add-modal/kategori-menu-add-modal.component";
 const KategoriMenu = () => {
   const currentUserRole = useSelector(selectCurrentUserRole);
   const dataKategoriMenu = useSelector(selectDataKategoriMenu);
@@ -39,7 +39,7 @@ const KategoriMenu = () => {
       </KategoriMenuCarousel>
     ) : (
       <KategoriMenuCarousel>
-        <KategoriMenuAdd />
+        <KategoriMenuCardAdd />
         <KategoriMenuCard
           isDefaultActive={true}
           katImage="https://firebasestorage.googleapis.com/v0/b/our-resto.appspot.com/o/kategoriImages%2Fall.png?alt=media&token=15eb8007-bd64-400f-abbd-982d876b5067"
@@ -63,9 +63,14 @@ const KategoriMenu = () => {
   return (
     <div className="kategori-menu">
       <h1>Kategori Menu</h1>
-      {dataKategoriMenu
-        ? handlingRenderKategori()
-        : handlingRenderKategoriSkeleton()}
+      {dataKategoriMenu ? (
+        <>
+          {handlingRenderKategori()}
+          <KategoriMenuAddModal />
+        </>
+      ) : (
+        handlingRenderKategoriSkeleton()
+      )}
     </div>
   );
 };

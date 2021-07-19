@@ -198,22 +198,26 @@ const PegawaiUpdateFormInput = () => {
           >
             <Input className="input" />
           </Form.Item>
-          <Form.Item
-            name="NoTelp"
-            label="No Telp"
-            rules={[{ required: true, types: "number" }]}
-          >
+          <Form.Item name="NoTelp" label="No Telp" rules={[{ required: true }]}>
             <Input className="input" maxLength={13} />
           </Form.Item>
           <Form.Item name="Alamat" label="Alamat" rules={[{ required: true }]}>
             <Input className="input" />
           </Form.Item>
           <Form.Item name="IdRole" label="Posisi" rules={[{ required: true }]}>
-            <Select loading={rolesDataIsFetching}>
+            <Select
+              loading={rolesDataIsFetching}
+              dropdownClassName="pegawai-select-role"
+            >
               {rolesData
                 ? rolesData.map(role => (
                     <Select.Option key={role.IdRole} value={role.IdRole}>
-                      {role.NamaRole}
+                      <div className="pegawai-select-role-item">
+                        <span>{role.NamaRole}</span>
+                        <div className="dote">
+                          <div className="dote-inner"></div>
+                        </div>
+                      </div>
                     </Select.Option>
                   ))
                 : null}

@@ -25,7 +25,7 @@ import { fetchDataPegawai } from "../../../../../redux/pegawai/pegawai.action";
 // Import Component
 import { Form, Input, Select, Button, message } from "antd";
 
-const PegawaiAddFormInput = () => {
+const PegawaiUpdateFormInput = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
@@ -153,35 +153,27 @@ const PegawaiAddFormInput = () => {
       >
         <div className="table-pegawai-add-form-input">
           <Form.Item name="Nama" label="Nama" rules={[{ required: true }]}>
-            <Input className="input" allowClear />
+            <Input className="input" />
           </Form.Item>
           <Form.Item
             name="Email"
             label="Email"
             rules={[{ required: true, type: "email" }]}
           >
-            <Input className="input" allowClear />
+            <Input className="input" />
           </Form.Item>
           <Form.Item name="NoTelp" label="No Telp" rules={[{ required: true }]}>
-            <Input className="input" maxLength={13} allowClear />
+            <Input className="input" maxLength={13} />
           </Form.Item>
           <Form.Item name="Alamat" label="Alamat" rules={[{ required: true }]}>
-            <Input className="input" allowClear />
+            <Input className="input" />
           </Form.Item>
           <Form.Item name="IdRole" label="Posisi" rules={[{ required: true }]}>
-            <Select
-              loading={rolesDataIsFetching}
-              dropdownClassName="pegawai-select-role"
-            >
+            <Select loading={rolesDataIsFetching}>
               {rolesData
                 ? rolesData.map(role => (
                     <Select.Option key={role.IdRole} value={role.IdRole}>
-                      <div className="pegawai-select-role-item">
-                        <span>{role.NamaRole}</span>
-                        <div className="dote">
-                          <div className="dote-inner"></div>
-                        </div>
-                      </div>
+                      {role.NamaRole}
                     </Select.Option>
                   ))
                 : null}
@@ -192,7 +184,7 @@ const PegawaiAddFormInput = () => {
             label="Kata Sandi"
             rules={[{ required: true }]}
           >
-            <Input.Password className="input" allowClear />
+            <Input.Password className="input" />
           </Form.Item>
         </div>
         <Form.Item className="btn-submit ">
@@ -209,4 +201,4 @@ const PegawaiAddFormInput = () => {
   );
 };
 
-export default PegawaiAddFormInput;
+export default PegawaiUpdateFormInput;

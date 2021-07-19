@@ -1,7 +1,7 @@
 import PegawaiActionTypes from "./pegawai.types";
 import axios from "axios";
 
-// START Action Fetch Data Pegawai
+// *====START FETCH DATA PEGAWAI====
 export const fetchDataPegawai = () => {
   return dispatch => {
     dispatch(fetchPegawaiStart());
@@ -28,14 +28,14 @@ const fetchPegawaiFailure = message => ({
   type: PegawaiActionTypes.FETCH_PEGAWAI_FAILURE,
   payload: message,
 });
-// END Action Fetch Data Pegawai
+// *====END FETCH DATA PEGAWAI====
 
 export const handlingIsEmailExist = response => ({
   type: PegawaiActionTypes.IS_EMAIL_EXIST,
   payload: response,
 });
 
-// Handling add pegawai modal
+// *====START HANDLING SHOW MODAL====
 export const toggleShowModalAddPegawai = () => ({
   type: PegawaiActionTypes.TOGGLE_SHOW_MODAL_ADD_PEGAWAI,
 });
@@ -49,7 +49,9 @@ export const toggleShowModalUpdatePegawai = () => ({
 export const toggleShowModalDeletePegawai = () => ({
   type: PegawaiActionTypes.TOGGLE_SHOW_MODAL_DELETE_PEGAWAI,
 });
+// *====END HANDLING SHOW MODAL====
 
+// *====START HANDLING UPLOAD====
 // START handling get input profile for uploading
 export const setInputProfile = imgFile => ({
   type: PegawaiActionTypes.SET_INPUT_PROFILE,
@@ -63,3 +65,4 @@ export const removeInputProfile = () => ({
 export const toggleIsUploading = () => ({
   type: PegawaiActionTypes.TOGGLE_IS_UPLOADING,
 });
+// *====END HANDLING UPLOAD====

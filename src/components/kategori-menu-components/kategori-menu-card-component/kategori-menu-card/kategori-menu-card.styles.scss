@@ -1,4 +1,4 @@
-@import "../../../colors";
+@import "../../../../colors";
 
 .kategori-menu-item {
   user-select: none;
@@ -13,6 +13,11 @@
   margin-right: 24px;
   position: relative;
   background-color: #ffffff;
+  -webkit-transition: all 0.3s 0s ease;
+  -moz-transition: all 0.3s 0s ease;
+  -o-transition: all 0.3s 0s ease;
+  transition: all 0.3s 0s ease;
+
   &.kategori-menu-item-active {
     cursor: default;
     pointer-events: none;

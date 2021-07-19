@@ -222,6 +222,9 @@ h2 {
   .ant-select-item-option-active {
     background-color: $secondaryColor;
     .pegawai-select-role-item {
+      span {
+        font-weight: 600;
+      }
       .dote {
         .dote-inner {
           position: absolute;
