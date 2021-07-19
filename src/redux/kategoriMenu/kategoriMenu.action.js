@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchDataKategoriMenu = () => {
   return dispatch => {
     dispatch(fetchKategoriMenuStart());
-    axios("/menus/kategori")
+    axios("/kategori-menu")
       .then(res => {
         dispatch(fetchKategoriMenuSuccess(res.data));
       })

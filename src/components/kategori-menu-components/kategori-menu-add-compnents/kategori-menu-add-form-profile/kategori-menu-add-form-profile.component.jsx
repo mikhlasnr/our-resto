@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./pegawai-add-form-profile.styles.scss";
+import "./kategori-menu-add-form-profile.styles.scss";
 
 // Handling Redux
 import { useDispatch, useSelector } from "react-redux";
-import { setInputProfile } from "../../../../../redux/pegawai/pegawai.action";
-import { selectShowModalAddPegawai } from "../../../../../redux/pegawai/pegawai.selectors";
+import { setInputProfile } from "../../../../redux/kategoriMenu/kategoriMenu.action";
+import { selectShowModalAddKategoriMenu } from "../../../../redux/kategoriMenu/kategoriMenu.selectors";
 
 // Import Components
 import { Upload, message } from "antd";
@@ -12,19 +12,13 @@ import { PlusOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 
-const PegawaiAddFormProfile = () => {
+const KategoriMenuAddFormProfile = () => {
   const [imageUrl, setImageUrl] = useState(null);
 
   // Start Handling Redux
   const dispatch = useDispatch();
-  const isModalVisible = useSelector(selectShowModalAddPegawai);
+  const isModalVisible = useSelector(selectShowModalAddKategoriMenu);
   // END Handling Redux
-
-  useEffect(() => {
-    return () => {
-      setImageUrl(null);
-    };
-  }, [isModalVisible]);
 
   // Method for handling read image file
   const getBase64 = (img, callback) => {
@@ -59,7 +53,7 @@ const PegawaiAddFormProfile = () => {
     <Dragger
       name="avatar"
       listType="picture-card"
-      className="avatar-uploader pegawai-add-form-profile"
+      className="avatar-uploader kategori-menu-add-form-profile"
       showUploadList={false}
       beforeUpload={beforeUpload}
     >
@@ -68,4 +62,4 @@ const PegawaiAddFormProfile = () => {
   );
 };
 
-export default PegawaiAddFormProfile;
+export default KategoriMenuAddFormProfile;

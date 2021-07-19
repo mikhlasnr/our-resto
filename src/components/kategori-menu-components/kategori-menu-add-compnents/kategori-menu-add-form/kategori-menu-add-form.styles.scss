@@ -1,0 +1,9 @@
+.kategori-add-form-input {
+  width: 100%;
+  .kategori-add-form-input-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 20px;
+    row-gap: 15px;
+  }
+}

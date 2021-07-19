@@ -4,7 +4,10 @@ import "./kategori-menu.styles.scss";
 // Handling redux
 import { useSelector } from "react-redux";
 import { selectCurrentUserRole } from "../../../redux/user/user.selectors";
-import { selectDataKategoriMenu } from "../../../redux/kategoriMenu/kategoriMenu.selectors";
+import {
+  selectDataKategoriMenu,
+  selectIsUploading,
+} from "../../../redux/kategoriMenu/kategoriMenu.selectors";
 
 // Import Components
 import KategoriMenuCarousel from "./kategori-menu-carousel.component";
@@ -15,6 +18,7 @@ import KategoriMenuAddModal from "../kategori-menu-add-compnents/kategori-menu-a
 const KategoriMenu = () => {
   const currentUserRole = useSelector(selectCurrentUserRole);
   const dataKategoriMenu = useSelector(selectDataKategoriMenu);
+  const isKategoriUploading = useSelector(selectIsUploading);
 
   const handlingRenderKategoriCard = () => {
     return dataKategoriMenu.map((kategori, index) => (
@@ -65,7 +69,9 @@ const KategoriMenu = () => {
       <h1>Kategori Menu</h1>
       {dataKategoriMenu ? (
         <>
-          {handlingRenderKategori()}
+          {isKategoriUploading
+            ? handlingRenderKategoriSkeleton()
+            : handlingRenderKategori()}
           <KategoriMenuAddModal />
         </>
       ) : (

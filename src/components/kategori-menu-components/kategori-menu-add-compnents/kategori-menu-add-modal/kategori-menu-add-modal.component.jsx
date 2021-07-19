@@ -11,7 +11,7 @@ import { toggleShowModalAddKategoriMenu } from "../../../../redux/kategoriMenu/k
 
 // Import Component
 import { Modal, Spin } from "antd";
-
+import KategoriMenuAddForm from "../kategori-menu-add-form/kategori-menu-add-form.component";
 const KategoriMenuAddModal = () => {
   const dispatch = useDispatch();
   const isModalVisible = useSelector(selectShowModalAddKategoriMenu);
@@ -34,6 +34,7 @@ const KategoriMenuAddModal = () => {
         <div className="kategori-modal-add-container">
           <h2>Tambah Kategori</h2>
         </div>
+        <KategoriMenuAddForm />
       </Spin>
     </Modal>
   );

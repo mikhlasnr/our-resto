@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchDataRoles = () => {
   return dispatch => {
     dispatch(fetchRolesStart());
-    axios("/users/roles")
+    axios("/user-role")
       .then(res => {
         console.log(res);
         dispatch(fetchRolesSuccess(res.data));
