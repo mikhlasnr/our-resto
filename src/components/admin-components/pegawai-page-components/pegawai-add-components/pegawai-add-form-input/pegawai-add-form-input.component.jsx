@@ -143,7 +143,7 @@ const PegawaiAddFormInput = () => {
   };
 
   return (
-    <section className="table-pegawai-add-form-input">
+    <section className="pegawai-add-form-input">
       <Form
         form={form}
         layout="vertical"
@@ -151,7 +151,7 @@ const PegawaiAddFormInput = () => {
         validateMessages={validateMessages}
         onFinish={onFinish}
       >
-        <div className="table-pegawai-add-form-input">
+        <div className="pegawai-add-form-input-container">
           <Form.Item name="Nama" label="Nama" rules={[{ required: true }]}>
             <Input className="input" allowClear />
           </Form.Item>
@@ -195,7 +195,7 @@ const PegawaiAddFormInput = () => {
             <Input.Password className="input" allowClear />
           </Form.Item>
         </div>
-        <Form.Item className="btn-submit ">
+        <Form.Item className="btn-submit">
           <Button
             htmlType="submit"
             block

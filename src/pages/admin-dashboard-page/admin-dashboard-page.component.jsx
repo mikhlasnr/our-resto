@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./admin-dashboard-page.styles.scss";
 // Import Component
 import DashboardSidebar from "../../components/admin-components/sidebar-components/dashboard-sidebar/dashboard-sidebar.component";
 import DashboardMain from "../../components/admin-components/dashboard-main/dashboard-main.component";

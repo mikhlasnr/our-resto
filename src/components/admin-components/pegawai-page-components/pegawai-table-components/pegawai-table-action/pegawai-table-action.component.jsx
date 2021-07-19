@@ -23,7 +23,7 @@ const PegawaiTableAction = ({ record: { IdUser } }) => {
       <Button className="btn-action-primary" onClick={handlingActionLihat}>
         Lihat
       </Button>
-      <Button className="btn-action-danger" onClick={handlingActionHapus}>
+      <Button className="btn-action-secondary" onClick={handlingActionHapus}>
         Hapus
       </Button>
     </Space>

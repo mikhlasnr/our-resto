@@ -46,38 +46,6 @@
         }
         .table-pegawai-action {
           padding-right: 0;
-          .ant-btn {
-            padding: 15px 55px;
-            min-width: 144px;
-            min-height: 56px;
-            border-radius: 10px;
-
-            &.btn-action-primary {
-              border: 1px solid $textColorPrimary;
-              span {
-                color: $textColorPrimary;
-              }
-              &:hover {
-                border: 1px solid $secondaryColor;
-                span {
-                  color: $secondaryColor;
-                }
-              }
-            }
-
-            &.btn-action-danger {
-              border: 1px solid $primaryColor;
-              span {
-                color: $primaryColor;
-              }
-              &:hover {
-                background: $primaryColor;
-                span {
-                  color: $textColorSecondary;
-                }
-              }
-            }
-          }
         }
       }
     }

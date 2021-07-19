@@ -1,7 +1,7 @@
 import React from "react";
 import "./menu-list-card.styles.scss";
 
-import { Row, Col, Button, Image } from "antd";
+import { Row, Col, Button, Image, Space } from "antd";
 
 const MenuListCard = () => {
   return (
@@ -22,8 +22,10 @@ const MenuListCard = () => {
         <span>Rp 17.000</span>
       </Col>
       <Col className="card-action">
-        <Button className="btn-action-primary">Edit</Button>
-        <Button className="btn-action-danger">Hapus</Button>
+        <Space>
+          <Button className="btn-action-primary">Edit</Button>
+          <Button className="btn-action-secondary">Hapus</Button>
+        </Space>
       </Col>
     </Row>
   );

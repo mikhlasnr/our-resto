@@ -22,9 +22,6 @@ const MenuPage = () => {
       <KategoriMenu />
 
       <div className="menu-list-container">
-        <Button className="btn-tambah" icon={<PlusOutlined />}>
-          Tambah Menu
-        </Button>
         <MenuList />
       </div>
     </div>

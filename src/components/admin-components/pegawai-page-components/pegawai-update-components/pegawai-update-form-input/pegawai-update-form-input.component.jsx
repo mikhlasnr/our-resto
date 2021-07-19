@@ -231,7 +231,7 @@ const PegawaiUpdateFormInput = () => {
             <Input.Password className="input" />
           </Form.Item>
         </div>
-        <Form.Item className="btn-submit ">
+        <Form.Item className="btn-submit">
           <Button
             htmlType="submit"
             block
