@@ -33,7 +33,7 @@ const PegawaiAddModal = () => {
 
   return (
     <Modal
-      className="modal-table-pegawai-add"
+      className="modal-large"
       visible={isModalVisible}
       onCancel={handlingModalOnCancel}
       footer={null}

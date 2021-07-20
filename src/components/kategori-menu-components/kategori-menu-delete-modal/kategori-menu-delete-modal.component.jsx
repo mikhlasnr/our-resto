@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./kategori-menu-delete-modal.styles.scss";
 
 import axios from "axios";

@@ -28,10 +28,10 @@ const fetchMenuFailure = message => ({
 // *====END FETCH DATA KATEGORI MENU====
 
 // *====START HANDLING SHOW MODAL====
-export const toggleShowModalAddKategoriMenu = () => ({
+export const toggleShowModalAddMenu = () => ({
   type: MenuActionTypes.TOGGLE_SHOW_MODAL_ADD_MENU,
 });
-export const toggleShowModalDeleteKategoriMenu = () => ({
+export const toggleShowModalDeleteMenu = () => ({
   type: MenuActionTypes.TOGGLE_SHOW_MODAL_DELETE_MENU,
 });
 // *====END HANDLING SHOW MODAL====

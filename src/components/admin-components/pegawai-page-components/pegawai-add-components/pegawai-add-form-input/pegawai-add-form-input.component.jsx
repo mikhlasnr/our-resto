@@ -63,13 +63,8 @@ const PegawaiAddFormInput = () => {
       .post("/user/validation-email", { Email })
       .then(res => {
         dispatch(handlingIsEmailExist(res.data.exist));
-        if (res.data.exist) {
-          console.log(res.data);
-          message.error("Email sudah tersedia!");
-        } else {
-          dispatch(toggleIsUploading());
-          handlingAddPegawai(userData);
-        }
+        if (res.data.exist) message.error("Email sudah tersedia!");
+        else handlingAddPegawai(userData);
       })
       .catch(error => {
         console.log(error.message);
@@ -78,6 +73,7 @@ const PegawaiAddFormInput = () => {
   };
 
   const handlingAddPegawai = userData => {
+    dispatch(toggleIsUploading());
     axios
       .post("/user/add", userData)
       .then(response => {
@@ -171,12 +167,12 @@ const PegawaiAddFormInput = () => {
           <Form.Item name="IdRole" label="Posisi" rules={[{ required: true }]}>
             <Select
               loading={rolesDataIsFetching}
-              dropdownClassName="pegawai-select-role"
+              dropdownClassName="form-select-primary"
             >
               {rolesData
                 ? rolesData.map(role => (
                     <Select.Option key={role.IdRole} value={role.IdRole}>
-                      <div className="pegawai-select-role-item">
+                      <div className="form-select-item-custom">
                         <span>{role.NamaRole}</span>
                         <div className="dote">
                           <div className="dote-inner"></div>

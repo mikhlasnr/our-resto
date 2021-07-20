@@ -207,12 +207,12 @@ const PegawaiUpdateFormInput = () => {
           <Form.Item name="IdRole" label="Posisi" rules={[{ required: true }]}>
             <Select
               loading={rolesDataIsFetching}
-              dropdownClassName="pegawai-select-role"
+              dropdownClassName="form-select-primary"
             >
               {rolesData
                 ? rolesData.map(role => (
                     <Select.Option key={role.IdRole} value={role.IdRole}>
-                      <div className="pegawai-select-role-item">
+                      <div className="form-select-item-custom">
                         <span>{role.NamaRole}</span>
                         <div className="dote">
                           <div className="dote-inner"></div>

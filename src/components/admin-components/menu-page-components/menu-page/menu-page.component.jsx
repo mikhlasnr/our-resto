@@ -7,7 +7,8 @@ import { fetchDataKategoriMenu } from "../../../../redux/kategoriMenu/kategoriMe
 import { fetchDataMenu } from "../../../../redux/menu/menu.action";
 // Import Component
 import KategoriMenu from "../../../kategori-menu-components/kategori-menu/kategori-menu.component";
-import MenuList from "../menu-list/menu-list.component";
+import MenuList from "../menu-list-components/menu-list/menu-list.component";
+import MenuAddModal from "../menu-add-compnents/menu-add-modal/menu-add-modal.component";
 
 const MenuPage = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const MenuPage = () => {
       <div className="menu-list-container">
         <MenuList />
       </div>
+      <MenuAddModal />
     </div>
   );
 };
