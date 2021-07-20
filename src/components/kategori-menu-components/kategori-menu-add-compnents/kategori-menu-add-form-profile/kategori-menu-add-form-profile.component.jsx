@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./kategori-menu-add-form-profile.styles.scss";
 
 // Handling Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setInputProfile } from "../../../../redux/kategoriMenu/kategoriMenu.action";
-import { selectShowModalAddKategoriMenu } from "../../../../redux/kategoriMenu/kategoriMenu.selectors";
 
 // Import Components
 import { Upload, message } from "antd";
@@ -17,7 +16,6 @@ const KategoriMenuAddFormProfile = () => {
 
   // Start Handling Redux
   const dispatch = useDispatch();
-  const isModalVisible = useSelector(selectShowModalAddKategoriMenu);
   // END Handling Redux
 
   // Method for handling read image file

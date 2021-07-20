@@ -4,9 +4,8 @@ import "./menu-page.styles.scss";
 // Handling Redux
 import { useDispatch } from "react-redux";
 import { fetchDataKategoriMenu } from "../../../../redux/kategoriMenu/kategoriMenu.action";
+import { fetchDataMenu } from "../../../../redux/menu/menu.action";
 // Import Component
-import { Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import KategoriMenu from "../../../kategori-menu-components/kategori-menu/kategori-menu.component";
 import MenuList from "../menu-list/menu-list.component";
 
@@ -15,7 +14,8 @@ const MenuPage = () => {
 
   useEffect(() => {
     dispatch(fetchDataKategoriMenu());
-  }, [dispatch]);
+    dispatch(fetchDataMenu());
+  }, []);
 
   return (
     <div id="admin-dashboard-menu-page">

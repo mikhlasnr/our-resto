@@ -23,11 +23,12 @@ import PegawaiUpdateFormProfile from "../kategori-menu-add-form-profile/kategori
 const KategoriMenuAddForm = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-
   const inputProfile = useSelector(selectInputProfile);
+
   useEffect(() => {
     if (inputProfile) form.setFieldsValue({ Foto: inputProfile });
   }, [inputProfile]);
+
   // Validate Message for Form antd
   const validateMessages = {
     required: "${label} diperlukan!",
@@ -38,12 +39,22 @@ const KategoriMenuAddForm = () => {
     emailExist: "email sudah ada",
   };
 
+  // Handling Capitalize Each Word
+  const handlingCapitalizeEachWord = text => {
+    const arr = text.toLowerCase().split(" ");
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    const textResult = arr.join(" ");
+    return textResult;
+  };
   // START Method for uploadihg data user
-
   const handlingAddKategoriMenu = NamaKategori => {
     dispatch(toggleIsUploading());
     axios
-      .post("/kategori-menu/add", { NamaKategori: NamaKategori.toLowerCase() })
+      .post("/kategori-menu/add", {
+        NamaKategori: handlingCapitalizeEachWord(NamaKategori),
+      })
       .then(response => {
         const IdKategori = response.data[0];
         handlingUploaImage(IdKategori);

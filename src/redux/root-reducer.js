@@ -9,6 +9,7 @@ import userReducer from "./user/user.reducer";
 import userByIdReducer from "./userById/userById.reducer";
 import rolesReducer from "./roles/roles.reducer";
 import pegawaiReducer from "./pegawai/pegawai.reducer";
+import MenuReducer from "./menu/menu.reducer";
 import kategoriMenuReducer from "./kategoriMenu/kategoriMenu.reducer";
 //create persist config
 // its persist with local storage so when refresh the data won't disappeared
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   roles: rolesReducer,
   pegawai: pegawaiReducer,
   userById: userByIdReducer,
+  menu: MenuReducer,
   kategoriMenu: kategoriMenuReducer,
 });
 

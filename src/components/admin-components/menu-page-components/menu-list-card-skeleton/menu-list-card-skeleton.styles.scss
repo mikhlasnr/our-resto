@@ -1,0 +1,32 @@
+@import "../../../../colors";
+.menu-list-card-skeleton {
+  margin-bottom: 1.5rem;
+  .ant-skeleton {
+    .ant-skeleton-image {
+      width: 121px;
+      height: 121px;
+      line-height: 96px;
+      border-radius: 15px;
+    }
+    .ant-skeleton-title {
+      margin: 0;
+    }
+    .ant-skeleton-paragraph {
+      margin: 1em 0;
+    }
+    .ant-skeleton-button {
+      min-width: 144px;
+      min-height: 56px;
+    }
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-action {
+    display: flex;
+    align-items: center;
+  }
+}
