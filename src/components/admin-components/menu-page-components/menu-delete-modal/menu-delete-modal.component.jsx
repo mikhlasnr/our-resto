@@ -1,76 +1,79 @@
 import React, { useEffect } from "react";
-import "./admin-pegawai-delete-modal.styles.scss";
+import "./menu-delete-modal.styles.scss";
 
 import axios from "axios";
 import { storage } from "../../../../firebase";
 
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
+import { selectShowModalDeleteMenu } from "../../../../redux/menu/menu.selectors";
 import {
-  selectShowModalDeleteMenu,
-  selectIsUploading,
-} from "../../../../redux/menu/menu.selectors";
-import {
-  toggleShowModalDeletePegawai,
-  toggleIsUploading,
-} from "../../../../redux/pegawai/pegawai.action";
-import { removeCurrentUserById } from "../../../../redux/userById/userById.action";
+  fetchDataMenu,
+  toggleShowModalDeleteMenu,
+} from "../../../../redux/menu/menu.action";
 
 import {
-  selectUserData,
-  selectUserByIdIsFetching,
-} from "../../../../redux/userById/userById.selectors";
-import { fetchDataPegawai } from "../../../../redux/pegawai/pegawai.action";
+  selectDataMenuById,
+  selectIsFetching,
+  selectIsUploading,
+} from "../../../../redux/menuById/menuById.selectors";
+import {
+  removeCurrentMenuById,
+  toggleIsUploading,
+} from "../../../../redux/menuById/menuById.action";
 
 // Import Component
 import { Modal, Button, Space, message, Spin } from "antd";
 import { ReactComponent as WarningIcon } from "../../../../assets/icons/warningIcon.svg";
 
-const PegawaiDeleteModal = () => {
+const MenuDeleteModal = () => {
   const dispatch = useDispatch();
   const isModalVisible = useSelector(selectShowModalDeleteMenu);
-  const userById = useSelector(selectUserData);
-  const isDataFetching = useSelector(selectUserByIdIsFetching);
+  const menuById = useSelector(selectDataMenuById);
+  const isDataFetching = useSelector(selectIsFetching);
   const isUploading = useSelector(selectIsUploading);
-
   const handlingModalOnCancel = () => {
-    dispatch(removeCurrentUserById());
-    dispatch(toggleShowModalDeletePegawai());
+    dispatch(removeCurrentMenuById());
+    dispatch(toggleShowModalDeleteMenu());
   };
 
   const handlingDeletePegawai = () => {
-    dispatch(toggleIsUploading());
-    axios
-      .delete(`/user/delete/${userById.IdUser}`)
-      .then(response => {
-        if (userById.Foto) {
-          handlingDeleteImageRef();
-        } else {
-          dispatch(toggleShowModalDeletePegawai());
+    if (menuById) {
+      dispatch(toggleIsUploading());
+      axios
+        .delete(`/menu/delete/${menuById.IdMenu}`)
+        .then(response => {
+          console.log(response);
+          if (menuById.Foto) {
+            handlingDeleteImageRef();
+          } else {
+            dispatch(toggleShowModalDeleteMenu());
+            dispatch(toggleIsUploading());
+            dispatch(fetchDataMenu());
+            message.success("Hapus Pegawai Berhasil!");
+            dispatch(removeCurrentMenuById());
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          message.error("Hapus pegawai gagal!");
           dispatch(toggleIsUploading());
-          dispatch(fetchDataPegawai());
-          message.success("Hapus Pegawai Berhasil!");
-          dispatch(removeCurrentUserById());
-        }
-      })
-      .catch(err => {
-        message.error("Hapus pegawai gagal!");
-        dispatch(toggleIsUploading());
-      });
+        });
+    }
   };
 
   const handlingDeleteImageRef = () => {
-    let desertRef = storage.ref("userImages").child(`${userById.IdUser}`);
+    let desertRef = storage.ref("menuImages").child(`${menuById.IdMenu}`);
     // Delete the file
     desertRef
       .delete()
       .then(() => {
         // File deleted successfully
-        dispatch(toggleShowModalDeletePegawai());
+        dispatch(toggleShowModalDeleteMenu());
         dispatch(toggleIsUploading());
-        dispatch(fetchDataPegawai());
+        dispatch(fetchDataMenu());
         message.success("Hapus Pegawai Berhasil!");
-        dispatch(removeCurrentUserById());
+        dispatch(removeCurrentMenuById());
       })
       .catch(error => {
         // Uh-oh, an error occurred!
@@ -78,7 +81,6 @@ const PegawaiDeleteModal = () => {
         dispatch(toggleIsUploading());
       });
   };
-
   const handlingDeleteAction = () => {
     handlingDeletePegawai();
   };
@@ -116,4 +118,4 @@ const PegawaiDeleteModal = () => {
   );
 };
 
-export default PegawaiDeleteModal;
+export default MenuDeleteModal;

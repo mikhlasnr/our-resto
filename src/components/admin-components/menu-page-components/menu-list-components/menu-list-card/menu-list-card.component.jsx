@@ -1,11 +1,21 @@
 import React from "react";
 import "./menu-list-card.styles.scss";
 
+// Hanlding Redux
+import { useDispatch } from "react-redux";
+import { fetchDataMenuById } from "../../../../../redux/menuById/menuById.action";
+import { toggleShowModalDeleteMenu } from "../../../../../redux/menu/menu.action";
+// Import Components
 import { Row, Col, Button, Image, Space } from "antd";
 
 const MenuListCard = ({ menu }) => {
-  console.log(menu);
-  const { NamaMenu, Harga, NamaKategori, Foto } = menu;
+  const { NamaMenu, Harga, NamaKategori, Foto, IdMenu } = menu;
+  const dispatch = useDispatch();
+
+  const handlingClickHapus = () => {
+    dispatch(fetchDataMenuById(IdMenu));
+    dispatch(toggleShowModalDeleteMenu());
+  };
   return (
     <Row className="admin-menu-list-card">
       <Col className="card-image">
@@ -26,7 +36,9 @@ const MenuListCard = ({ menu }) => {
       <Col className="card-action">
         <Space>
           <Button className="btn-action-primary">Edit</Button>
-          <Button className="btn-action-secondary">Hapus</Button>
+          <Button className="btn-action-secondary" onClick={handlingClickHapus}>
+            Hapus
+          </Button>
         </Space>
       </Col>
     </Row>

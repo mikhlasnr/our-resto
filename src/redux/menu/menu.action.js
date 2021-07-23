@@ -38,14 +38,14 @@ export const toggleShowModalDeleteMenu = () => ({
 
 // *====START HANDLING UPLOAD====
 export const setInputProfile = imgFile => ({
-  type: MenuActionTypes.SET_INPUT_PROFILE,
+  type: MenuActionTypes.SET_INPUT_PROFILE_MENU,
   payload: imgFile,
 });
 export const removeInputProfile = () => ({
-  type: MenuActionTypes.REMOVE_INPUT_PROFILE,
+  type: MenuActionTypes.REMOVE_INPUT_PROFILE_MENU,
 });
 export const toggleIsUploading = () => ({
-  type: MenuActionTypes.TOGGLE_IS_UPLOADING,
+  type: MenuActionTypes.TOGGLE_IS_UPLOADING_MENU,
 });
 // *====END HANDLING UPLOAD====
 // *====START HANDLING DELETE====

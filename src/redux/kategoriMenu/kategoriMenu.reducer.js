@@ -44,17 +44,17 @@ const kategoriMenuReducer = (state = INITIAL_STATE, action) => {
         showModalDeleteKategoriMenu: !state.showModalDeleteKategoriMenu,
       };
     // *====START HANDLING UPLOAD====
-    case KategoriMenuActionTypes.SET_INPUT_PROFILE:
+    case KategoriMenuActionTypes.SET_INPUT_PROFILE_KATEGORI_MENU:
       return {
         ...state,
         inputProfile: action.payload,
       };
-    case KategoriMenuActionTypes.REMOVE_INPUT_PROFILE:
+    case KategoriMenuActionTypes.REMOVE_INPUT_PROFILE_KATEGORI_MENU:
       return {
         ...state,
         inputProfile: null,
       };
-    case KategoriMenuActionTypes.TOGGLE_IS_UPLOADING:
+    case KategoriMenuActionTypes.TOGGLE_IS_UPLOADING_KATEGORI_MENU:
       return {
         ...state,
         isUploading: !state.isUploading,

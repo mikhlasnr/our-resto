@@ -9,6 +9,7 @@ import { fetchDataMenu } from "../../../../redux/menu/menu.action";
 import KategoriMenu from "../../../kategori-menu-components/kategori-menu/kategori-menu.component";
 import MenuList from "../menu-list-components/menu-list/menu-list.component";
 import MenuAddModal from "../menu-add-compnents/menu-add-modal/menu-add-modal.component";
+import MenuDeleteModal from "../menu-delete-modal/menu-delete-modal.component";
 
 const MenuPage = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const MenuPage = () => {
         <MenuList />
       </div>
       <MenuAddModal />
+      <MenuDeleteModal />
     </div>
   );
 };

@@ -43,17 +43,17 @@ const MenuReducer = (state = INITIAL_STATE, action) => {
         showModalDeleteMenu: !state.showModalDeleteMenu,
       };
     // *====START HANDLING UPLOAD====
-    case MenuActionTypes.SET_INPUT_PROFILE:
+    case MenuActionTypes.SET_INPUT_PROFILE_MENU:
       return {
         ...state,
         inputProfile: action.payload,
       };
-    case MenuActionTypes.REMOVE_INPUT_PROFILE:
+    case MenuActionTypes.REMOVE_INPUT_PROFILE_MENU:
       return {
         ...state,
         inputProfile: null,
       };
-    case MenuActionTypes.TOGGLE_IS_UPLOADING:
+    case MenuActionTypes.TOGGLE_IS_UPLOADING_MENU:
       return {
         ...state,
         isUploading: !state.isUploading,

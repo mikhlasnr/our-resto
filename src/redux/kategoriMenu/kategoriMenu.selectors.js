@@ -3,6 +3,7 @@
 import { createSelector } from "reselect";
 // *====START SELECTOR FETCH DATA KATEGORI MENU====
 const selectKategoriMenu = state => state.kategoriMenu;
+
 export const selectDataKategoriMenu = createSelector(
   [selectKategoriMenu],
   kategoriMenu => kategoriMenu.dataKategoriMenu
