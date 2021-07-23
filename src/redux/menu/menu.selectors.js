@@ -28,9 +28,13 @@ export const selectShowModalDeleteMenu = createSelector(
   [selectMenu],
   menu => menu.showModalDeleteMenu
 );
+export const selectShowModalUpdateMenu = createSelector(
+  [selectMenu],
+  menu => menu.showModalUpdateMenu
+);
 // *====END SELECTOR HANDLING MODAL====
 // *====START SELECTOR HANDLING FOR UPLOADING====
-export const selectInputProfile = createSelector(
+export const selectInputProfileMenu = createSelector(
   [selectMenu],
   menu => menu.inputProfile
 );

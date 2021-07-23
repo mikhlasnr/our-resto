@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./menu-add-form-profile.styles.scss";
+import "./menu-update-form-profile.styles.scss";
 
 // Handling Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import {
   removeInputProfileMenu,
 } from "../../../../../redux/menu/menu.action";
 import { selectInputProfileMenu } from "../../../../../redux/menu/menu.selectors";
+import { selectDataMenuById } from "../../../../../redux/menuById/menuById.selectors";
 
 // Import Components
 import { PlusOutlined } from "@ant-design/icons";
@@ -15,9 +16,10 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Upload, message, Button } from "antd";
 const { Dragger } = Upload;
 
-const MenuAddFormProfile = () => {
+const MenuAUpdateFormProfile = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const inputProfile = useSelector(selectInputProfileMenu);
+  const dataMenuById = useSelector(selectDataMenuById);
 
   // Start Handling Redux
   const dispatch = useDispatch();
@@ -27,6 +29,16 @@ const MenuAddFormProfile = () => {
       getBase64(inputProfile, imageUrl => setImageUrl(imageUrl));
     if (inputProfile === null) setImageUrl(null);
   }, [inputProfile]);
+
+  useEffect(() => {
+    if (dataMenuById && dataMenuById.Foto) {
+      dispatch(setInputProfileMenu(dataMenuById.Foto));
+      setImageUrl(dataMenuById.Foto);
+    }
+    return () => {
+      setImageUrl(null);
+    };
+  }, [dataMenuById]);
 
   const handlingRemoveImage = () => {
     dispatch(removeInputProfileMenu());
@@ -61,7 +73,7 @@ const MenuAddFormProfile = () => {
   );
 
   return (
-    <section className="menu-add-form-profile">
+    <section className="menu-update-form-profile">
       <Dragger
         name="avatar"
         listType="picture-card"
@@ -83,4 +95,4 @@ const MenuAddFormProfile = () => {
   );
 };
 
-export default MenuAddFormProfile;
+export default MenuAUpdateFormProfile;

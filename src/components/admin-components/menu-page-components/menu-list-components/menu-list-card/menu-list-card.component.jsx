@@ -4,14 +4,21 @@ import "./menu-list-card.styles.scss";
 // Hanlding Redux
 import { useDispatch } from "react-redux";
 import { fetchDataMenuById } from "../../../../../redux/menuById/menuById.action";
-import { toggleShowModalDeleteMenu } from "../../../../../redux/menu/menu.action";
+import {
+  toggleShowModalDeleteMenu,
+  toggleShowModalUpdateMenu,
+} from "../../../../../redux/menu/menu.action";
+
 // Import Components
 import { Row, Col, Button, Image, Space } from "antd";
 
 const MenuListCard = ({ menu }) => {
   const { NamaMenu, Harga, NamaKategori, Foto, IdMenu } = menu;
   const dispatch = useDispatch();
-
+  const handlingClickEdit = () => {
+    dispatch(fetchDataMenuById(IdMenu));
+    dispatch(toggleShowModalUpdateMenu());
+  };
   const handlingClickHapus = () => {
     dispatch(fetchDataMenuById(IdMenu));
     dispatch(toggleShowModalDeleteMenu());
@@ -35,7 +42,9 @@ const MenuListCard = ({ menu }) => {
       </Col>
       <Col className="card-action">
         <Space>
-          <Button className="btn-action-primary">Edit</Button>
+          <Button className="btn-action-primary" onClick={handlingClickEdit}>
+            Edit
+          </Button>
           <Button className="btn-action-secondary" onClick={handlingClickHapus}>
             Hapus
           </Button>

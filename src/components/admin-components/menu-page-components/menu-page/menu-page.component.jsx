@@ -10,6 +10,7 @@ import KategoriMenu from "../../../kategori-menu-components/kategori-menu/katego
 import MenuList from "../menu-list-components/menu-list/menu-list.component";
 import MenuAddModal from "../menu-add-compnents/menu-add-modal/menu-add-modal.component";
 import MenuDeleteModal from "../menu-delete-modal/menu-delete-modal.component";
+import MenuUpdateModal from "../menu-update-compnents/menu-update-modal/menu-update-modal.component";
 
 const MenuPage = () => {
   const dispatch = useDispatch();
@@ -22,12 +23,12 @@ const MenuPage = () => {
   return (
     <div id="admin-dashboard-menu-page">
       <KategoriMenu />
-
       <div className="menu-list-container">
         <MenuList />
       </div>
       <MenuAddModal />
       <MenuDeleteModal />
+      <MenuUpdateModal />
     </div>
   );
 };

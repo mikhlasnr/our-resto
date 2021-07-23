@@ -1,0 +1,12 @@
+@import "../../../../../colors";
+.menu-add-form {
+  .menu-add-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 15px;
+  }
+  .btn-submit {
+    padding-top: 1.8rem;
+  }
+}

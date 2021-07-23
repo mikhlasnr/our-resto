@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   errorMessage: undefined,
   showModalAddMenu: false,
   showModalDeleteMenu: false,
+  showModalUpdateMenu: false,
   inputProfile: null,
   isUploading: false,
 };
@@ -41,6 +42,11 @@ const MenuReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         showModalDeleteMenu: !state.showModalDeleteMenu,
+      };
+    case MenuActionTypes.TOGGLE_SHOW_MODAL_UPDATE_MENU:
+      return {
+        ...state,
+        showModalUpdateMenu: !state.showModalUpdateMenu,
       };
     // *====START HANDLING UPLOAD====
     case MenuActionTypes.SET_INPUT_PROFILE_MENU:

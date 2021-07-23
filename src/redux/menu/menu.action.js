@@ -34,17 +34,20 @@ export const toggleShowModalAddMenu = () => ({
 export const toggleShowModalDeleteMenu = () => ({
   type: MenuActionTypes.TOGGLE_SHOW_MODAL_DELETE_MENU,
 });
+export const toggleShowModalUpdateMenu = () => ({
+  type: MenuActionTypes.TOGGLE_SHOW_MODAL_UPDATE_MENU,
+});
 // *====END HANDLING SHOW MODAL====
 
 // *====START HANDLING UPLOAD====
-export const setInputProfile = imgFile => ({
+export const setInputProfileMenu = imgFile => ({
   type: MenuActionTypes.SET_INPUT_PROFILE_MENU,
   payload: imgFile,
 });
-export const removeInputProfile = () => ({
+export const removeInputProfileMenu = () => ({
   type: MenuActionTypes.REMOVE_INPUT_PROFILE_MENU,
 });
-export const toggleIsUploading = () => ({
+export const toggleIsUploadingMenu = () => ({
   type: MenuActionTypes.TOGGLE_IS_UPLOADING_MENU,
 });
 // *====END HANDLING UPLOAD====

@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
-import React from "react";
-import "./menu-add-form-input.styles.scss";
+import React, { useEffect, useState } from "react";
+import "./menu-update-form-input.styles.scss";
 
 import axios from "axios";
 import { storage } from "../../../../../firebase";
@@ -16,16 +16,25 @@ import {
   removeInputProfileMenu,
 } from "../../../../../redux/menu/menu.action";
 import { selectDataKategoriMenu } from "../../../../../redux/kategoriMenu/kategoriMenu.selectors";
+import { selectDataMenuById } from "../../../../../redux/menuById/menuById.selectors";
 
 // Import Component
 import { Form, Input, Button, message, InputNumber, Select } from "antd";
 
-const MenuAddFormInput = () => {
+const MenuUpdateFormInput = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const inputProfile = useSelector(selectInputProfileMenu);
   const dataKategori = useSelector(selectDataKategoriMenu);
+  const dataMenuById = useSelector(selectDataMenuById);
+  const [isFormChange, setIsFormChange] = useState(false);
 
+  useEffect(() => {
+    if (dataMenuById) form.setFieldsValue({ ...dataMenuById });
+    return () => {
+      setIsFormChange(false);
+    };
+  }, [dataMenuById]);
   // Validate Message for Form antd
   const validateMessages = {
     required: "${label} Diperlukan!",
@@ -35,28 +44,7 @@ const MenuAddFormInput = () => {
   };
 
   // START Method for uploadihg data user
-  const handlingAddMenu = menuData => {
-    dispatch(toggleIsUploadingMenu());
-    axios
-      .post("/menu/add", menuData)
-      .then(response => {
-        const IdMenu = response.data[0];
-        if (inputProfile) {
-          handlingUploaImage(IdMenu);
-        } else {
-          form.resetFields();
-          message.success("Tambah Menu Berhasil!");
-          dispatch(toggleIsUploadingMenu());
-          dispatch(fetchDataMenu());
-          dispatch(toggleShowModalAddMenu());
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        message.error("Tambah Menu Gagal!");
-        dispatch(toggleIsUploadingMenu());
-      });
-  };
+  const handlingAddMenu = menuData => {};
 
   const handlingUploaImage = IdMenu => {
     const uploadTask = storage.ref(`menuImages/${IdMenu}`).put(inputProfile);
@@ -99,11 +87,8 @@ const MenuAddFormInput = () => {
   };
 
   const onFinish = values => {
-    let dataUpload = values;
-    const { IdKategori, ...otherData } = values;
-    if (!IdKategori) dataUpload = otherData;
-    console.log(dataUpload);
-    handlingAddMenu(dataUpload);
+    console.log(values);
+    console.log(inputProfile);
   };
   // END Method for uploadihg data user
 
@@ -115,6 +100,9 @@ const MenuAddFormInput = () => {
         layout="vertical"
         validateMessages={validateMessages}
         onFinish={onFinish}
+        onFieldsChange={() => {
+          setIsFormChange(true);
+        }}
       >
         <div className="menu-add-form-container">
           <Form.Item
@@ -177,6 +165,7 @@ const MenuAddFormInput = () => {
             htmlType="submit"
             block
             className="custom-default-button secondary-button"
+            disabled={!isFormChange}
           >
             Simpan
           </Button>
@@ -186,4 +175,4 @@ const MenuAddFormInput = () => {
   );
 };
 
-export default MenuAddFormInput;
+export default MenuUpdateFormInput;
