@@ -12,7 +12,7 @@ import { selectInputProfile } from "../../../../redux/kategoriMenu/kategoriMenu.
 
 import {
   toggleShowModalAddKategoriMenu,
-  toggleIsUploading,
+  toggleIsUploadingKategoriMenu,
   fetchDataKategoriMenu,
 } from "../../../../redux/kategoriMenu/kategoriMenu.action";
 
@@ -50,7 +50,7 @@ const KategoriMenuAddForm = () => {
   };
   // START Method for uploadihg data user
   const handlingAddKategoriMenu = NamaKategori => {
-    dispatch(toggleIsUploading());
+    dispatch(toggleIsUploadingKategoriMenu());
     axios
       .post("/kategori-menu/add", {
         NamaKategori: handlingCapitalizeEachWord(NamaKategori),
@@ -62,7 +62,7 @@ const KategoriMenuAddForm = () => {
       .catch(error => {
         console.log(error);
         message.error("Tambah Pegawai Gagal!");
-        dispatch(toggleIsUploading());
+        dispatch(toggleIsUploadingKategoriMenu());
       });
   };
 
@@ -75,7 +75,7 @@ const KategoriMenuAddForm = () => {
       snapshot => {},
       error => {
         console.log(error);
-        dispatch(toggleIsUploading());
+        dispatch(toggleIsUploadingKategoriMenu());
       },
       () => {
         storage
@@ -89,19 +89,19 @@ const KategoriMenuAddForm = () => {
                 message.success("Tambah Kategori Berhasil!");
                 dispatch(fetchDataKategoriMenu());
                 dispatch(toggleShowModalAddKategoriMenu());
-                dispatch(toggleIsUploading());
+                dispatch(toggleIsUploadingKategoriMenu());
                 form.resetFields();
               })
               .catch(err => {
                 console.log(err);
                 message.error("Gagal Upload Gambar Ke Database");
-                dispatch(toggleIsUploading());
+                dispatch(toggleIsUploadingKategoriMenu());
               });
           })
           .catch(err => {
             console.log(err);
             message.error("Gagal Upload Gambar");
-            dispatch(toggleIsUploading());
+            dispatch(toggleIsUploadingKategoriMenu());
           });
       }
     );

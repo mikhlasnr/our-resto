@@ -7,12 +7,13 @@ import { storage } from "../../../../firebase";
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectShowModalDeleteMenu,
+  selectShowModalDeletePegawai,
   selectIsUploading,
-} from "../../../../redux/menu/menu.selectors";
+} from "../../../../redux/pegawai/pegawai.selectors";
 import {
   toggleShowModalDeletePegawai,
   toggleIsUploading,
+  fetchDataPegawai,
 } from "../../../../redux/pegawai/pegawai.action";
 import { removeCurrentUserById } from "../../../../redux/userById/userById.action";
 
@@ -20,7 +21,6 @@ import {
   selectUserData,
   selectUserByIdIsFetching,
 } from "../../../../redux/userById/userById.selectors";
-import { fetchDataPegawai } from "../../../../redux/pegawai/pegawai.action";
 
 // Import Component
 import { Modal, Button, Space, message, Spin } from "antd";
@@ -28,7 +28,7 @@ import { ReactComponent as WarningIcon } from "../../../../assets/icons/warningI
 
 const PegawaiDeleteModal = () => {
   const dispatch = useDispatch();
-  const isModalVisible = useSelector(selectShowModalDeleteMenu);
+  const isModalVisible = useSelector(selectShowModalDeletePegawai);
   const userById = useSelector(selectUserData);
   const isDataFetching = useSelector(selectUserByIdIsFetching);
   const isUploading = useSelector(selectIsUploading);

@@ -37,14 +37,14 @@ export const toggleShowModalDeleteKategoriMenu = () => ({
 // *====END HANDLING SHOW MODAL====
 
 // *====START HANDLING UPLOAD====
-export const setInputProfile = imgFile => ({
+export const setInputProfileKategoriMenu = imgFile => ({
   type: KategoriMenuActionTypes.SET_INPUT_PROFILE_KATEGORI_MENU,
   payload: imgFile,
 });
-export const removeInputProfile = () => ({
+export const removeInputProfileKategoriMenu = () => ({
   type: KategoriMenuActionTypes.REMOVE_INPUT_PROFILE_KATEGORI_MENU,
 });
-export const toggleIsUploading = () => ({
+export const toggleIsUploadingKategoriMenu = () => ({
   type: KategoriMenuActionTypes.TOGGLE_IS_UPLOADING_KATEGORI_MENU,
 });
 // *====END HANDLING UPLOAD====

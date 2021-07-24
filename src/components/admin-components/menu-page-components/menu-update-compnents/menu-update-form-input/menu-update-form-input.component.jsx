@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { selectInputProfileMenu } from "../../../../../redux/menu/menu.selectors";
 import {
-  toggleShowModalAddMenu,
+  toggleShowModalUpdateMenu,
   toggleIsUploadingMenu,
   fetchDataMenu,
   removeInputProfileMenu,
@@ -35,6 +35,14 @@ const MenuUpdateFormInput = () => {
       setIsFormChange(false);
     };
   }, [dataMenuById]);
+
+  useEffect(() => {
+    if (dataMenuById)
+      if (inputProfile !== dataMenuById.Foto) setIsFormChange(true);
+    return () => {
+      setIsFormChange(false);
+    };
+  }, [inputProfile]);
   // Validate Message for Form antd
   const validateMessages = {
     required: "${label} Diperlukan!",
@@ -44,7 +52,26 @@ const MenuUpdateFormInput = () => {
   };
 
   // START Method for uploadihg data user
-  const handlingAddMenu = menuData => {};
+  const handlingUpdateMenu = menuData => {
+    dispatch(toggleIsUploadingMenu());
+    if (dataMenuById)
+      axios
+        .put(`/menu/update/${dataMenuById.IdMenu}`, menuData)
+        .then(response => {
+          if (inputProfile && typeof inputProfile === "object") {
+            handlingUploaImage(dataMenuById.IdMenu);
+          } else {
+            dispatch(toggleIsUploadingMenu());
+            dispatch(fetchDataMenu());
+            dispatch(toggleShowModalUpdateMenu());
+            message.success("Pembaharuan Menu Berhasil!");
+          }
+        })
+        .catch(err => {
+          dispatch(toggleIsUploadingMenu());
+          message.error("Pembaharuan Menu Gagal!");
+        });
+  };
 
   const handlingUploaImage = IdMenu => {
     const uploadTask = storage.ref(`menuImages/${IdMenu}`).put(inputProfile);
@@ -64,31 +91,38 @@ const MenuUpdateFormInput = () => {
             axios
               .put(`/menu/add/images/${IdMenu}`, { ImageUrl: url })
               .then(response => {
-                message.success("Tambah Kategori Berhasil!");
+                message.success("Pembaharuan Menu Berhasil!");
                 form.resetFields();
                 dispatch(removeInputProfileMenu());
                 dispatch(fetchDataMenu());
-                dispatch(toggleShowModalAddMenu());
+                dispatch(toggleShowModalUpdateMenu());
                 dispatch(toggleIsUploadingMenu());
               })
               .catch(err => {
                 console.log(err);
-                message.error("Gagal Upload Gambar Ke Database");
+                message.error("Gagal Upload Gambar!");
                 dispatch(toggleIsUploadingMenu());
               });
           })
           .catch(err => {
             console.log(err);
-            message.error("Gagal Upload Gambar");
+            message.error("Gagal Upload Gambar!");
             dispatch(toggleIsUploadingMenu());
           });
       }
     );
   };
 
+  const handlingFormChange = () => {
+    setIsFormChange(true);
+  };
+
   const onFinish = values => {
-    console.log(values);
-    console.log(inputProfile);
+    let inputData = values;
+    const { IdKategori, ...otherData } = values;
+    if (typeof IdKategori === "undefined")
+      inputData = { IdKategori: null, ...otherData };
+    handlingUpdateMenu(inputData);
   };
   // END Method for uploadihg data user
 
@@ -100,9 +134,7 @@ const MenuUpdateFormInput = () => {
         layout="vertical"
         validateMessages={validateMessages}
         onFinish={onFinish}
-        onFieldsChange={() => {
-          setIsFormChange(true);
-        }}
+        onFieldsChange={handlingFormChange}
       >
         <div className="menu-add-form-container">
           <Form.Item

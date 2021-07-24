@@ -3,7 +3,7 @@ import "./kategori-menu-add-form-profile.styles.scss";
 
 // Handling Redux
 import { useDispatch } from "react-redux";
-import { setInputProfile } from "../../../../redux/kategoriMenu/kategoriMenu.action";
+import { setInputProfileKategoriMenu } from "../../../../redux/kategoriMenu/kategoriMenu.action";
 
 // Import Components
 import { Upload, message } from "antd";
@@ -34,7 +34,7 @@ const KategoriMenuAddFormProfile = () => {
 
     if (isJpgOrPng && isLt1M) {
       getBase64(file, imageUrl => setImageUrl(imageUrl));
-      dispatch(setInputProfile(file));
+      dispatch(setInputProfileKategoriMenu(file));
     }
 
     return false;

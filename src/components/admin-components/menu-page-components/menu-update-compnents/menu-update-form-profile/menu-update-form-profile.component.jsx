@@ -3,10 +3,7 @@ import "./menu-update-form-profile.styles.scss";
 
 // Handling Redux
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setInputProfileMenu,
-  removeInputProfileMenu,
-} from "../../../../../redux/menu/menu.action";
+import { setInputProfileMenu } from "../../../../../redux/menu/menu.action";
 import { selectInputProfileMenu } from "../../../../../redux/menu/menu.selectors";
 import { selectDataMenuById } from "../../../../../redux/menuById/menuById.selectors";
 
@@ -32,17 +29,12 @@ const MenuAUpdateFormProfile = () => {
 
   useEffect(() => {
     if (dataMenuById && dataMenuById.Foto) {
-      dispatch(setInputProfileMenu(dataMenuById.Foto));
       setImageUrl(dataMenuById.Foto);
     }
     return () => {
       setImageUrl(null);
     };
   }, [dataMenuById]);
-
-  const handlingRemoveImage = () => {
-    dispatch(removeInputProfileMenu());
-  };
 
   // Method for handling read image file
   const getBase64 = (img, callback) => {
@@ -83,14 +75,6 @@ const MenuAUpdateFormProfile = () => {
       >
         {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
       </Dragger>
-      <Button
-        block
-        className="btn-action-primary btn-reset-profile"
-        onClick={handlingRemoveImage}
-        disabled={inputProfile ? false : true}
-      >
-        Hapus Foto
-      </Button>
     </section>
   );
 };

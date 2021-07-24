@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectShowModalUpdateMenu,
   selectInputProfileMenu,
+  selectIsUploading,
 } from "../../../../../redux/menu/menu.selectors";
 import {
   toggleShowModalUpdateMenu,
@@ -22,6 +23,7 @@ const MenuUpdateModal = () => {
   const dispatch = useDispatch();
   const isModalVisible = useSelector(selectShowModalUpdateMenu);
   const dataMenuById = useSelector(selectDataMenuById);
+  const isUploading = useSelector(selectIsUploading);
 
   useEffect(() => {
     if (selectInputProfileMenu) dispatch(removeInputProfileMenu());
@@ -42,7 +44,7 @@ const MenuUpdateModal = () => {
       closable={false}
       centered
     >
-      <Spin spinning={false}>
+      <Spin spinning={isUploading}>
         <h1 className="title">Update Menu</h1>
         <MenuUpdateForm />
       </Spin>

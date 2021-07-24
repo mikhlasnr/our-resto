@@ -14,7 +14,7 @@ import {
 import {
   toggleShowModalDeleteKategoriMenu,
   removeDeleteKategoriById,
-  toggleIsUploading,
+  toggleIsUploadingKategoriMenu,
   fetchDataKategoriMenu,
 } from "../../../redux/kategoriMenu/kategoriMenu.action";
 
@@ -34,7 +34,7 @@ const KategoriMenuDeleteModal = () => {
   };
 
   const handlingDeleteKategori = () => {
-    dispatch(toggleIsUploading());
+    dispatch(toggleIsUploadingKategoriMenu());
     axios
       .delete(`/kategori-menu/delete/${IdKategori}`)
       .then(response => {
@@ -42,7 +42,7 @@ const KategoriMenuDeleteModal = () => {
       })
       .catch(err => {
         message.error("Hapus pegawai gagal!");
-        dispatch(toggleIsUploading());
+        dispatch(toggleIsUploadingKategoriMenu());
       });
   };
 
@@ -55,14 +55,14 @@ const KategoriMenuDeleteModal = () => {
         // File deleted successfully
         message.success("Hapus Pegawai Berhasil!");
         dispatch(toggleShowModalDeleteKategoriMenu());
-        dispatch(toggleIsUploading());
+        dispatch(toggleIsUploadingKategoriMenu());
         dispatch(fetchDataKategoriMenu());
         dispatch(removeDeleteKategoriById());
       })
       .catch(error => {
         // Uh-oh, an error occurred!
         message.error("Hapus pegawai gagal!");
-        dispatch(toggleIsUploading());
+        dispatch(toggleIsUploadingKategoriMenu());
       });
   };
 
