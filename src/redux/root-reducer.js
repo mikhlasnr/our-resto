@@ -19,7 +19,7 @@ import kategoriMenuReducer from "./kategoriMenu/kategoriMenu.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user"],
+  whitelist: ["user", "pesanan"],
 };
 
 const rootReducer = combineReducers({

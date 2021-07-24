@@ -4,27 +4,32 @@ import "./pelayan-pilih-menu-item.styles.scss";
 // Import Component
 import { Row, Col } from "antd";
 
-const PelayanPilihMenuItem = () => {
+const PelayanPilihMenuItem = ({ menu }) => {
+  const { NamaMenu, Stok, Harga, Foto } = menu;
   return (
-    <div className="pilih-menu-item">
-      <div className="image-item">
+    <Row className="pilih-menu-item">
+      <Col span={24} className="image-item">
         <div className="image-item-container">
           <img
-            src={`https://ik.imagekit.io/upecbxjan8p/menu/00005_wU17mn9oP.png`}
+            src={
+              Foto ||
+              "https://ik.imagekit.io/upecbxjan8p/avatar/empty-image_6J-Ssa71Q.png"
+            }
             alt="menu"
+            fallback="https://ik.imagekit.io/upecbxjan8p/avatar/empty-image_6J-Ssa71Q.png"
           />
         </div>
-      </div>
-      <div className="detail-item">
+      </Col>
+      <Col span={24} className="detail-item">
         <div className="container">
-          <p className="title">Burger</p>
-          <p className="quantity">*3 burger tersisa</p>
-          <Row className="footer">
-            <Col flex={1}>
-              <div className="harga-container">
-                <span>Rp</span>
-                <span>25.000</span>
-              </div>
+          <div className="info-wrapper">
+            <p className="title">{NamaMenu}</p>
+            <p className="quantity">{`*${Stok} tersisa`}</p>
+          </div>
+          <Row className="footer" align="center" justify="center">
+            <Col flex={1} className="harga-container">
+              <span>Rp</span>
+              <span>{Harga}</span>
             </Col>
             <Col flex="auto">
               <div className="btn-add">
@@ -33,8 +38,8 @@ const PelayanPilihMenuItem = () => {
             </Col>
           </Row>
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 };
 

@@ -2,8 +2,7 @@ import React from "react";
 import "./buat-pesanan-modal.styles.scss";
 
 // handling redux
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCheckoutModaltHidden } from "../../../redux/pesanan/pesanan.selectors";
 import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
 
@@ -11,7 +10,9 @@ import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action
 import { Modal } from "antd";
 import BuatPesananForm from "../buat-pesanan-form/buat-pesanan-form.component";
 
-const BuatPesananModal = ({ dispatch, checkoutModalHidden }) => {
+const BuatPesananModal = () => {
+  const dispatch = useDispatch();
+  const checkoutModalHidden = useSelector(selectCheckoutModaltHidden);
   return (
     <Modal
       closable={false}
@@ -28,8 +29,4 @@ const BuatPesananModal = ({ dispatch, checkoutModalHidden }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  checkoutModalHidden: selectCheckoutModaltHidden,
-});
-
-export default connect(mapStateToProps)(BuatPesananModal);
+export default BuatPesananModal;
