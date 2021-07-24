@@ -4,8 +4,8 @@ import "./buat-pesanan-modal.styles.scss";
 // handling redux
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCheckoutModaltHidden } from "../../redux/pesanan/pesanan.selectors";
-import { toggleCheckoutModalHidden } from "../../redux/pesanan/pesanan.action";
+import { selectCheckoutModaltHidden } from "../../../redux/pesanan/pesanan.selectors";
+import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
 
 // import component
 import { Modal } from "antd";

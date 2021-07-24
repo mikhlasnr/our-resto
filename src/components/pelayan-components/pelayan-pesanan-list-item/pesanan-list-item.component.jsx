@@ -1,10 +1,10 @@
 import React from "react";
-import "./dashboard-pelayan-pesanan-list-item.styles.scss";
+import "./pelayan-pesanan-list-item.styles.scss";
 
 import { Row, Col, Avatar, Image, Button } from "antd";
 import { PlusOutlined, MinusOutlined, DeleteFilled } from "@ant-design/icons";
 
-const DashboardPelayanPesananItem = () => {
+const PelayanPesananItem = () => {
   const handleShowDeleteBtn = e => {
     e.preventDefault();
     const itemCard = e.target.parentElement;
@@ -78,4 +78,4 @@ const DashboardPelayanPesananItem = () => {
   );
 };
 
-export default DashboardPelayanPesananItem;
+export default PelayanPesananItem;

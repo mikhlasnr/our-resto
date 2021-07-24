@@ -2,9 +2,9 @@ import React from "react";
 import { Input, Image } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-import "./dashboard-pelayan-search.styles.scss";
+import "./pelayan-search.styles.scss";
 
-const DashboardPelayanSearch = () => {
+const PelayanSearch = () => {
   return (
     <div id="dashboard-pelayan-search">
       <div className="search-logo">
@@ -28,4 +28,4 @@ const DashboardPelayanSearch = () => {
   );
 };
 
-export default DashboardPelayanSearch;
+export default PelayanSearch;

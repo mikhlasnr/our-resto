@@ -1,19 +1,21 @@
 import React from "react";
-import "./dashboard-pelayan-sidebar.styles.scss";
+import "./pelayan-sidebar.styles.scss";
 
 // handling redux
-import { connect } from "react-redux";
-import { toggleCheckoutModalHidden } from "../../redux/pesanan/pesanan.action";
+import { useDispatch } from "react-redux";
+import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
 
 // import component
-import DashboardPelayanProfile from "../dashboard-pelayan-profile/dashboard-pelayan-profile.component";
-import DashboardPelayanPesanan from "../dashboard-pelayan-pesanan/dashboard-pelayan-pesanan.component";
+import PelayanProfile from "../pelayan-profile/pelayan-profile.component";
+import PelayanPesanan from "../pelayan-pesanan/pelayan-pesanan.component";
 import { Button } from "antd";
 
 import { Layout } from "antd";
 const { Sider } = Layout;
 
-const DashboardPelayanSidebar = ({ dispatch }) => {
+const PelayanSidebar = () => {
+  const dispatch = useDispatch();
+
   return (
     <Sider
       theme="light"
@@ -28,8 +30,8 @@ const DashboardPelayanSidebar = ({ dispatch }) => {
       }}
     >
       <div id="dashboard-pelayan-sidebar">
-        <DashboardPelayanProfile />
-        <DashboardPelayanPesanan />
+        <PelayanProfile />
+        <PelayanPesanan />
         <div className="checkout-btn-container">
           <Button
             className="checkout-btn"
@@ -48,4 +50,4 @@ const DashboardPelayanSidebar = ({ dispatch }) => {
   );
 };
 
-export default connect()(DashboardPelayanSidebar);
+export default PelayanSidebar;

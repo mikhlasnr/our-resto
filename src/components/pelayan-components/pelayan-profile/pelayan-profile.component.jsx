@@ -1,16 +1,16 @@
 import React from "react";
-import "./dashboard-pelayan-profile.styles.scss";
+import "./pelayan-profile.styles.scss";
 
 // handling redux
 import { useSelector, useDispatch } from "react-redux";
-import { removeCurrentUser } from "../../redux/user/user.action";
+import { removeCurrentUser } from "../../../redux/user/user.action";
 
 // import components
 import { Avatar, Badge, Image } from "antd";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-const DashboardPelayanProfile = () => {
+const PelayanProfile = () => {
   const currentUser = useSelector(state => state.user.currentUser) || null;
   const { Nama, NamaRole } = currentUser;
   const dispatch = useDispatch();
@@ -77,4 +77,4 @@ const DashboardPelayanProfile = () => {
   );
 };
 
-export default DashboardPelayanProfile;
+export default PelayanProfile;

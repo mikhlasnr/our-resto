@@ -3,7 +3,7 @@ import "./buat-pesanan-form.styles.scss";
 
 // Handling redux
 import { useDispatch } from "react-redux";
-import { toggleCheckoutModalHidden } from "../../redux/pesanan/pesanan.action";
+import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
 
 // Handling Route
 import { useHistory } from "react-router-dom";

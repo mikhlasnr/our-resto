@@ -1,10 +1,10 @@
 import React from "react";
-import "./dashboard-pelayan-pilih-menu-item.styles.scss";
+import "./pelayan-pilih-menu-item.styles.scss";
 
 // Import Component
 import { Row, Col } from "antd";
 
-const DashboardPelayanPilihMenuItem = () => {
+const PelayanPilihMenuItem = () => {
   return (
     <div className="pilih-menu-item">
       <div className="image-item">
@@ -38,4 +38,4 @@ const DashboardPelayanPilihMenuItem = () => {
   );
 };
 
-export default DashboardPelayanPilihMenuItem;
+export default PelayanPilihMenuItem;
