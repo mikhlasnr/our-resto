@@ -9,7 +9,7 @@ export const selectDataMenu = createSelector(
   menu => menu.dataMenu
 );
 
-export const selectIsFetching = createSelector(
+export const selectIsFetchingMenu = createSelector(
   [selectMenu],
   menu => menu.isFetching
 );

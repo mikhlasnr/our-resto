@@ -8,7 +8,10 @@ import {
   toggleShowModalDeleteKategoriMenu,
   setDeleteKategoriById,
 } from "../../../../redux/kategoriMenu/kategoriMenu.action";
-
+import {
+  fetchDataMenu,
+  fetchDataMenuByIdKategori,
+} from "../../../../redux/menu/menu.action";
 // Import Components
 import { ReactComponent as DeleteIcon } from "../delete-icon.svg";
 
@@ -32,6 +35,9 @@ const KategoriMenuCard = ({
   };
 
   const handlingActiveCard = e => {
+    isDefaultActive
+      ? dispatch(fetchDataMenu())
+      : dispatch(fetchDataMenuByIdKategori(IdKategori));
     const currentCard = document.getElementsByClassName(
       "kategori-menu-item-active"
     );

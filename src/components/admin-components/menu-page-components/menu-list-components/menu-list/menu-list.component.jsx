@@ -3,7 +3,10 @@ import "./menu-list.styles.scss";
 
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectDataMenu } from "../../../../../redux/menu/menu.selectors";
+import {
+  selectDataMenu,
+  selectIsFetchingMenu,
+} from "../../../../../redux/menu/menu.selectors";
 import { toggleShowModalAddMenu } from "../../../../../redux/menu/menu.action";
 
 // Import Components
@@ -15,6 +18,7 @@ import MenuListCardSkeleton from "../menu-list-card-skeleton/menu-list-card-skel
 const MenuList = () => {
   const dispatch = useDispatch();
   const dataMenus = useSelector(selectDataMenu);
+  const isFetchingMenu = useSelector(selectIsFetchingMenu);
 
   const handlingTambahMenu = () => {
     dispatch(toggleShowModalAddMenu());
@@ -42,7 +46,9 @@ const MenuList = () => {
       </Button>
       <div className="admin-menu-list-container">
         <h1>Daftar Menu</h1>
-        {dataMenus ? handlingRenderListMenu() : handlingRenderMenuSkeleton()}
+        {!dataMenus || isFetchingMenu
+          ? handlingRenderMenuSkeleton()
+          : handlingRenderListMenu()}
       </div>
     </div>
   );

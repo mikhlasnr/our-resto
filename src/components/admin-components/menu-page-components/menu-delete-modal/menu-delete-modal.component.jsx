@@ -97,7 +97,7 @@ const MenuDeleteModal = () => {
       <Spin spinning={isUploading || isDataFetching}>
         <div className="delete-modal-container">
           <WarningIcon />
-          <h2>Apakah kamu yakin menghapus pegawai?</h2>
+          <h2>Apakah kamu yakin menghapus menu?</h2>
           <Space size="middle">
             <Button
               className="btn-default btn-action-cancel"

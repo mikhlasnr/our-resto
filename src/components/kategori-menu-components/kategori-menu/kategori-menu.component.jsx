@@ -53,7 +53,7 @@ const KategoriMenu = () => {
           isDefaultActive={true}
           allowDelete={false}
           katImage="https://firebasestorage.googleapis.com/v0/b/our-resto.appspot.com/o/kategoriImages%2Fall.png?alt=media&token=15eb8007-bd64-400f-abbd-982d876b5067"
-          katTitle="ALL"
+          katTitle="all"
         />
         {dataKategoriMenu && handlingRenderKategoriCard()}
       </KategoriMenuCarousel>

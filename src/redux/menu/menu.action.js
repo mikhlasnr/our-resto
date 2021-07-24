@@ -14,6 +14,18 @@ export const fetchDataMenu = () => {
       });
   };
 };
+export const fetchDataMenuByIdKategori = IdKategori => {
+  return dispatch => {
+    dispatch(fetchMenuStart());
+    axios(`/menus/get-by-id-kategori/${IdKategori}`)
+      .then(res => {
+        dispatch(fetchMenuSuccess(res.data));
+      })
+      .catch(error => {
+        dispatch(fetchMenuFailure(error.message));
+      });
+  };
+};
 const fetchMenuStart = () => ({
   type: MenuActionTypes.FETCH_MENU_START,
 });
