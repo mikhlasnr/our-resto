@@ -16,7 +16,7 @@ const DashBoardPelayanPage = () => {
   useEffect(() => {
     dispatch(fetchDataKategoriMenu());
     dispatch(fetchDataMenu());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Layout id="dashboard-pelayan-page">

@@ -1,8 +1,9 @@
 @import "../../../colors";
-.dashboard-kasir-pesanan-list-item {
+.pesanan-list-item {
   margin-bottom: 35px;
   padding-right: 50px;
   position: relative;
+  background-color: #ffffff;
 
   .list-item-delete {
     position: absolute;
@@ -10,9 +11,9 @@
     transition-delay: 0.5;
     top: 50%;
     transform: translateY(-50%);
+    padding-left: 12px;
     z-index: -1;
     opacity: 0;
-
     .ant-btn {
       &.delete-item {
         background-color: $primaryColor;
@@ -29,7 +30,8 @@
       z-index: 0;
     }
   }
-  .dashboard-kasir-pesanan-list-item-card {
+
+  .pesanan-list-item-card {
     width: 100%;
 
     border-radius: 14px;
@@ -49,8 +51,8 @@
     .list-item-detail {
       display: flex;
       flex-direction: column;
-      height: 100%;
       justify-content: center;
+
       p {
         font-weight: 600;
         font-size: 12px;
@@ -87,8 +89,9 @@
       }
       .show-quantity {
         font-weight: 600;
-        font-size: 12px;
+        font-size: 16px;
         line-height: 18px;
+        padding: 0 1em;
       }
     }
   }

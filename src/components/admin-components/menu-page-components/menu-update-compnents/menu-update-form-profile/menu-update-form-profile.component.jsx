@@ -10,7 +10,7 @@ import { selectDataMenuById } from "../../../../../redux/menuById/menuById.selec
 // Import Components
 import { PlusOutlined } from "@ant-design/icons";
 
-import { Upload, message, Button } from "antd";
+import { Upload, message } from "antd";
 const { Dragger } = Upload;
 
 const MenuAUpdateFormProfile = () => {

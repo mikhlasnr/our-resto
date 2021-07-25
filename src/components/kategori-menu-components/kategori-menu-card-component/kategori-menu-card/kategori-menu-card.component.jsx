@@ -49,7 +49,6 @@ const KategoriMenuCard = ({
   };
 
   const handlingDeletButton = e => {
-    console.log(IdKategori);
     dispatch(setDeleteKategoriById(IdKategori));
     dispatch(toggleShowModalDeleteKategoriMenu());
   };

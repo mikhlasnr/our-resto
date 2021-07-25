@@ -8,3 +8,29 @@ export const selectCheckoutModaltHidden = createSelector(
   [selectPesanan],
   pesanan => pesanan.checkoutModalHidden
 );
+export const selectPesananItems = createSelector(
+  [selectPesanan],
+  pesanan => pesanan.pesananItems
+);
+export const isPesananItemsExist = createSelector(
+  [selectPesanan],
+  pesanan => pesanan.pesananItems.length
+);
+export const selectPesananItemsCount = createSelector(
+  [selectPesananItems],
+  pesananItems =>
+    pesananItems.reduce(
+      (accumulatedQuantity, pesananItem) =>
+        accumulatedQuantity + pesananItem.Quantity,
+      0
+    )
+);
+export const selectPesananItemsTotal = createSelector(
+  [selectPesananItems],
+  pesananItems =>
+    pesananItems.reduce(
+      (accumulatedQuantity, pesananItem) =>
+        accumulatedQuantity + pesananItem.Quantity * pesananItem.Harga,
+      0
+    )
+);

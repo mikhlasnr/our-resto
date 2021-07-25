@@ -2,8 +2,9 @@ import React from "react";
 import "./pelayan-sidebar.styles.scss";
 
 // handling redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
+import { isPesananItemsExist } from "../../../redux/pesanan/pesanan.selectors";
 
 // import component
 import PelayanProfile from "../pelayan-profile/pelayan-profile.component";
@@ -15,7 +16,7 @@ const { Sider } = Layout;
 
 const PelayanSidebar = () => {
   const dispatch = useDispatch();
-
+  const pesananItemsExist = useSelector(isPesananItemsExist);
   return (
     <Sider
       theme="light"
@@ -41,6 +42,7 @@ const PelayanSidebar = () => {
               e.preventDefault();
               dispatch(toggleCheckoutModalHidden());
             }}
+            disabled={pesananItemsExist ? false : true}
           >
             Checkout
           </Button>

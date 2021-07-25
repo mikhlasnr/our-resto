@@ -1,11 +1,19 @@
 import React from "react";
 import "./pelayan-pilih-menu-item.styles.scss";
+// Handling Redux
+import { useDispatch } from "react-redux";
+import { addItemPesanan } from "../../../redux/pesanan/pesanan.action";
 
 // Import Component
 import { Row, Col } from "antd";
 
 const PelayanPilihMenuItem = ({ menu }) => {
   const { NamaMenu, Stok, Harga, Foto } = menu;
+  const dispatch = useDispatch();
+  const handlingAddPesanan = e => {
+    e.preventDefault();
+    dispatch(addItemPesanan(menu));
+  };
   return (
     <Row className="pilih-menu-item">
       <Col span={24} className="image-item">
@@ -32,7 +40,7 @@ const PelayanPilihMenuItem = ({ menu }) => {
               <span>{Harga}</span>
             </Col>
             <Col flex="auto">
-              <div className="btn-add">
+              <div className="btn-add" onClick={handlingAddPesanan}>
                 <span>add</span>
               </div>
             </Col>

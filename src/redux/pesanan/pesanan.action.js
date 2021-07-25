@@ -18,3 +18,7 @@ export const clearItemFromPesanan = item => ({
   type: PesananActionTypes.CLEAR_ITEM_FROM_PESANAN,
   payload: item,
 });
+
+export const clearPesananItems = () => ({
+  type: PesananActionTypes.CLEAR_PESANAN_ITEMS,
+});

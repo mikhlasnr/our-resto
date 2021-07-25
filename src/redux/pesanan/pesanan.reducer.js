@@ -18,13 +18,11 @@ const pesananReducer = (state = INITIAL_STATE, action) => {
         ...state,
         pesananItems: addItemToPesanan(state.pesananItems, action.payload),
       };
-
     case PesananActionTypes.REMOVE_ITEM_PESANAN:
       return {
         ...state,
         pesananItems: removeItemFromPesanan(state.pesananItems, action.payload),
       };
-
     case PesananActionTypes.CLEAR_ITEM_FROM_PESANAN:
       return {
         ...state,
@@ -32,7 +30,11 @@ const pesananReducer = (state = INITIAL_STATE, action) => {
           pesananItem => pesananItem.IdMenu !== action.payload.IdMenu
         ),
       };
-
+    case PesananActionTypes.CLEAR_PESANAN_ITEMS:
+      return {
+        ...state,
+        pesananItems: [],
+      };
     default:
       return state;
   }

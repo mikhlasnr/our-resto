@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./admin-pegawai-delete-modal.styles.scss";
 
 import axios from "axios";

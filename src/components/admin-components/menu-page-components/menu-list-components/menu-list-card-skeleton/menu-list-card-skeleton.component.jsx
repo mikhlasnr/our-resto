@@ -1,7 +1,7 @@
 import React from "react";
 import "./menu-list-card-skeleton.styles.scss";
 
-import { Row, Col, Button, Image, Space, Skeleton } from "antd";
+import { Row, Col, Space, Skeleton } from "antd";
 
 const MenuListCardSkeleton = () => {
   return (

@@ -18,7 +18,7 @@ const MenuPage = () => {
   useEffect(() => {
     dispatch(fetchDataKategoriMenu());
     dispatch(fetchDataMenu());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="admin-dashboard-menu-page">
