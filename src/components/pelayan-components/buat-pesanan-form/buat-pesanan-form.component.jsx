@@ -1,28 +1,97 @@
 import React from "react";
 import "./buat-pesanan-form.styles.scss";
+import axios from "axios";
 
 // Handling redux
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
-import { selectPesananItems } from "../../../redux/pesanan/pesanan.selectors";
+import { clearPesananItems } from "../../../redux/pesanan/pesanan.action";
+import {
+  toggleCheckoutModalHidden,
+  toggleIsUploadingPesanan,
+} from "../../../redux/pesananUtils/pesananUtils.action";
+import {
+  selectPesananItemsForUpload,
+  selectPesananItemsCount,
+  selectPesananItemsTotal,
+} from "../../../redux/pesanan/pesanan.selectors";
+import { selectCurrentUser } from "../../../redux/user/user.selectors";
+import { fetchDataMenu } from "../../../redux/menu/menu.action";
 
 // Handling Route
 import { useHistory } from "react-router-dom";
 
 // Import Component
-import { Form, Input, Button, InputNumber } from "antd";
+import { Form, Input, Button, InputNumber, message } from "antd";
 
 const BuatPesananForm = () => {
+  const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const pesananItems = useSelector(selectPesananItems);
+  const pesananItems = useSelector(selectPesananItemsForUpload);
+  const { IdUser } = useSelector(selectCurrentUser);
+  const TotalQuantity = useSelector(selectPesananItemsCount);
+  const TotalHarga = useSelector(selectPesananItemsTotal);
+
+  const validateNomorMeja = txtNomorMeja => {
+    const intOnly = /^[0-9]*$/;
+    if (intOnly.test(txtNomorMeja)) {
+      return true;
+    } else {
+      message.error("Format Nomor Meja Salah!");
+      return false;
+    }
+  };
+
+  // START Method for uploadihg data user
+  const handlingAddPesanan = pesananData => {
+    dispatch(toggleIsUploadingPesanan());
+    axios
+      .post("/pesanan/add", pesananData)
+      .then(response => {
+        pesananItems.map((item, indeks) => {
+          if (indeks === pesananItems.length - 1) {
+            axios
+              .put(`/menu/decrement-stok/${item.IdMenu}`, {
+                Quantity: item.Quantity,
+              })
+              .then(res => {
+                form.resetFields();
+                message.success("Buat Pesanan Berhasil!");
+                dispatch(toggleIsUploadingPesanan());
+                dispatch(fetchDataMenu());
+                dispatch(toggleCheckoutModalHidden());
+                dispatch(clearPesananItems());
+              })
+              .catch(error => console.error(error));
+          } else {
+            axios
+              .put(`/menu/decrement-stok/${item.IdMenu}`, {
+                Quantity: item.Quantity,
+              })
+              .catch(error => console.error(error));
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        message.error("Buat Pesanan Gagal!");
+        dispatch(toggleIsUploadingPesanan());
+      });
+  };
+
   const onFinish = values => {
-    console.log(values);
-    console.log(pesananItems);
-    // dispatch(toggleCheckoutModalHidden());
+    const inputData = {
+      DetailPesanan: pesananItems,
+      IdUser,
+      TotalQuantity,
+      TotalHarga,
+      ...values,
+    };
+    if (validateNomorMeja(values.NoMeja)) handlingAddPesanan(inputData);
   };
 
   return (
     <Form
+      form={form}
       id="form-buat-pesanan"
       layout="vertical"
       name="basic"
@@ -30,14 +99,14 @@ const BuatPesananForm = () => {
     >
       <Form.Item
         label="Nama Pemesan :"
-        name="NamaPemesan"
+        name="AtasNama"
         rules={[{ required: true, message: "Masukkan Nama Pemesan!" }]}
       >
         <Input placeholder="Ex: Ikhlas Menir" className="input" />
       </Form.Item>
       <Form.Item
         label="Nomor Meja :"
-        name="NomorMeja"
+        name="NoMeja"
         rules={[{ required: true, message: "Masukkan Nomor Meja!" }]}
       >
         <InputNumber

@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./pelayan-pilih-menu-item.styles.scss";
 // Handling Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItemPesanan } from "../../../redux/pesanan/pesanan.action";
+import { selectPesananItems } from "../../../redux/pesanan/pesanan.selectors";
 
 // Import Component
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 
 const PelayanPilihMenuItem = ({ menu }) => {
-  const { NamaMenu, Stok, Harga, Foto } = menu;
+  const { IdMenu, NamaMenu, Stok, Harga, Foto } = menu;
+  const pesananItems = useSelector(selectPesananItems);
   const dispatch = useDispatch();
+
+  // cek this product have stok or not
+  const isInStok = () => {
+    const existingItem = pesananItems.find(
+      pesananItem => pesananItem.IdMenu === IdMenu
+    );
+    if (Stok === 0) return true;
+    if (existingItem) return existingItem.Quantity + 1 > Stok;
+    return false;
+  };
   const handlingAddPesanan = e => {
     e.preventDefault();
     dispatch(addItemPesanan(menu));
@@ -40,9 +52,14 @@ const PelayanPilihMenuItem = ({ menu }) => {
               <span>{Harga}</span>
             </Col>
             <Col flex="auto">
-              <div className="btn-add" onClick={handlingAddPesanan}>
-                <span>add</span>
-              </div>
+              <Button
+                type="primary"
+                className="btn-add"
+                onClick={handlingAddPesanan}
+                disabled={isInStok()}
+              >
+                add
+              </Button>
             </Col>
           </Row>
         </div>

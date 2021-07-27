@@ -4,17 +4,23 @@ import { createSelector } from "reselect";
 
 const selectPesanan = state => state.pesanan;
 
-export const selectCheckoutModaltHidden = createSelector(
-  [selectPesanan],
-  pesanan => pesanan.checkoutModalHidden
-);
 export const selectPesananItems = createSelector(
   [selectPesanan],
   pesanan => pesanan.pesananItems
 );
+
 export const isPesananItemsExist = createSelector(
   [selectPesanan],
   pesanan => pesanan.pesananItems.length
+);
+
+export const selectPesananItemsForUpload = createSelector(
+  [selectPesananItems],
+  pesananItems =>
+    pesananItems.map(item => {
+      const { IdMenu, Quantity, SubTotal } = item;
+      return { IdMenu, Quantity, SubTotal };
+    })
 );
 export const selectPesananItemsCount = createSelector(
   [selectPesananItems],

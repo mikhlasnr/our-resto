@@ -6,12 +6,19 @@ export const addItemToPesanan = (pesananItems, pesananItemToAdd) => {
   if (existingCartItem) {
     return pesananItems.map(pesananItem =>
       pesananItem.IdMenu === pesananItemToAdd.IdMenu
-        ? { ...pesananItem, Quantity: pesananItem.Quantity + 1 }
+        ? {
+            ...pesananItem,
+            Quantity: pesananItem.Quantity + 1,
+            SubTotal: pesananItem.SubTotal + pesananItemToAdd.Harga,
+          }
         : pesananItem
     );
   }
 
-  return [...pesananItems, { ...pesananItemToAdd, Quantity: 1 }];
+  return [
+    ...pesananItems,
+    { ...pesananItemToAdd, Quantity: 1, SubTotal: pesananItemToAdd.Harga },
+  ];
 };
 
 export const removeItemFromPesanan = (pesananItems, pesananItemToRemove) => {
@@ -27,7 +34,11 @@ export const removeItemFromPesanan = (pesananItems, pesananItemToRemove) => {
 
   return pesananItems.map(pesananItem =>
     pesananItem.IdMenu === pesananItemToRemove.IdMenu
-      ? { ...pesananItem, Quantity: pesananItem.Quantity - 1 }
+      ? {
+          ...pesananItem,
+          Quantity: pesananItem.Quantity - 1,
+          SubTotal: pesananItem.SubTotal - pesananItemToRemove.Harga,
+        }
       : pesananItem
   );
 };

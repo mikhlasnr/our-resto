@@ -14,8 +14,7 @@ import { PlusOutlined, MinusOutlined, DeleteFilled } from "@ant-design/icons";
 
 const PelayanPesananItem = ({ menu }) => {
   const dispatch = useDispatch();
-
-  const { NamaMenu, Harga, Quantity, Foto } = menu;
+  const { NamaMenu, Harga, Quantity, Foto, Stok } = menu;
   const handleShowDeleteBtn = e => {
     e.preventDefault();
     const itemCard = e.currentTarget.parentElement.parentElement.parentElement;
@@ -97,6 +96,7 @@ const PelayanPesananItem = ({ menu }) => {
               shape="circle"
               icon={<PlusOutlined style={{ color: "#FFFFFF" }} />}
               onClick={handlingIncreaseQty}
+              disabled={Quantity + 1 > Stok}
             />
           </div>
         </Col>

@@ -1,3 +1,4 @@
+@import "../../../colors";
 .pilih-menu-item {
   border-radius: 20px;
   height: 300px;
@@ -28,7 +29,7 @@
         font-family: Poppins;
         font-style: normal;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 18px;
         color: #9e9e9e;
         margin: 0;
@@ -62,26 +63,39 @@
             }
           }
         }
-        .btn-add {
-          padding: 1rem;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: #ff5348;
-          border-radius: 0px 0px 20px 0px;
-          cursor: pointer;
-          &:hover {
-            background: #ff695e;
+        .ant-btn {
+          &.btn-add {
+            padding: 1rem;
+            width: 100%;
+            height: 100%;
+            background: #ff5348;
+            border: none;
+            border-radius: 0px 0px 20px 0px;
+            &:hover {
+              background: #ff695e;
+            }
+            span {
+              color: #ffffff;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 24px;
+              /* identical to box height */
+            }
           }
+        }
+        .ant-btn[disabled] {
+          background: $disabledColor;
+          border-color: $disabledColor;
+
           span {
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 24px;
-            /* identical to box height */
-            color: #ffffff;
-            -webkit-user-select: none;
+            color: $textColorSecondary;
+          }
+
+          &:hover,
+          &:focus {
+            background: $disabledColor;
+            border-color: $disabledColor;
+            box-shadow: 0px 8px 30px rgba(136, 136, 136, 0.356);
           }
         }
       }

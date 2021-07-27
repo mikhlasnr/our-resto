@@ -3,16 +3,20 @@ import "./buat-pesanan-modal.styles.scss";
 
 // handling redux
 import { useDispatch, useSelector } from "react-redux";
-import { selectCheckoutModaltHidden } from "../../../redux/pesanan/pesanan.selectors";
-import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
+import {
+  selectCheckoutModaltHidden,
+  selectIsUploading,
+} from "../../../redux/pesananUtils/pesananUtils.selectors";
+import { toggleCheckoutModalHidden } from "../../../redux/pesananUtils/pesananUtils.action";
 
 // import component
-import { Modal } from "antd";
+import { Modal, Spin } from "antd";
 import BuatPesananForm from "../buat-pesanan-form/buat-pesanan-form.component";
 
 const BuatPesananModal = () => {
   const dispatch = useDispatch();
   const checkoutModalHidden = useSelector(selectCheckoutModaltHidden);
+  const isUploading = useSelector(selectIsUploading);
   return (
     <Modal
       closable={false}
@@ -21,10 +25,12 @@ const BuatPesananModal = () => {
       footer={null}
       centered
     >
-      <div className="modal-title">
-        <h2>Buat pesanan</h2>
-      </div>
-      <BuatPesananForm />
+      <Spin spinning={isUploading}>
+        <div className="modal-title">
+          <h2>Buat pesanan</h2>
+        </div>
+        <BuatPesananForm />
+      </Spin>
     </Modal>
   );
 };

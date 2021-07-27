@@ -1,9 +1,5 @@
 import PesananActionTypes from "./pesanan.types";
 
-export const toggleCheckoutModalHidden = () => ({
-  type: PesananActionTypes.TOGGLE_CHECKOUT_MODAL_HIDDEN,
-});
-
 export const addItemPesanan = item => ({
   type: PesananActionTypes.ADD_ITEM_PESANAN,
   payload: item,

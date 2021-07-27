@@ -3,7 +3,7 @@ import "./pelayan-sidebar.styles.scss";
 
 // handling redux
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCheckoutModalHidden } from "../../../redux/pesanan/pesanan.action";
+import { toggleCheckoutModalHidden } from "../../../redux/pesananUtils/pesananUtils.action";
 import { isPesananItemsExist } from "../../../redux/pesanan/pesanan.selectors";
 
 // import component
