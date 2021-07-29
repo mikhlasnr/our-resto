@@ -1,4 +1,4 @@
-import KategoriMenuActionTypes from "./listPesanan.types";
+import ListPesananActionTypes from "./listPesanan.types";
 import axios from "axios";
 
 // *====START FETCH DATA KATEGORI MENU====
@@ -15,25 +15,34 @@ export const fetchDataListPesanan = () => {
   };
 };
 const fetchListPesananStart = () => ({
-  type: KategoriMenuActionTypes.FETCH_LIST_PESANAN_START,
+  type: ListPesananActionTypes.FETCH_LIST_PESANAN_START,
 });
 const fetchListPesananSuccess = data => ({
-  type: KategoriMenuActionTypes.FETCH_LIST_PESANAN_SUCCESS,
+  type: ListPesananActionTypes.FETCH_LIST_PESANAN_SUCCESS,
   payload: data,
 });
 const fetchListPesananFailure = message => ({
-  type: KategoriMenuActionTypes.FETCH_LIST_PESANAN_FAILURE,
+  type: ListPesananActionTypes.FETCH_LIST_PESANAN_FAILURE,
   payload: message,
 });
 // *====END FETCH DATA KATEGORI MENU====
 
 // *====START HANDLING SHOW MODAL====
-
+export const toggleListPesananModalHidden = () => ({
+  type: ListPesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN,
+});
+export const toggleListPesananDeleteModalHidden = () => ({
+  type: ListPesananActionTypes.TOGGLE_LIST_PESANAN_DELETE_MODAL_HIDDEN,
+});
+export const toggleListPesananLihatModalHidden = () => ({
+  type: ListPesananActionTypes.TOGGLE_LIST_PESANAN_LIHAT_MODAL_HIDDEN,
+});
 // *====END HANDLING SHOW MODAL====
 
 // *====START HANDLING UPLOAD====
-export const toggleIsUploadingKategoriMenu = () => ({
-  type: KategoriMenuActionTypes.TOGGLE_IS_UPLOADING_LIST_PESANAN,
+export const toggleIsUploadingListPesanan = () => ({
+  type: ListPesananActionTypes.TOGGLE_IS_UPLOADING_LIST_PESANAN,
 });
 // *====END HANDLING UPLOAD====
+
 // *====START HANDLING DELETE====

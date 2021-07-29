@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "./list-pesanan-table.styles.scss";
 
 // Handling Redux
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector } from "react-redux";
 import { selectDataListPesanan } from "../../../../../redux/listPesanan/listPesanan.selectors";
 
 // import component
@@ -33,15 +32,11 @@ const data = [
   },
 ];
 
-class ListPesananTable extends Component {
-  con;
-
-  state = {
-    searchText: "",
-    searchedColumn: "",
-  };
-
-  getColumnSearchProps = dataIndex => ({
+const ListPesananTable = () => {
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const dataListPesanan = useSelector(selectDataListPesanan);
+  const getColumnSearchProps = (dataIndex, title) => ({
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,
@@ -50,21 +45,19 @@ class ListPesananTable extends Component {
     }) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder={`Search ${dataIndex}`}
+          placeholder={`Search ${title}`}
           value={selectedKeys[0]}
           onChange={e =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
           }
-          onPressEnter={() =>
-            this.handleSearch(selectedKeys, confirm, dataIndex)
-          }
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{ marginBottom: 8, display: "block" }}
         />
         <Space>
           <Button
             type="primary"
             className="list-pesanan-search-btn"
-            onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
@@ -72,7 +65,7 @@ class ListPesananTable extends Component {
             Search
           </Button>
           <Button
-            onClick={() => this.handleReset(clearFilters)}
+            onClick={() => handleReset(clearFilters)}
             size="small"
             style={{ width: 90 }}
           >
@@ -83,10 +76,8 @@ class ListPesananTable extends Component {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-              this.setState({
-                searchText: selectedKeys[0],
-                searchedColumn: dataIndex,
-              });
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
             }}
           >
             Filter
@@ -106,10 +97,10 @@ class ListPesananTable extends Component {
         : "",
 
     render: text =>
-      this.state.searchedColumn === dataIndex ? (
+      searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[this.state.searchText]}
+          searchWords={[searchText]}
           autoEscape
           textToHighlight={text ? text.toString() : ""}
         />
@@ -118,68 +109,74 @@ class ListPesananTable extends Component {
       ),
   });
 
-  handleSearch = (selectedKeys, confirm, dataIndex) => {
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
-    this.setState({
-      searchText: selectedKeys[0],
-      searchedColumn: dataIndex,
-    });
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
   };
 
-  handleReset = clearFilters => {
+  const handleReset = clearFilters => {
     clearFilters();
-    this.setState({ searchText: "" });
+    setSearchText("");
   };
 
-  handlingPagination = (current, type, originalElement) => {
+  const handlingPagination = (current, type, originalElement) => {
     if (type === "prev") return <LeftOutlined />;
     if (type === "next") return <RightOutlined />;
     return originalElement;
   };
 
-  render() {
-    const columns = [
-      {
-        title: "Status",
-        dataIndex: "StatusPesanan",
-        key: "StatusPesanan",
-        ...this.getColumnSearchProps("StatusPesanan"),
-      },
-      {
-        title: "Atas Nama",
-        dataIndex: "AtasNama",
-        key: "AtasNama",
-        ...this.getColumnSearchProps("AtasNama"),
-      },
-      {
-        title: "Nomor Meja",
-        dataIndex: "NoMeja",
-        key: "NoMeja",
-        ...this.getColumnSearchProps("NoMeja"),
-      },
-      {
-        title: "Action",
-        key: "action",
-        width: "15%",
-        render: (text, record) => <PegawaiTableAction record={record} />,
-      },
-    ];
-    return (
-      <Table
-        className="list-pesanan-table-container"
-        rowKey={record => record.IdPesanan}
-        pagination={{
-          position: ["bottomCenter"],
-          defaultPageSize: 7,
-          itemRender: this.handlingPagination,
-        }}
-        columns={columns}
-        dataSource={data}
-      />
-    );
-  }
-}
-const mapStateToProps = createStructuredSelector({
-  dataListPesanan: selectDataListPesanan,
-});
-export default connect(mapStateToProps)(ListPesananTable);
+  const columns = [
+    {
+      title: "Status",
+      dataIndex: "StatusPesanan",
+      key: "StatusPesanan",
+      filters: [
+        {
+          text: "dimasak",
+          value: "dimasak",
+        },
+        {
+          text: "selesai",
+          value: "selesai",
+        },
+      ],
+      // specify the condition of filtering result
+      // here is that finding the name started with `value`
+      onFilter: (value, record) => record.StatusPesanan.indexOf(value) === 0,
+    },
+    {
+      title: "Atas Nama",
+      dataIndex: "AtasNama",
+      key: "AtasNama",
+      ...getColumnSearchProps("AtasNama", "Atas Nama"),
+    },
+    {
+      title: "Nomor Meja",
+      dataIndex: "NoMeja",
+      key: "NoMeja",
+      ...getColumnSearchProps("NoMeja", "No Meja"),
+    },
+    {
+      title: "Action",
+      key: "action",
+      width: "15%",
+      render: (text, record) => <PegawaiTableAction record={record} />,
+    },
+  ];
+  return (
+    <Table
+      className="list-pesanan-table-container"
+      rowKey={record => record.IdPesanan}
+      pagination={{
+        position: ["bottomCenter"],
+        defaultPageSize: 7,
+        itemRender: handlingPagination,
+      }}
+      columns={columns}
+      dataSource={dataListPesanan}
+    />
+  );
+};
+
+export default ListPesananTable;

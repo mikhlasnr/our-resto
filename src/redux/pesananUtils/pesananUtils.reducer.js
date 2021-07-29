@@ -13,16 +13,13 @@ const pesananUtilsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         checkoutModalHidden: !state.checkoutModalHidden,
       };
-    case PesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN:
-      return {
-        ...state,
-        listPesananModalHidden: !state.listPesananModalHidden,
-      };
+
     case PesananActionTypes.TOGGLE_IS_UPLOADING_PESANAN:
       return {
         ...state,
         isUploadingPesanan: !state.isUploadingPesanan,
       };
+
     default:
       return state;
   }

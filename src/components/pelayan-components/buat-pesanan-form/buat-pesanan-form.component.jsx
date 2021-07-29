@@ -42,34 +42,13 @@ const BuatPesananForm = () => {
   };
 
   // START Method for uploadihg data user
+
   const handlingAddPesanan = pesananData => {
     dispatch(toggleIsUploadingPesanan());
     axios
       .post("/pesanan/add", pesananData)
       .then(response => {
-        pesananItems.map((item, indeks) => {
-          if (indeks === pesananItems.length - 1) {
-            axios
-              .put(`/menu/decrement-stok/${item.IdMenu}`, {
-                Quantity: item.Quantity,
-              })
-              .then(res => {
-                form.resetFields();
-                message.success("Buat Pesanan Berhasil!");
-                dispatch(toggleIsUploadingPesanan());
-                dispatch(fetchDataMenu());
-                dispatch(toggleCheckoutModalHidden());
-                dispatch(clearPesananItems());
-              })
-              .catch(error => console.error(error));
-          } else {
-            axios
-              .put(`/menu/decrement-stok/${item.IdMenu}`, {
-                Quantity: item.Quantity,
-              })
-              .catch(error => console.error(error));
-          }
-        });
+        handlingUpdateStok();
       })
       .catch(error => {
         console.log(error);
@@ -77,7 +56,31 @@ const BuatPesananForm = () => {
         dispatch(toggleIsUploadingPesanan());
       });
   };
-
+  const handlingUpdateStok = () => {
+    pesananItems.map((item, indeks) => {
+      if (indeks === pesananItems.length - 1) {
+        axios
+          .put(`/menu/decrement-stok/${item.IdMenu}`, {
+            Quantity: item.Quantity,
+          })
+          .then(res => {
+            form.resetFields();
+            message.success("Buat Pesanan Berhasil!");
+            dispatch(toggleIsUploadingPesanan());
+            dispatch(fetchDataMenu());
+            dispatch(toggleCheckoutModalHidden());
+            dispatch(clearPesananItems());
+          })
+          .catch(error => console.error(error));
+      } else {
+        axios
+          .put(`/menu/decrement-stok/${item.IdMenu}`, {
+            Quantity: item.Quantity,
+          })
+          .catch(error => console.error(error));
+      }
+    });
+  };
   const onFinish = values => {
     const inputData = {
       DetailPesanan: pesananItems,

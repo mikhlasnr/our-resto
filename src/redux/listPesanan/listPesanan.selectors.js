@@ -20,10 +20,21 @@ export const selectListPesananErrorMessage = createSelector(
 );
 // *====END SELECTOR FETCH DATA KATEGORI MENU====
 // *====START SELECTOR HANDLING MODAL====
-
+export const selectListPesananModaltHidden = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.listPesananModalHidden
+);
+export const selectListPesananDeleteModaltHidden = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.listPesananDeleteModalHidden
+);
+export const selectListPesananLihatModaltHidden = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.listPesananLihatModalHidden
+);
 // *====END SELECTOR HANDLING MODAL====
-// *====START SELECTOR HANDLING FOR UPLOADING====
 
+// *====START SELECTOR HANDLING FOR UPLOADING====
 export const selectListPesananIsUploading = createSelector(
   [selectListPesanan],
   listPesanan => listPesanan.isUploading

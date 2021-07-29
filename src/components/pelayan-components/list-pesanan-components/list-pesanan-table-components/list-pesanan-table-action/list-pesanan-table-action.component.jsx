@@ -1,16 +1,20 @@
 import React from "react";
 
+// Handling Redux
 import { useDispatch } from "react-redux";
-import {
-  toggleShowModalUpdatePegawai,
-  toggleShowModalDeletePegawai,
-} from "../../../../../redux/pegawai/pegawai.action";
+import { toggleListPesananDeleteModalHidden } from "../../../../../redux/listPesanan/listPesanan.action";
+import { fetchDataDetailPesanan } from "../../../../../redux/detailPesanan/detailPesanan.action";
+
+// Import Components
 import { Button, Space } from "antd";
 
-const PegawaiTableAction = ({ record: { IdUser } }) => {
+const PegawaiTableAction = ({ record: { IdPesanan } }) => {
   const dispatch = useDispatch();
   const handlingActionLihat = () => {};
-  const handlingActionHapus = () => {};
+  const handlingActionHapus = () => {
+    dispatch(fetchDataDetailPesanan(IdPesanan));
+    dispatch(toggleListPesananDeleteModalHidden());
+  };
   return (
     <Space>
       <Button className="btn-action-primary" onClick={handlingActionLihat}>

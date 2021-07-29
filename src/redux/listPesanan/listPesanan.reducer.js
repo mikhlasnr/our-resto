@@ -5,6 +5,10 @@ const INITIAL_STATE = {
   isFetching: false,
   errorMessage: null,
   isUploading: false,
+  listPesananModalHidden: true,
+  listPesananDeleteModalHidden: true,
+  listPesananLihatModalHidden: true,
+  IdPesanan: null,
 };
 
 const listPesananReducer = (state = INITIAL_STATE, action) => {
@@ -28,13 +32,31 @@ const listPesananReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
       };
     // *====END FETCH DATA KATEGORI MENU====
-    // *====START HANDLING UPLOAD====
+    // *====START HANDLING MODAL====
+    case ListPesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN:
+      return {
+        ...state,
+        listPesananModalHidden: !state.listPesananModalHidden,
+      };
+    case ListPesananActionTypes.TOGGLE_LIST_PESANAN_DELETE_MODAL_HIDDEN:
+      return {
+        ...state,
+        listPesananDeleteModalHidden: !state.listPesananDeleteModalHidden,
+      };
+    case ListPesananActionTypes.TOGGLE_LIST_PESANAN_LIHAT_MODAL_HIDDEN:
+      return {
+        ...state,
+        listPesananLihatModalHidden: !state.listPesananLihatModalHidden,
+      };
+    // *====END HANDLING MODAL====
+    // *====START HANDLING UTILS====
+
     case ListPesananActionTypes.TOGGLE_IS_UPLOADING_LIST_PESANAN:
       return {
         ...state,
         isUploading: !state.isUploading,
       };
-    // *====END HANDLING UPLOAD====
+    // *====END HANDLING UTILS====
 
     default:
       return state;

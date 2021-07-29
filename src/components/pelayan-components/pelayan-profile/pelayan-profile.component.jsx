@@ -4,7 +4,7 @@ import "./pelayan-profile.styles.scss";
 // handling redux
 import { useSelector, useDispatch } from "react-redux";
 import { removeCurrentUser } from "../../../redux/user/user.action";
-import { toggleListPesananModalHidden } from "../../../redux/pesananUtils/pesananUtils.action";
+import { toggleListPesananModalHidden } from "../../../redux/listPesanan/listPesanan.action";
 
 // import components
 import { Avatar, Badge, Image } from "antd";

@@ -9,9 +9,7 @@ import { isPesananItemsExist } from "../../../redux/pesanan/pesanan.selectors";
 // import component
 import PelayanProfile from "../pelayan-profile/pelayan-profile.component";
 import PelayanPesanan from "../pelayan-pesanan/pelayan-pesanan.component";
-import { Button } from "antd";
-
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 const { Sider } = Layout;
 
 const PelayanSidebar = () => {
