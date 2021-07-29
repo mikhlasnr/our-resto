@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import "./list-pesanan-table.styles.scss";
+
+// Handling Redux
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectDataListPesanan } from "../../../../../redux/listPesanan/listPesanan.selectors";
 
 // import component
 import { Table, Input, Button, Space } from "antd";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
+import PegawaiTableAction from "../list-pesanan-table-action/list-pesanan-table-action.component";
 
 const data = [
   {
@@ -26,7 +33,9 @@ const data = [
   },
 ];
 
-class DashboardKasirTablePesanan extends Component {
+class ListPesananTable extends Component {
+  con;
+
   state = {
     searchText: "",
     searchedColumn: "",
@@ -41,9 +50,6 @@ class DashboardKasirTablePesanan extends Component {
     }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={node => {
-            this.searchInput = node;
-          }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={e =>
@@ -98,11 +104,7 @@ class DashboardKasirTablePesanan extends Component {
             .toLowerCase()
             .includes(value.toLowerCase())
         : "",
-    onFilterDropdownVisibleChange: visible => {
-      if (visible) {
-        setTimeout(() => this.searchInput.select(), 100);
-      }
-    },
+
     render: text =>
       this.state.searchedColumn === dataIndex ? (
         <Highlighter
@@ -129,8 +131,10 @@ class DashboardKasirTablePesanan extends Component {
     this.setState({ searchText: "" });
   };
 
-  handleDetailAction = selectedKeys => {
-    console.log(selectedKeys);
+  handlingPagination = (current, type, originalElement) => {
+    if (type === "prev") return <LeftOutlined />;
+    if (type === "next") return <RightOutlined />;
+    return originalElement;
   };
 
   render() {
@@ -157,25 +161,25 @@ class DashboardKasirTablePesanan extends Component {
         title: "Action",
         key: "action",
         width: "15%",
-        render: (text, record, index) => {
-          return (
-            <Space size="middle">
-              <Button onClick={() => this.handleDetailAction(record.key)}>
-                Detail
-              </Button>
-            </Space>
-          );
-        },
+        render: (text, record) => <PegawaiTableAction record={record} />,
       },
     ];
     return (
       <Table
-        pagination={{ position: ["none", "bottomCenter"] }}
+        className="list-pesanan-table-container"
+        rowKey={record => record.IdPesanan}
+        pagination={{
+          position: ["bottomCenter"],
+          defaultPageSize: 7,
+          itemRender: this.handlingPagination,
+        }}
         columns={columns}
         dataSource={data}
       />
     );
   }
 }
-
-export default DashboardKasirTablePesanan;
+const mapStateToProps = createStructuredSelector({
+  dataListPesanan: selectDataListPesanan,
+});
+export default connect(mapStateToProps)(ListPesananTable);

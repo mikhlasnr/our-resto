@@ -2,6 +2,7 @@ import PesananActionTypes from "./pesananUtils.types";
 
 const INITIAL_STATE = {
   checkoutModalHidden: true,
+  listPesananModalHidden: true,
   isUploadingPesanan: false,
 };
 
@@ -12,7 +13,11 @@ const pesananUtilsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         checkoutModalHidden: !state.checkoutModalHidden,
       };
-
+    case PesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN:
+      return {
+        ...state,
+        listPesananModalHidden: !state.listPesananModalHidden,
+      };
     case PesananActionTypes.TOGGLE_IS_UPLOADING_PESANAN:
       return {
         ...state,

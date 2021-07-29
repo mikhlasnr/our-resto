@@ -10,6 +10,7 @@ import { Layout } from "antd";
 import PelayandMain from "../../components/pelayan-components/pelayan-main/pelayan-main.component";
 import PelayanSidebar from "../../components/pelayan-components/pelayan-sidebar/pelayan-sidebar.component";
 import BuatPesananModal from "../../components/pelayan-components/buat-pesanan-modal/buat-pesanan-modal.component";
+import ListPesananModal from "../../components/pelayan-components/list-pesanan-components/list-pesanan-modal/list-pesanan-modal.components";
 
 const DashBoardPelayanPage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const DashBoardPelayanPage = () => {
       <PelayandMain />
       <PelayanSidebar />
       <BuatPesananModal />
+      <ListPesananModal />
     </Layout>
   );
 };

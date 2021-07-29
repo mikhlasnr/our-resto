@@ -1,0 +1,44 @@
+@import "../../../../../colors";
+
+.list-pesanan-table-container {
+  // Tables Styles
+  .ant-table {
+    .ant-table-row {
+      .table-pegawai-action {
+        padding-right: 0;
+      }
+    }
+  }
+  // Pagination Styles
+  .ant-pagination {
+    .ant-pagination-item {
+      border: none;
+      &.ant-pagination-item-active {
+        a {
+          color: red;
+        }
+      }
+      a {
+        &:hover,
+        &:active {
+          color: red;
+        }
+      }
+    }
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      &:hover,
+      &:active {
+        color: $primaryColor;
+      }
+
+      &.ant-pagination-disabled {
+        color: $disabledColor;
+        &:hover,
+        &:active {
+          color: $disabledColor;
+        }
+      }
+    }
+  }
+}

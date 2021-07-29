@@ -8,7 +8,10 @@ export const selectCheckoutModaltHidden = createSelector(
   [selectPesananUtils],
   pesanan => pesanan.checkoutModalHidden
 );
-
+export const selectListPesananModaltHidden = createSelector(
+  [selectPesananUtils],
+  pesanan => pesanan.listPesananModalHidden
+);
 // *====START SELECTOR HANDLING FOR UPLOADING====
 
 export const selectIsUploading = createSelector(
