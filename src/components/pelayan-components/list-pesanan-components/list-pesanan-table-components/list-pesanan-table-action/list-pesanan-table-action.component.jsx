@@ -2,17 +2,27 @@ import React from "react";
 
 // Handling Redux
 import { useDispatch } from "react-redux";
-import { toggleListPesananDeleteModalHidden } from "../../../../../redux/listPesanan/listPesanan.action";
-import { fetchDataDetailPesanan } from "../../../../../redux/detailPesanan/detailPesanan.action";
+import {
+  toggleListPesananDeleteModalHidden,
+  toggleListPesananLihatModalHidden,
+} from "../../../../../redux/listPesanan/listPesanan.action";
+import {
+  fetchDataDetailPesanan,
+  setInfoPemesan,
+} from "../../../../../redux/detailPesanan/detailPesanan.action";
 
 // Import Components
 import { Button, Space } from "antd";
 
-const PegawaiTableAction = ({ record: { IdPesanan } }) => {
+const PegawaiTableAction = ({ record }) => {
   const dispatch = useDispatch();
-  const handlingActionLihat = () => {};
+  const handlingActionLihat = () => {
+    dispatch(setInfoPemesan(record));
+    dispatch(fetchDataDetailPesanan(record.IdPesanan));
+    dispatch(toggleListPesananLihatModalHidden());
+  };
   const handlingActionHapus = () => {
-    dispatch(fetchDataDetailPesanan(IdPesanan));
+    dispatch(fetchDataDetailPesanan(record.IdPesanan));
     dispatch(toggleListPesananDeleteModalHidden());
   };
   return (

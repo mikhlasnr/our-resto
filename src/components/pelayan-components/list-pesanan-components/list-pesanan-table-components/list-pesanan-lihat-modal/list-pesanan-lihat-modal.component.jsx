@@ -1,65 +1,85 @@
 import React from "react";
-import "./list-pesanan-delete-modal.styles.scss";
-
-import axios from "axios";
-import { storage } from "../../../firebase";
-
+import "./list-pesanan-lihat-modal.styles.scss";
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
+import { selectListPesananLihatModaltHidden } from "../../../../../redux/listPesanan/listPesanan.selectors";
+import { toggleListPesananLihatModalHidden } from "../../../../../redux/listPesanan/listPesanan.action";
+import { removeDetailPesanan } from "../../../../../redux/detailPesanan/detailPesanan.action";
 import {
-  selectShowModalDeleteKategoriMenu,
-  selectListPesananIsUploading,
-} from "../../../redux/listPesanan/listPesanan.selectors";
-import {
-  toggleListPesananDeleteModalHidden,
-  toggleIsUploadingListPesanan,
-  fetchDataListPesanan,
-} from "../../../redux/listPesanan/listPesanan.action";
+  selectDataDetailPesanan,
+  selectInfoPesanan,
+} from "../../../../../redux/detailPesanan/detailPesanan.selectors";
 
 // Import Component
-import { Modal, Button, Space, message, Spin } from "antd";
-import { ReactComponent as WarningIcon } from "../../../assets/icons/warningIcon.svg";
+import { Modal, Spin, Skeleton } from "antd";
+import { LeftOutlined } from "@ant-design/icons";
 
 const ListPesananLihatModal = () => {
   const dispatch = useDispatch();
-  const isUploading = useSelector(selectListPesananIsUploading);
-  const isModalVisible = useSelector(selectShowModalDeleteKategoriMenu);
+  const isModalVisible = useSelector(selectListPesananLihatModaltHidden);
+  const dataDetailPesanan = useSelector(selectDataDetailPesanan);
+  const infoPemesan = useSelector(selectInfoPesanan);
 
   const handlingModalOnCancel = () => {
-    dispatch(toggleListPesananDeleteModalHidden());
+    dispatch(removeDetailPesanan());
+    dispatch(toggleListPesananLihatModalHidden());
   };
 
-  const handlingDeleteListPesanan = () => {};
-
-  const handlingDeleteAction = () => {};
-
+  const handlingRenderMenuPesanan = () =>
+    dataDetailPesanan.map(item => {
+      return (
+        <div className="list-pesanan-title " key={item.IdMenu}>
+          <p>{item.NamaMenu}</p>
+          <p>{item.Quantity}</p>
+        </div>
+      );
+    });
+  const handlingRenderMenuPesananSkeleton = () =>
+    [1, 2, 3].map(item => {
+      return (
+        <div className="detail-menu-pesanan-item" key={item}>
+          <Skeleton.Button active={true} />
+        </div>
+      );
+    });
   return (
     <Modal
-      className="delete-modal"
+      className="list-pesanan-lihat"
       visible={!isModalVisible}
       onCancel={handlingModalOnCancel}
       footer={null}
       closable={false}
       centered
     >
-      <Spin spinning={isUploading}>
-        <div className="delete-modal-container">
-          <WarningIcon />
-          <h2>Apakah kamu yakin menghapus pesanan?</h2>
-          <Space size="middle">
-            <Button
-              className="btn-default btn-action-cancel"
-              onClick={handlingModalOnCancel}
-            >
-              Batal
-            </Button>
-            <Button
-              className="btn-default btn-action-delete"
-              onClick={handlingDeleteAction}
-            >
-              Hapus
-            </Button>
-          </Space>
+      <Spin spinning={false}>
+        <div className="list-pesanan-lihat-container">
+          <div className="list-pesanan-lihat-header">
+            <h1>Detail Pesanan</h1>
+          </div>
+          <div className="list-pesanan-lihat-body">
+            {/* <div className="list-pesanan-title dash-diveder-bottom">
+              <p>Nama Pemesan</p>
+              <p>No Meja</p>
+            </div> */}
+            <div className="list-pesanan-lihat-item dash-diveder-bottom">
+              {infoPemesan ? (
+                <p>{infoPemesan.AtasNama}</p>
+              ) : (
+                <Skeleton.Button active={true} />
+              )}
+              {infoPemesan ? (
+                <p>Meja {infoPemesan.NoMeja}</p>
+              ) : (
+                <Skeleton.Button active={true} />
+              )}
+            </div>
+            <div className="detail-menu-pesanan dash-diveder-bottom">
+              {/* <h2>Menu Pesanan</h2> */}
+              {dataDetailPesanan
+                ? handlingRenderMenuPesanan()
+                : handlingRenderMenuPesananSkeleton()}
+            </div>
+          </div>
         </div>
       </Spin>
     </Modal>

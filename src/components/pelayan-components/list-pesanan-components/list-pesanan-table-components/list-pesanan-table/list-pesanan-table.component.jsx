@@ -11,27 +11,6 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import PegawaiTableAction from "../list-pesanan-table-action/list-pesanan-table-action.component";
 
-const data = [
-  {
-    IdPesanan: "15",
-    AtasNama: "Asep",
-    NoMeja: 30,
-    StatusPesanan: "dimasak",
-  },
-  {
-    IdPesanan: "16",
-    AtasNama: "Udin",
-    NoMeja: 21,
-    StatusPesanan: "dimasak",
-  },
-  {
-    IdPesanan: "17",
-    AtasNama: "Bejo",
-    NoMeja: 11,
-    StatusPesanan: "selesai",
-  },
-];
-
 const ListPesananTable = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -170,7 +149,7 @@ const ListPesananTable = () => {
       rowKey={record => record.IdPesanan}
       pagination={{
         position: ["bottomCenter"],
-        defaultPageSize: 7,
+        defaultPageSize: 5,
         itemRender: handlingPagination,
       }}
       columns={columns}

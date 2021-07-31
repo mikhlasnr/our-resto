@@ -1,6 +1,7 @@
 import DetailPesananActionTypes from "./detailPesanan.types";
 
 const INITIAL_STATE = {
+  infoPemesan: null,
   dataDetailPesanan: null,
   isFetching: false,
   errorMessage: null,
@@ -27,11 +28,17 @@ const detailPesananReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
+    case DetailPesananActionTypes.SET_INFO_PEMESAN:
+      return {
+        ...state,
+        infoPemesan: action.payload,
+      };
     // *====END FETCH DATA KATEGORI MENU====
     case DetailPesananActionTypes.REMOVE_DATA_DETAIL_PESANAN:
       return {
         ...state,
         dataDetailPesanan: null,
+        infoPemesan: null,
       };
     // *====START HANDLING UPLOAD====
     case DetailPesananActionTypes.TOGGLE_IS_UPLOADING_DETAIL_PESANAN:

@@ -8,7 +8,10 @@ export const selectDataDetailPesanan = createSelector(
   [selectDetailPesanan],
   detailPesanan => detailPesanan.dataDetailPesanan
 );
-
+export const selectInfoPesanan = createSelector(
+  [selectDetailPesanan],
+  detailPesanan => detailPesanan.infoPemesan
+);
 export const selectListPesananIsFetching = createSelector(
   [selectDetailPesanan],
   detailPesanan => detailPesanan.isFetching

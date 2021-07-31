@@ -13,6 +13,7 @@ import {
 import { Modal } from "antd";
 import ListPesananTable from "../list-pesanan-table-components/list-pesanan-table/list-pesanan-table.component";
 import ListPesananDeleteModal from "../list-pesanan-table-components/list-pesanan-delete-modal/list-pesanan-delete-modal.component";
+import ListPesananLihatModal from "../list-pesanan-table-components/list-pesanan-lihat-modal/list-pesanan-lihat-modal.component";
 
 const ListPesananModal = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const ListPesananModal = () => {
       <h1>List Pesanan</h1>
       <ListPesananTable />
       <ListPesananDeleteModal />
+      <ListPesananLihatModal />
     </Modal>
   );
 };

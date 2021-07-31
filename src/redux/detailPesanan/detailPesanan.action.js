@@ -1,7 +1,7 @@
 import DetailPesananActionTypes from "./detailPesanan.types";
 import axios from "axios";
 
-// *====START FETCH DATA KATEGORI MENU====
+// *====START FETCH DATA DETAIL PESANAN====
 export const fetchDataDetailPesanan = IdPesanan => {
   return dispatch => {
     dispatch(fetchDetailPesananStart());
@@ -14,6 +14,7 @@ export const fetchDataDetailPesanan = IdPesanan => {
       });
   };
 };
+
 const fetchDetailPesananStart = () => ({
   type: DetailPesananActionTypes.FETCH_DETAIL_PESANAN_START,
 });
@@ -25,7 +26,13 @@ const fetchDetailPesananFailure = message => ({
   type: DetailPesananActionTypes.FETCH_DETAIL_PESANAN_FAILURE,
   payload: message,
 });
-// *====END FETCH DATA KATEGORI MENU====
+
+export const setInfoPemesan = dataPemesan => ({
+  type: DetailPesananActionTypes.SET_INFO_PEMESAN,
+  payload: dataPemesan,
+});
+
+// *====END FETCH DATA DETAIL PESANAN====
 export const removeDetailPesanan = () => ({
   type: DetailPesananActionTypes.REMOVE_DATA_DETAIL_PESANAN,
 });
