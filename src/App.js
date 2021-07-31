@@ -13,6 +13,7 @@ import SignInPage from "./pages/sign-in/sign-in-page.component";
 import NoMatchPage from "./pages/no-match/no-match-page.component";
 import AdminDashboardPage from "./pages/admin-dashboard-page/admin-dashboard-page.component";
 import DashboardKasir from "./pages/dashboard-kasir/dashboard-kasir-page.component";
+import DashboardKoki from "./pages/dashboard-koki/dashboard-koki.components";
 const App = () => {
   const currentUserRole = useSelector(selectCurrentUserRole);
 
@@ -21,7 +22,7 @@ const App = () => {
       return <AdminDashboardPage />;
     if (currentUserRole === "pelayan") return <DashBoardPelayanPage />;
     if (currentUserRole === "kasir") return <DashboardKasir />;
-    if (currentUserRole === "koki") return <DashboardKasir />;
+    if (currentUserRole === "koki") return <DashboardKoki />;
     return <NoMatchPage />;
   };
 

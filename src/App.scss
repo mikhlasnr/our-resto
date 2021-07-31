@@ -62,6 +62,14 @@ h2 {
       font-size: 24px;
       color: $textColorPrimary;
     }
+    &.text-14 {
+      span {
+        padding: 0 15px 0 0;
+        font-weight: 600;
+        font-size: 14px;
+        color: $textColorPrimary;
+      }
+    }
   }
 }
 // START BUTTON STYLE
@@ -76,6 +84,9 @@ h2 {
   height: 55px;
 }
 .ant-btn {
+  &.custom-default-button {
+    @include default-button();
+  }
   &.table-search-btn {
     border-radius: 4px;
 

@@ -1,0 +1,17 @@
+#dashboard-koki {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("./background.png");
+  background-size: cover;
+  .dashboard-koki-container {
+    width: 80%;
+    margin: 0 auto;
+    .koki-header-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .koki-main-container {
+      padding-top: 124px;
+    }
+  }
+}
