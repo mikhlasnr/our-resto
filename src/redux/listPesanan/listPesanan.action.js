@@ -5,7 +5,19 @@ import axios from "axios";
 export const fetchDataListPesanan = () => {
   return dispatch => {
     dispatch(fetchListPesananStart());
-    axios("/pesanan")
+    axios(`/pesanan`)
+      .then(res => {
+        dispatch(fetchListPesananSuccess(res.data));
+      })
+      .catch(error => {
+        dispatch(fetchListPesananFailure(error.message));
+      });
+  };
+};
+export const fetchDataListPesananPelayan = () => {
+  return dispatch => {
+    dispatch(fetchListPesananStart());
+    axios(`/pesanan?StatusAntar=belum`)
       .then(res => {
         dispatch(fetchListPesananSuccess(res.data));
       })

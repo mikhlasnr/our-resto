@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import "./dashboard-pelayan-page.styles.scss";
 // Handling Redux
 import { useDispatch } from "react-redux";
 import { fetchDataKategoriMenu } from "../../redux/kategoriMenu/kategoriMenu.action";

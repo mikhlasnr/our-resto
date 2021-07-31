@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { selectListPesananModaltHidden } from "../../../../redux/listPesanan/listPesanan.selectors";
 import {
-  fetchDataListPesanan,
+  fetchDataListPesananPelayan,
   toggleListPesananModalHidden,
 } from "../../../../redux/listPesanan/listPesanan.action";
 
@@ -19,7 +19,7 @@ const ListPesananModal = () => {
   const dispatch = useDispatch();
   const isModalVisible = useSelector(selectListPesananModaltHidden);
   useEffect(() => {
-    if (!isModalVisible) dispatch(fetchDataListPesanan());
+    if (!isModalVisible) dispatch(fetchDataListPesananPelayan());
   }, [isModalVisible]);
 
   const handlingModalOnCancel = () => {

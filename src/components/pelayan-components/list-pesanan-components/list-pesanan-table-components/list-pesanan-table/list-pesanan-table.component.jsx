@@ -15,6 +15,8 @@ const ListPesananTable = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const dataListPesanan = useSelector(selectDataListPesanan);
+
+  // START HANDLING SEARCH
   const getColumnSearchProps = (dataIndex, title) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -35,31 +37,20 @@ const ListPesananTable = () => {
         <Space>
           <Button
             type="primary"
-            className="list-pesanan-search-btn"
+            className="table-search-btn"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
-            style={{ width: 90 }}
+            style={{ width: 110, height: 40, borderRadius: "9px" }}
           >
             Search
           </Button>
           <Button
             onClick={() => handleReset(clearFilters)}
             size="small"
-            style={{ width: 90 }}
+            style={{ width: 110, height: 40, borderRadius: "9px" }}
           >
             Reset
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={() => {
-              confirm({ closeDropdown: false });
-              setSearchText(selectedKeys[0]);
-              setSearchedColumn(dataIndex);
-            }}
-          >
-            Filter
           </Button>
         </Space>
       </div>
@@ -98,31 +89,34 @@ const ListPesananTable = () => {
     clearFilters();
     setSearchText("");
   };
-
+  // END HANDLING SEARCH
+  // Handling Pagination
   const handlingPagination = (current, type, originalElement) => {
     if (type === "prev") return <LeftOutlined />;
     if (type === "next") return <RightOutlined />;
     return originalElement;
   };
+  // Handling Status
+  const handlingStatus = text => {
+    if (text === "dimasak")
+      return <span className="status-dimasak">Sedang Disajikan</span>;
 
+    if (text === "selesai")
+      return <span className="status-selesai">Siap Dihidangkan</span>;
+  };
+  // SET INTITAL TABLE COLUMN
   const columns = [
     {
-      title: "Status",
-      dataIndex: "StatusPesanan",
-      key: "StatusPesanan",
-      filters: [
-        {
-          text: "dimasak",
-          value: "dimasak",
-        },
-        {
-          text: "selesai",
-          value: "selesai",
-        },
-      ],
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
-      onFilter: (value, record) => record.StatusPesanan.indexOf(value) === 0,
+      title: "Status Masak",
+      dataIndex: "StatusMasak",
+      key: "StatusMasak",
+      className: "status-masak",
+      render: handlingStatus,
+      sortOrder: "descend",
+      showSorterTooltip: false,
+      sorter: (a, b) => {
+        return a.StatusMasak > b.StatusMasak;
+      },
     },
     {
       title: "Atas Nama",
@@ -139,6 +133,7 @@ const ListPesananTable = () => {
     {
       title: "Action",
       key: "action",
+      className: "list-pesanan-action",
       width: "15%",
       render: (text, record) => <PegawaiTableAction record={record} />,
     },

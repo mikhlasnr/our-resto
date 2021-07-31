@@ -1,9 +1,18 @@
 import React from "react";
 import "./list-pesanan-lihat-modal.styles.scss";
+import axios from "axios";
+
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectListPesananLihatModaltHidden } from "../../../../../redux/listPesanan/listPesanan.selectors";
-import { toggleListPesananLihatModalHidden } from "../../../../../redux/listPesanan/listPesanan.action";
+import {
+  selectListPesananLihatModaltHidden,
+  selectListPesananIsUploading,
+} from "../../../../../redux/listPesanan/listPesanan.selectors";
+import {
+  toggleListPesananLihatModalHidden,
+  fetchDataListPesananPelayan,
+  toggleIsUploadingListPesanan,
+} from "../../../../../redux/listPesanan/listPesanan.action";
 import { removeDetailPesanan } from "../../../../../redux/detailPesanan/detailPesanan.action";
 import {
   selectDataDetailPesanan,
@@ -11,8 +20,7 @@ import {
 } from "../../../../../redux/detailPesanan/detailPesanan.selectors";
 
 // Import Component
-import { Modal, Spin, Skeleton } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
+import { Modal, Spin, Skeleton, Button, message } from "antd";
 
 const ListPesananLihatModal = () => {
   const dispatch = useDispatch();
@@ -42,6 +50,28 @@ const ListPesananLihatModal = () => {
         </div>
       );
     });
+  const handlingDisableBtnAntar = () => {
+    const { StatusMasak } = infoPemesan;
+    if (StatusMasak === "selesai") return false;
+    return true;
+  };
+
+  const handlingClickBtnAntar = () => {
+    const { IdPesanan } = infoPemesan;
+    dispatch(toggleIsUploadingListPesanan());
+    axios
+      .put(`/pesanan/update-status-antar/${IdPesanan}`)
+      .then(response => {
+        dispatch(toggleIsUploadingListPesanan());
+        dispatch(fetchDataListPesananPelayan());
+        dispatch(toggleListPesananLihatModalHidden());
+        message.success("Pembaharuan Status Antar Berhasil!");
+      })
+      .catch(err => {
+        dispatch(toggleIsUploadingListPesanan());
+        message.error("Pembaharuan Status Antar Gagal!");
+      });
+  };
   return (
     <Modal
       className="list-pesanan-lihat"
@@ -57,10 +87,6 @@ const ListPesananLihatModal = () => {
             <h1>Detail Pesanan</h1>
           </div>
           <div className="list-pesanan-lihat-body">
-            {/* <div className="list-pesanan-title dash-diveder-bottom">
-              <p>Nama Pemesan</p>
-              <p>No Meja</p>
-            </div> */}
             <div className="list-pesanan-lihat-item dash-diveder-bottom">
               {infoPemesan ? (
                 <p>{infoPemesan.AtasNama}</p>
@@ -80,6 +106,13 @@ const ListPesananLihatModal = () => {
                 : handlingRenderMenuPesananSkeleton()}
             </div>
           </div>
+          <Button
+            className="btn-action-secondary"
+            disabled={infoPemesan ? handlingDisableBtnAntar() : true}
+            onClick={handlingClickBtnAntar}
+          >
+            Sudah Diantar
+          </Button>
         </div>
       </Spin>
     </Modal>

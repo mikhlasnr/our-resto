@@ -1,11 +1,55 @@
 @import "../../../../../colors";
-
+@mixin btn-action {
+  padding: 15px 55px;
+  min-width: 144px;
+  min-height: 56px;
+  border-radius: 10px;
+}
 .list-pesanan-table-container {
   // Tables Styles
   .ant-table {
     .ant-table-row {
-      .table-pegawai-action {
-        padding-right: 0;
+      .status-masak {
+        .status-dimasak {
+          color: $primaryColor;
+        }
+        .status-selesai {
+          color: $secondaryColor;
+        }
+      }
+      .list-pesanan-action {
+        .ant-btn {
+          &.btn-action-primary {
+            @include btn-action();
+            border: 1px solid $secondaryColor;
+            span {
+              color: $secondaryColor;
+            }
+            &:hover,
+            &:active {
+              background: $secondaryColor;
+              span {
+                color: $textColorSecondary;
+              }
+            }
+          }
+
+          &.btn-action-secondary {
+            @include btn-action();
+            background: $secondaryColor;
+            border: 1px solid $secondaryColor;
+            span {
+              color: $textColorSecondary;
+            }
+            &:hover,
+            &:active {
+              background: $textColorSecondary;
+              span {
+                color: $secondaryColor;
+              }
+            }
+          }
+        }
       }
     }
   }

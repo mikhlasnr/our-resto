@@ -1,0 +1,24 @@
+@import "../../colors";
+
+// Buttion Styles
+#dashboard-pelayan-page {
+  .ant-btn {
+    &.checkout-btn {
+      background: $secondaryColor;
+      border-color: $secondaryColor;
+      border-radius: 140px;
+      min-height: 70px;
+      span {
+        color: $textColorSecondary;
+        font-weight: 600;
+        font-size: 24px;
+      }
+      &:hover,
+      &:focus {
+        background: $secondaryColor;
+        border-color: $secondaryColor;
+        box-shadow: 0px 8px 30px rgba(35, 198, 91, 0.35);
+      }
+    }
+  }
+}
