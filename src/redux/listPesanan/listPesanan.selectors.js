@@ -9,6 +9,11 @@ export const selectDataListPesanan = createSelector(
   listPesanan => listPesanan.dataListPesanan
 );
 
+export const isDataListPesananExist = createSelector(
+  [selectListPesanan],
+  listPesanan => !!listPesanan.dataListPesanan.length
+);
+
 export const selectListPesananIsFetching = createSelector(
   [selectListPesanan],
   listPesanan => listPesanan.isFetching

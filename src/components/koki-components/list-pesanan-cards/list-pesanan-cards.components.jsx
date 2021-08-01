@@ -1,30 +1,25 @@
 import React from "react";
 import "./list-pesanan-cards.styles.scss";
-import { Row, Col, Divider } from "antd";
+
+// Handling Redux
+import { useDispatch, useSelector } from "react-redux";
+import { selectDataListPesanan } from "../../../redux/listPesanan/listPesanan.selectors";
+
+// Import Components
+import { Row, Spin } from "antd";
+import ListPesananCard from "../list-pesanan-card/list-pesanan-card.components";
 const ListPesananCards = () => {
+  const dispatch = useDispatch();
+  const dataListPesanan = useSelector(selectDataListPesanan);
+  const handlingRenderListPesananCard = () => {
+    return dataListPesanan.length
+      ? dataListPesanan.map(item => <ListPesananCard pesanan={item} />)
+      : null;
+  };
   return (
-    <Row gutter={[16, 16]}>
-      <Col span={6} className="koki-list-pesanan-card">
-        <div className="card-container">
-          <header className="card-header">
-            <p>Ahmad Sahrul</p>
-            <p>23</p>
-          </header>
-          <Divider orientation="left" className="text-14">
-            Pilih Menu
-          </Divider>
-          <section className="menu-items">
-            <div className="menu-item">
-              <p>Es Jeruk</p>
-              <p>1</p>
-            </div>
-          </section>
-        </div>
-      </Col>
-      <Col span={6}> </Col>
-      <Col span={6}> </Col>
-      <Col span={6}> </Col>
-    </Row>
+    <Spin spinning={!dataListPesanan.length}>
+      <Row gutter={[35, 35]}>{handlingRenderListPesananCard()}</Row>
+    </Spin>
   );
 };
 

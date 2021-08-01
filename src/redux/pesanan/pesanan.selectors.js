@@ -9,14 +9,6 @@ export const selectPesananItems = createSelector(
   pesanan => pesanan.pesananItems
 );
 
-export const selectPesananItemsForPelayan = createSelector(
-  [selectPesanan],
-  pesanan => {
-    let result;
-    return pesanan.pesananItems;
-  }
-);
-
 export const isPesananItemsExist = createSelector(
   [selectPesanan],
   pesanan => pesanan.pesananItems.length

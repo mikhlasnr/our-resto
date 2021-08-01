@@ -26,6 +26,18 @@ export const fetchDataListPesananPelayan = () => {
       });
   };
 };
+export const fetchDataListPesananKoki = () => {
+  return dispatch => {
+    dispatch(fetchListPesananStart());
+    axios(`/pesanan?StatusMasak=dimasak`)
+      .then(res => {
+        dispatch(fetchListPesananSuccess(res.data));
+      })
+      .catch(error => {
+        dispatch(fetchListPesananFailure(error.message));
+      });
+  };
+};
 const fetchListPesananStart = () => ({
   type: ListPesananActionTypes.FETCH_LIST_PESANAN_START,
 });
@@ -36,6 +48,9 @@ const fetchListPesananSuccess = data => ({
 const fetchListPesananFailure = message => ({
   type: ListPesananActionTypes.FETCH_LIST_PESANAN_FAILURE,
   payload: message,
+});
+export const removeDataListPesanan = () => ({
+  type: ListPesananActionTypes.REMOVE_LIST_PESANAN,
 });
 // *====END FETCH DATA KATEGORI MENU====
 

@@ -1,0 +1,74 @@
+@import "../../../colors";
+@mixin default-item {
+  display: flex;
+  justify-content: space-between;
+}
+.koki-list-pesanan-card {
+  .card-container {
+    background: #ffffff;
+    box-shadow: 0px 0px 45px rgba(169, 169, 169, 0.25);
+    border-radius: 7px;
+    height: 300px;
+    padding: 23px;
+    cursor: pointer;
+    &:hover,
+    &:active {
+      background-color: $secondaryColor;
+      color: #ffffff;
+      .card-header {
+        p {
+          &:first-child {
+            color: #ffffff;
+          }
+          &:last-child {
+            color: #ffffff;
+          }
+        }
+      }
+      .divider-text-white {
+        span {
+          color: #ffffff;
+        }
+      }
+      .menu-items {
+        .menu-item {
+          p {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    p {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+    }
+    .card-header {
+      @include default-item();
+      padding-bottom: 21px;
+      p {
+        &:first-child {
+          color: $secondaryColor;
+        }
+        &:last-child {
+          color: $primaryColor;
+        }
+      }
+    }
+    .menu-items {
+      max-height: 175px;
+      /* Hide scrollbar for IE, Edge and Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      overflow: scroll;
+      margin-top: 1em;
+      .menu-item {
+        @include default-item();
+        padding: 0.5em 0;
+      }
+    }
+  }
+}

@@ -8,12 +8,11 @@ const INITIAL_STATE = {
   listPesananModalHidden: true,
   listPesananDeleteModalHidden: true,
   listPesananLihatModalHidden: true,
-  IdPesanan: null,
 };
 
 const listPesananReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // *====START FETCH DATA KATEGORI MENU====
+    // *====START HANDLING DATA LIST PESANAN====
     case ListPesananActionTypes.FETCH_LIST_PESANAN_START:
       return {
         ...state,
@@ -31,7 +30,12 @@ const listPesananReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
-    // *====END FETCH DATA KATEGORI MENU====
+    case ListPesananActionTypes.REMOVE_LIST_PESANAN:
+      return {
+        ...state,
+        dataListPesanan: [],
+      };
+    // *====END HANDLING DATA LIST PESANAN====
     // *====START HANDLING MODAL====
     case ListPesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN:
       return {
