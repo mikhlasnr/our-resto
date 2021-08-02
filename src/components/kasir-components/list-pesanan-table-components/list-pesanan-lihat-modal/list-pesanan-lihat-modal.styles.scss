@@ -1,0 +1,48 @@
+.list-pesanan-lihat {
+  .list-pesanan-lihat-container {
+    text-align: center;
+    .list-pesanan-lihat-header {
+      h1 {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 36px;
+      }
+    }
+    .list-pesanan-lihat-body {
+      padding-top: 20px;
+      .dash-diveder-bottom {
+        border-bottom: 1px dashed;
+        padding: 1em 0;
+      }
+
+      .list-pesanan-lihat-item,
+      .list-pesanan-title {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .list-pesanan-title {
+        p {
+          font-weight: 600;
+          font-size: 18px;
+        }
+      }
+
+      p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 36px;
+      }
+      .detail-menu-pesanan {
+        h2 {
+          font-weight: 600;
+          font-size: 18px;
+          text-align: center;
+          padding: 0.5em 0;
+        }
+        margin-bottom: 2em;
+      }
+    }
+  }
+}

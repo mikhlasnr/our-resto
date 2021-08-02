@@ -1,18 +1,21 @@
-#dashboard-kasir-list-pesanan {
-  padding: 0 100px;
-  .list-pesanan-header {
-    margin-top: 82px;
-    margin-bottom: 70px;
-    display: flex;
-    align-items: center;
-
-    .title {
-      flex-grow: 1;
-      text-align: center;
-    }
-  }
-  .list-pesanan-container {
-    width: 65%;
+@import "../../colors";
+#dashboard-kasir {
+  background-color: $primaryColor;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("./backgorund-kasir.png");
+  background-size: cover;
+  .dashboard-kasir-container {
+    width: 80%;
     margin: 0 auto;
+    .kasir-header-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .kasir-main-container {
+      background-color: $textColorSecondary;
+      padding: 2rem;
+      border-radius: 20px;
+    }
   }
 }

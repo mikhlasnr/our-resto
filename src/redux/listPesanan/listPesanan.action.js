@@ -38,6 +38,18 @@ export const fetchDataListPesananKoki = () => {
       });
   };
 };
+export const fetchDataListPesananKasir = () => {
+  return dispatch => {
+    dispatch(fetchListPesananStart());
+    axios(`/pesanan?getPesananByCurrentDay=true`)
+      .then(res => {
+        dispatch(fetchListPesananSuccess(res.data));
+      })
+      .catch(error => {
+        dispatch(fetchListPesananFailure(error.message));
+      });
+  };
+};
 const fetchListPesananStart = () => ({
   type: ListPesananActionTypes.FETCH_LIST_PESANAN_START,
 });
