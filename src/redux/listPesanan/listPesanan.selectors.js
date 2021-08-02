@@ -1,7 +1,7 @@
 //! this file for select data from reducer
 //! and called in mapTopProps
 import { createSelector } from "reselect";
-// *====START SELECTOR FETCH DATA KATEGORI MENU====
+// *====START SELECTOR FETCH DATA LIST PESANAN====
 const selectListPesanan = state => state.listPesanan;
 
 export const selectDataListPesanan = createSelector(
@@ -23,7 +23,14 @@ export const selectListPesananErrorMessage = createSelector(
   [selectListPesanan],
   listPesanan => listPesanan.errorMessage
 );
-// *====END SELECTOR FETCH DATA KATEGORI MENU====
+// *====END SELECTOR DATA LIST PESANAN====
+// *====START SELECTOR  DATA PESANAN====
+// for handling update
+export const selectDataPesanan = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.dataPesanan
+);
+// *====END SELECTOR DATA PESANAN====
 // *====START SELECTOR HANDLING MODAL====
 export const selectListPesananModaltHidden = createSelector(
   [selectListPesanan],
@@ -36,6 +43,10 @@ export const selectListPesananDeleteModaltHidden = createSelector(
 export const selectListPesananLihatModaltHidden = createSelector(
   [selectListPesanan],
   listPesanan => listPesanan.listPesananLihatModalHidden
+);
+export const selectModalUpdateStatusMasakHidden = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.modalUpdateStatusMasakHidden
 );
 // *====END SELECTOR HANDLING MODAL====
 

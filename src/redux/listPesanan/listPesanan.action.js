@@ -1,7 +1,7 @@
 import ListPesananActionTypes from "./listPesanan.types";
 import axios from "axios";
 
-// *====START FETCH DATA KATEGORI MENU====
+// *====START FETCH DATA LIST PESANAN====
 export const fetchDataListPesanan = () => {
   return dispatch => {
     dispatch(fetchListPesananStart());
@@ -52,8 +52,17 @@ const fetchListPesananFailure = message => ({
 export const removeDataListPesanan = () => ({
   type: ListPesananActionTypes.REMOVE_LIST_PESANAN,
 });
-// *====END FETCH DATA KATEGORI MENU====
-
+// *====END FETCH DATA DATA LIST PESANAN====
+// *====START FETCH DATA  PESANAN====
+// for handling update
+export const setDataPesanan = data => ({
+  type: ListPesananActionTypes.SET_DATA_PESANAN,
+  payload: data,
+});
+export const removeDataPesanan = () => ({
+  type: ListPesananActionTypes.REMOVE_DATA_PESANAN,
+});
+// *====END FETCH DATA  PESANAN====
 // *====START HANDLING SHOW MODAL====
 export const toggleListPesananModalHidden = () => ({
   type: ListPesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN,
@@ -63,6 +72,9 @@ export const toggleListPesananDeleteModalHidden = () => ({
 });
 export const toggleListPesananLihatModalHidden = () => ({
   type: ListPesananActionTypes.TOGGLE_LIST_PESANAN_LIHAT_MODAL_HIDDEN,
+});
+export const toggleModalUpdateStatusMasakHidden = () => ({
+  type: ListPesananActionTypes.TOGGLE_MODAL_UPDATE_STATUS_MASAK_HIDDEN,
 });
 // *====END HANDLING SHOW MODAL====
 

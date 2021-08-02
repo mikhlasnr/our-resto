@@ -2,12 +2,14 @@ import ListPesananActionTypes from "./listPesanan.types";
 
 const INITIAL_STATE = {
   dataListPesanan: [],
+  dataPesanan: null,
   isFetching: false,
   errorMessage: null,
   isUploading: false,
   listPesananModalHidden: true,
   listPesananDeleteModalHidden: true,
   listPesananLihatModalHidden: true,
+  modalUpdateStatusMasakHidden: true,
 };
 
 const listPesananReducer = (state = INITIAL_STATE, action) => {
@@ -36,7 +38,22 @@ const listPesananReducer = (state = INITIAL_STATE, action) => {
         dataListPesanan: [],
       };
     // *====END HANDLING DATA LIST PESANAN====
+    // *====START HANDLING DATA PESANAN====
+    // for handling update
+    case ListPesananActionTypes.SET_DATA_PESANAN:
+      return {
+        ...state,
+        dataPesanan: action.payload,
+      };
+    case ListPesananActionTypes.REMOVE_DATA_PESANAN:
+      return {
+        ...state,
+        dataPesanan: null,
+      };
+    // *====END HANDLING DATA PESANAN====
+
     // *====START HANDLING MODAL====
+    // Dashboard Pelayan
     case ListPesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN:
       return {
         ...state,
@@ -51,6 +68,13 @@ const listPesananReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         listPesananLihatModalHidden: !state.listPesananLihatModalHidden,
+      };
+
+    // Dashboard Koki
+    case ListPesananActionTypes.TOGGLE_MODAL_UPDATE_STATUS_MASAK_HIDDEN:
+      return {
+        ...state,
+        modalUpdateStatusMasakHidden: !state.modalUpdateStatusMasakHidden,
       };
     // *====END HANDLING MODAL====
     // *====START HANDLING UTILS====

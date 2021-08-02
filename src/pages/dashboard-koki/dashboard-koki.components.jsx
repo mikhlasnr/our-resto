@@ -2,15 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import "./dashboard-koki.styles.scss";
 // Handling Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   fetchDataListPesananKoki,
   removeDataListPesanan,
 } from "../../redux/listPesanan/listPesanan.action";
-import { selectDataListPesanan } from "../../redux/listPesanan/listPesanan.selectors";
 // Import Components
 import KokiProfile from "../../components/koki-components/koki-profile/koki-profile.component";
 import ListPesananCards from "../../components/koki-components/list-pesanan-cards/list-pesanan-cards.components";
+import KokiUpdateModal from "../../components/koki-components/koki-update-modal/koki-update-modal.component";
 const DashboardKoki = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,6 +30,7 @@ const DashboardKoki = () => {
           <ListPesananCards />
         </main>
       </div>
+      <KokiUpdateModal />
     </div>
   );
 };

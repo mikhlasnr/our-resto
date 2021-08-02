@@ -72,7 +72,7 @@ const KategoriMenuDeleteModal = () => {
 
   return (
     <Modal
-      className="delete-modal"
+      className="confirm-modal"
       visible={isModalVisible}
       onCancel={handlingModalOnCancel}
       footer={null}
@@ -80,7 +80,7 @@ const KategoriMenuDeleteModal = () => {
       centered
     >
       <Spin spinning={isUploading}>
-        <div className="delete-modal-container">
+        <div className="confirm-modal-container">
           <WarningIcon />
           <h2>Apakah kamu yakin menghapus kategori?</h2>
           <Space size="middle">

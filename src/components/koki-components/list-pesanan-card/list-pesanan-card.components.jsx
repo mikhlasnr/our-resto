@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 import "./list-pesanan-card.styles.scss";
 import axios from "axios";
+// Handling Redux
+import { useDispatch } from "react-redux";
+import {
+  toggleModalUpdateStatusMasakHidden,
+  setDataPesanan,
+} from "../../../redux/listPesanan/listPesanan.action";
 
 // Import Components
 import { Col, Divider, Skeleton } from "antd";
 
 const ListPesananCard = ({ pesanan }) => {
+  const dispatch = useDispatch();
+
   const [detailPesanan, setdetailPesanan] = useState(null);
-  const [isFetching, setisFetching] = useState(false);
   const { IdPesanan, AtasNama, NoMeja } = pesanan;
 
   useEffect(() => {
-    setisFetching(true);
     axios(`detail-pesanan/${IdPesanan}`)
       .then(res => {
         setdetailPesanan(res.data);
-        setisFetching(false);
       })
       .catch(error => {
         console.error(error);
-        setisFetching(false);
       });
     return () => {
       setdetailPesanan(null);
@@ -45,21 +49,24 @@ const ListPesananCard = ({ pesanan }) => {
   };
 
   const handlingCLickCard = e => {
-    e.preventDefault();
-    console.log(IdPesanan);
+    dispatch(setDataPesanan(pesanan));
+    dispatch(toggleModalUpdateStatusMasakHidden());
   };
 
   return (
     <Col span={6} className="koki-list-pesanan-card">
       <div className="card-container" onClick={handlingCLickCard}>
-        <header className="card-header">
+        <header className="card-header px-23">
           <p>{AtasNama}</p>
           <p>{NoMeja}</p>
         </header>
-        <Divider orientation="left" className="divider-text-white text-14">
+        <Divider
+          orientation="left"
+          className="divider-text-white text-14 px-23"
+        >
           Pilih Menu
         </Divider>
-        <section className="menu-items">
+        <section className="menu-items px-23">
           {handlingRenderDetailPesanan()}
         </section>
       </div>

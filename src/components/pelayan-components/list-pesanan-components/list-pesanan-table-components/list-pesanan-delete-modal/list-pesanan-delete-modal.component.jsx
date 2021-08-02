@@ -86,7 +86,7 @@ const ListPesananDeleteModal = () => {
   };
   return (
     <Modal
-      className="delete-modal"
+      className="confirm-modal"
       visible={!isModalVisible}
       onCancel={handlingModalOnCancel}
       footer={null}
@@ -98,7 +98,7 @@ const ListPesananDeleteModal = () => {
           isUploading || detailIsFetching || handlingDataDetailPesananNull()
         }
       >
-        <div className="delete-modal-container">
+        <div className="confirm-modal-container">
           <WarningIcon />
           <h2>Apakah kamu yakin menghapus pesanan?</h2>
           <Space size="middle">

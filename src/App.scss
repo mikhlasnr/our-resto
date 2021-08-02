@@ -329,8 +329,8 @@ h2 {
 }
 // END Modal Styles
 
-.delete-modal {
-  .delete-modal-container {
+.confirm-modal {
+  .confirm-modal-container {
     text-align: center;
     padding: 2rem;
     h2 {
@@ -355,6 +355,40 @@ h2 {
         &:focus {
           background: $primaryColor;
           box-shadow: 0px 8px 30px rgba(255, 83, 72, 0.35);
+          span {
+            color: $textColorSecondary;
+          }
+        }
+      }
+
+      &.btn-action-update {
+        background: $secondaryColor;
+        border-color: $secondaryColor;
+
+        span {
+          color: $textColorSecondary;
+        }
+
+        &:hover,
+        &:focus {
+          background-color: #fff;
+          border-color: $secondaryColor;
+
+          span {
+            color: $secondaryColor;
+          }
+        }
+      }
+      &.btn-action-update-cancel {
+        border-color: $secondaryColor;
+
+        span {
+          color: $secondaryColor;
+        }
+
+        &:hover,
+        &:focus {
+          background: $secondaryColor;
           span {
             color: $textColorSecondary;
           }
