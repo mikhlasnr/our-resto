@@ -14,7 +14,7 @@ import {
 // Import Components
 import { Button, Space } from "antd";
 
-const PegawaiTableAction = ({ record }) => {
+const ListPesananTableAction = ({ record }) => {
   const dispatch = useDispatch();
   const handlingActionLihat = () => {
     dispatch(setInfoPemesan(record));
@@ -25,16 +25,19 @@ const PegawaiTableAction = ({ record }) => {
     dispatch(fetchDataDetailPesanan(record.IdPesanan));
     dispatch(toggleListPesananDeleteModalHidden());
   };
-  return (
-    <Space>
-      <Button className="btn-action-primary" onClick={handlingActionLihat}>
-        Lihat
-      </Button>
-      <Button className="btn-action-secondary" onClick={handlingActionHapus}>
-        Hapus
-      </Button>
-    </Space>
-  );
+
+  const handlingRenderBtnAction = () => {
+    if (record.StatusBayar === "belum")
+      return <Button className="btn-action-secondary">Bayar</Button>;
+    if (record.StatusBayar === "lunas")
+      return (
+        <Button className="btn-action-primary" onClick={handlingActionLihat}>
+          Lihat
+        </Button>
+      );
+  };
+
+  return handlingRenderBtnAction();
 };
 
-export default PegawaiTableAction;
+export default ListPesananTableAction;

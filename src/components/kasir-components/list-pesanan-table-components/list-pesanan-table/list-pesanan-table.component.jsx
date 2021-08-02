@@ -9,7 +9,7 @@ import { selectDataListPesanan } from "../../../../redux/listPesanan/listPesanan
 import { Table, Input, Button, Space } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
-import PegawaiTableAction from "../list-pesanan-table-action/list-pesanan-table-action.component";
+import ListPesananTableAction from "../list-pesanan-table-action/list-pesanan-table-action.component";
 
 const ListPesananTable = () => {
   const [searchText, setSearchText] = useState("");
@@ -135,7 +135,7 @@ const ListPesananTable = () => {
       key: "action",
       className: "list-pesanan-action",
       width: "15%",
-      render: (text, record) => <PegawaiTableAction record={record} />,
+      render: (text, record) => <ListPesananTableAction record={record} />,
     },
   ];
   return (

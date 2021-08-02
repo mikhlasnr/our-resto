@@ -42,7 +42,7 @@ const App = () => {
             currentUserRole ? <Redirect to="/dashboard" /> : <SignInPage />
           }
         />
-
+        <Route exact path="/print-invoice" component={NoMatchPage} />
         <Route path="*">
           <NoMatchPage />
         </Route>
