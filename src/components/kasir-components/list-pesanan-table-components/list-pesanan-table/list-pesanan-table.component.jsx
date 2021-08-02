@@ -138,6 +138,7 @@ const ListPesananTable = () => {
       render: (text, record) => <ListPesananTableAction record={record} />,
     },
   ];
+
   return (
     <Table
       className="list-pesanan-table-container"

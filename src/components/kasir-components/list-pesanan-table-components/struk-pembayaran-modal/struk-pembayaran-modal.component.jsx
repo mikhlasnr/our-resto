@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "./list-pesanan-lihat-modal.styles.scss";
+import "./struk-pembayaran-modal.styles.scss";
 import axios from "axios";
 
 // Handling Redux
@@ -11,6 +11,7 @@ import {
   selectDataDetailPesanan,
   selectInfoPesanan,
 } from "../../../../redux/detailPesanan/detailPesanan.selectors";
+import { selectCurrentUser } from "../../../../redux/user/user.selectors";
 
 // Handling print
 import { useReactToPrint } from "react-to-print";
@@ -19,7 +20,7 @@ import { ComponentToPrint } from "../list-pesanan-print/list-pesanan-print.compo
 // Import Component
 import { Modal, Spin, Skeleton, Button, message } from "antd";
 
-const ListPesananLihatModal = () => {
+const StrukPembayaranModal = () => {
   // START HANDLING PRINT
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -33,6 +34,7 @@ const ListPesananLihatModal = () => {
   const isModalVisible = useSelector(selectListPesananLihatModaltHidden);
   const dataDetailPesanan = useSelector(selectDataDetailPesanan);
   const infoPemesan = useSelector(selectInfoPesanan);
+  const currentUser = useSelector(selectCurrentUser);
 
   const handlingModalOnCancel = () => {
     dispatch(removeDetailPesanan());
@@ -42,7 +44,7 @@ const ListPesananLihatModal = () => {
   const handlingRenderMenuPesanan = () =>
     dataDetailPesanan.map(item => {
       return (
-        <div className="list-pesanan-title " key={item.IdMenu}>
+        <div className="list-pesanan-title" key={item.IdMenu}>
           <p>{item.NamaMenu}</p>
           <p>{item.Quantity}</p>
         </div>
@@ -56,16 +58,17 @@ const ListPesananLihatModal = () => {
         </div>
       );
     });
-  const handlingDisableBtnAntar = () => {
-    const { StatusMasak } = infoPemesan;
-    if (StatusMasak === "selesai") return false;
-    return true;
+  // Handling display date
+  const handlingFormatDate = () => {
+    if (infoPemesan) {
+      return infoPemesan.TanggalDibuat.replace("T", " ").split(".")[0];
+    }
+    return "";
   };
-
   return (
     <>
       <Modal
-        className="list-pesanan-lihat"
+        className="struk-pembayaran"
         visible={!isModalVisible}
         onCancel={handlingModalOnCancel}
         footer={null}
@@ -73,19 +76,27 @@ const ListPesananLihatModal = () => {
         centered
       >
         <Spin spinning={false}>
-          <div className="list-pesanan-lihat-container">
-            <div className="list-pesanan-lihat-header">
-              <h1>Detail Pesanan</h1>
+          <div className="struk-pembayaran-container">
+            <div className="struk-pembayaran-header">
+              <h1>Struk Pembayaran</h1>
             </div>
-            <div className="list-pesanan-lihat-body">
-              <div className="list-pesanan-lihat-item dash-diveder-bottom">
+            <div className="struk-pembayaran-body">
+              <div className="struk-info-kasir dash-diveder-bottom">
                 {infoPemesan ? (
-                  <p>{infoPemesan.AtasNama}</p>
+                  <p>Nama Kasir</p>
                 ) : (
                   <Skeleton.Button active={true} />
                 )}
                 {infoPemesan ? (
-                  <p>Meja {infoPemesan.NoMeja}</p>
+                  <p>{currentUser.Nama}</p>
+                ) : (
+                  <Skeleton.Button active={true} />
+                )}
+              </div>
+              <div className="struk-info-kasir dash-diveder-bottom">
+                {infoPemesan ? <p></p> : <Skeleton.Button active={true} />}
+                {infoPemesan ? (
+                  <p>{handlingFormatDate()}</p>
                 ) : (
                   <Skeleton.Button active={true} />
                 )}
@@ -97,19 +108,19 @@ const ListPesananLihatModal = () => {
                   : handlingRenderMenuPesananSkeleton()}
               </div>
             </div>
-            <Button
-              className="btn-action-secondary"
-              disabled={false}
-              onClick={handlePrint}
-            >
+            <Button className="btn-action-secondary" onClick={handlePrint}>
               Cetak
             </Button>
           </div>
         </Spin>
       </Modal>
-      <ComponentToPrint ref={componentRef} />
+      <ComponentToPrint
+        ref={componentRef}
+        infoPemesan={infoPemesan}
+        dataDetailPesanan={dataDetailPesanan}
+      />
     </>
   );
 };
 
-export default ListPesananLihatModal;
+export default StrukPembayaranModal;

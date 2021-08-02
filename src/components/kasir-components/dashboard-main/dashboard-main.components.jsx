@@ -10,7 +10,7 @@ import {
 // Import Components
 import KasirProfile from "../kasir-profile/kasir-profile.component";
 import ListPesananTable from "../list-pesanan-table-components/list-pesanan-table/list-pesanan-table.component";
-import ListPesananLihatModal from "../list-pesanan-table-components/list-pesanan-lihat-modal/list-pesanan-lihat-modal.component";
+import StrukPembayaranModal from "../list-pesanan-table-components/struk-pembayaran-modal/struk-pembayaran-modal.component";
 
 const DashboardMain = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const DashboardMain = () => {
           <ListPesananTable />
         </main>
       </div>
-      <ListPesananLihatModal />
+      <StrukPembayaranModal />
     </div>
   );
 };

@@ -1,21 +1,21 @@
-.list-pesanan-lihat {
-  .list-pesanan-lihat-container {
+.struk-pembayaran {
+  .struk-pembayaran-container {
     text-align: center;
-    .list-pesanan-lihat-header {
+    .struk-pembayaran-header {
       h1 {
         font-weight: 600;
         font-size: 24px;
         line-height: 36px;
       }
     }
-    .list-pesanan-lihat-body {
+    .struk-pembayaran-body {
       padding-top: 20px;
       .dash-diveder-bottom {
         border-bottom: 1px dashed;
         padding: 1em 0;
       }
 
-      .list-pesanan-lihat-item,
+      .struk-info-kasir,
       .list-pesanan-title {
         display: flex;
         justify-content: space-between;
