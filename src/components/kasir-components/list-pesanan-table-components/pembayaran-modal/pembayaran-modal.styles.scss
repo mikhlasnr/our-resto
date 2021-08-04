@@ -1,0 +1,91 @@
+@import "../../../../colors";
+.pembayaran-modal {
+  .pembayaran-container {
+    .pembayaran-header {
+      text-align: center;
+      h1 {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 36px;
+      }
+    }
+    .pembayaran-body {
+      padding-top: 2rem;
+      p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 36px;
+      }
+      .pembayaran-item {
+        padding-bottom: 1.5rem;
+        &:last-child {
+          padding-bottom: 12px;
+          border-bottom: 2px dashed;
+        }
+        .title {
+          padding-bottom: 1em;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 36px;
+        }
+        .total-harga-number {
+          text-align: center;
+          p {
+            font-weight: 600;
+            font-size: 40px;
+          }
+        }
+
+        .pilih-metode-container {
+          text-align: center;
+        }
+        .input-nominal-container {
+          .input {
+            border-radius: 9px;
+            height: 55px;
+            &:hover,
+            &:focus,
+            &:active {
+              border-color: $secondaryColor;
+            }
+
+            &.text-center {
+              text-align: center;
+              font-style: normal;
+              font-weight: 600;
+              font-size: 26px;
+            }
+          }
+          .ant-input-number {
+            width: 100%;
+            border-radius: 9px;
+            &.text-center {
+              .ant-input-number-input {
+                text-align: center;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 26px;
+              }
+            }
+            &:hover,
+            &:focus,
+            &:active {
+              border-color: $secondaryColor;
+            }
+            .ant-input-number-handler-wrap {
+              display: none;
+            }
+            .ant-input-number-input {
+              height: 55px;
+            }
+          }
+        }
+      }
+    }
+    .pembayaran-footer {
+      padding-top: 2rem;
+    }
+  }
+}

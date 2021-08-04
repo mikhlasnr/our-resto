@@ -32,6 +32,7 @@ export const selectDataPesanan = createSelector(
 );
 // *====END SELECTOR DATA PESANAN====
 // *====START SELECTOR HANDLING MODAL====
+// Handling Dashboard Pelayan Modal
 export const selectListPesananModaltHidden = createSelector(
   [selectListPesanan],
   listPesanan => listPesanan.listPesananModalHidden
@@ -44,9 +45,23 @@ export const selectListPesananLihatModaltHidden = createSelector(
   [selectListPesanan],
   listPesanan => listPesanan.listPesananLihatModalHidden
 );
+// Handling Dashboard Koki Modal
 export const selectModalUpdateStatusMasakHidden = createSelector(
   [selectListPesanan],
   listPesanan => listPesanan.modalUpdateStatusMasakHidden
+);
+// Handling Dashboard Kasir Modal
+export const selectDetailPesananHidden = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.modalDetailPesananHidden
+);
+export const selectModalBayarHidden = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.modalBayarHidden
+);
+export const selectModalStrukrHidden = createSelector(
+  [selectListPesanan],
+  listPesanan => listPesanan.modalStrukHidden
 );
 // *====END SELECTOR HANDLING MODAL====
 

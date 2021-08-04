@@ -10,6 +10,9 @@ const INITIAL_STATE = {
   listPesananDeleteModalHidden: true,
   listPesananLihatModalHidden: true,
   modalUpdateStatusMasakHidden: true,
+  modalBayarHidden: true,
+  modalDetailPesananHidden: true,
+  modalStrukHidden: true,
 };
 
 const listPesananReducer = (state = INITIAL_STATE, action) => {
@@ -75,6 +78,22 @@ const listPesananReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         modalUpdateStatusMasakHidden: !state.modalUpdateStatusMasakHidden,
+      };
+    // Dashboard Kasir
+    case ListPesananActionTypes.TOGGLE_MODAL_DETAIL_PESANAN_HIDDEN:
+      return {
+        ...state,
+        modalDetailPesananHidden: !state.modalDetailPesananHidden,
+      };
+    case ListPesananActionTypes.TOGGLE_MODAL_BAYAR_HIDDEN:
+      return {
+        ...state,
+        modalBayarHidden: !state.modalBayarHidden,
+      };
+    case ListPesananActionTypes.TOGGLE_MODAL_STRUK_HIDDEN:
+      return {
+        ...state,
+        modalStrukHidden: !state.modalStrukHidden,
       };
     // *====END HANDLING MODAL====
     // *====START HANDLING UTILS====

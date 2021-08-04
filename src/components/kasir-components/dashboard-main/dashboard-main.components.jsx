@@ -11,7 +11,8 @@ import {
 import KasirProfile from "../kasir-profile/kasir-profile.component";
 import ListPesananTable from "../list-pesanan-table-components/list-pesanan-table/list-pesanan-table.component";
 import StrukPembayaranModal from "../list-pesanan-table-components/struk-pembayaran-modal/struk-pembayaran-modal.component";
-
+import DetailPesananModal from "../list-pesanan-table-components/detail-pesanan-modal/detail-pesanan-modal.component";
+import PembayaranModal from "../list-pesanan-table-components/pembayaran-modal/pembayaran-modal.component";
 const DashboardMain = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,6 +32,8 @@ const DashboardMain = () => {
         </main>
       </div>
       <StrukPembayaranModal />
+      <DetailPesananModal />
+      <PembayaranModal />
     </div>
   );
 };

@@ -3,8 +3,8 @@ import React from "react";
 // Handling Redux
 import { useDispatch } from "react-redux";
 import {
-  toggleListPesananDeleteModalHidden,
-  toggleListPesananLihatModalHidden,
+  toggleModalDetailPesananHidden,
+  toggleModalStrukHidden,
 } from "../../../../redux/listPesanan/listPesanan.action";
 import {
   fetchDataDetailPesanan,
@@ -12,23 +12,28 @@ import {
 } from "../../../../redux/detailPesanan/detailPesanan.action";
 
 // Import Components
-import { Button, Space } from "antd";
+import { Button } from "antd";
 
 const ListPesananTableAction = ({ record }) => {
   const dispatch = useDispatch();
   const handlingActionLihat = () => {
     dispatch(setInfoPemesan(record));
     dispatch(fetchDataDetailPesanan(record.IdPesanan));
-    dispatch(toggleListPesananLihatModalHidden());
+    dispatch(toggleModalStrukHidden());
   };
-  const handlingActionHapus = () => {
+  const handlingActionBayar = () => {
+    dispatch(setInfoPemesan(record));
     dispatch(fetchDataDetailPesanan(record.IdPesanan));
-    dispatch(toggleListPesananDeleteModalHidden());
+    dispatch(toggleModalDetailPesananHidden());
   };
 
   const handlingRenderBtnAction = () => {
     if (record.StatusBayar === "belum")
-      return <Button className="btn-action-secondary">Bayar</Button>;
+      return (
+        <Button className="btn-action-secondary" onClick={handlingActionBayar}>
+          Bayar
+        </Button>
+      );
     if (record.StatusBayar === "lunas")
       return (
         <Button className="btn-action-primary" onClick={handlingActionLihat}>

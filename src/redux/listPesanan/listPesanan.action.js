@@ -76,6 +76,7 @@ export const removeDataPesanan = () => ({
 });
 // *====END FETCH DATA  PESANAN====
 // *====START HANDLING SHOW MODAL====
+// Handling Dashboard Pelayan Modal
 export const toggleListPesananModalHidden = () => ({
   type: ListPesananActionTypes.TOGGLE_LIST_PESANAN_MODAL_HIDDEN,
 });
@@ -85,8 +86,19 @@ export const toggleListPesananDeleteModalHidden = () => ({
 export const toggleListPesananLihatModalHidden = () => ({
   type: ListPesananActionTypes.TOGGLE_LIST_PESANAN_LIHAT_MODAL_HIDDEN,
 });
+// Handling Dashboard Koki Modal
 export const toggleModalUpdateStatusMasakHidden = () => ({
   type: ListPesananActionTypes.TOGGLE_MODAL_UPDATE_STATUS_MASAK_HIDDEN,
+});
+// Handling Dashboard Kasir Modal
+export const toggleModalDetailPesananHidden = () => ({
+  type: ListPesananActionTypes.TOGGLE_MODAL_DETAIL_PESANAN_HIDDEN,
+});
+export const toggleModalBayarHidden = () => ({
+  type: ListPesananActionTypes.TOGGLE_MODAL_BAYAR_HIDDEN,
+});
+export const toggleModalStrukHidden = () => ({
+  type: ListPesananActionTypes.TOGGLE_MODAL_STRUK_HIDDEN,
 });
 // *====END HANDLING SHOW MODAL====
 
