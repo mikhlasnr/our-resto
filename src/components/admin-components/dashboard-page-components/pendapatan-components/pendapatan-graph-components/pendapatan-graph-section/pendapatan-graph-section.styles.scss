@@ -1,0 +1,13 @@
+.pendapatan-graph-section {
+  background: #ffffff;
+  box-shadow: 0px 4px 26px rgba(141, 141, 141, 0.1);
+  border-radius: 20px;
+  .pendapatan-graph-section-container {
+    padding: 2.5rem;
+    .pendapatan-graph-header {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

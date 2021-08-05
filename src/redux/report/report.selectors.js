@@ -18,3 +18,8 @@ export const selectReportErrorMessage = createSelector(
   [selectReport],
   report => report.errorMessage
 );
+export const selectDataReportGraph = createSelector(
+  [selectDataReport],
+  dataReport =>
+    dataReport ? dataReport.dataChart : { namBulan: "", pendapatan: 0 }
+);
