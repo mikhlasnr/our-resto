@@ -9,7 +9,7 @@ import { useRouteMatch } from "react-router-dom";
 // Import Component
 import MenuPage from "../menu-page-components/menu-page/menu-page.component";
 import PegawaiPage from "../pegawai-page-components/pegawai-page/pegawai-page.component";
-
+import DashboardPage from "../dashboard-page-components/dashboard-page/dashboard-page.components";
 const DashboardMain = () => {
   let match = useRouteMatch();
 
@@ -19,11 +19,7 @@ const DashboardMain = () => {
   return (
     <>
       {isPemilik ? (
-        <Route
-          exact
-          path={`${match.path}`}
-          render={() => <h1>Ini Dashboard</h1>}
-        />
+        <Route exact path={`${match.path}`} component={DashboardPage} />
       ) : null}
 
       <Route
