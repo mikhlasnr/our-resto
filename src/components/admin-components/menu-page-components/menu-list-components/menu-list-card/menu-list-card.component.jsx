@@ -2,19 +2,20 @@ import React from "react";
 import "./menu-list-card.styles.scss";
 
 // Hanlding Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDataMenuById } from "../../../../../redux/menuById/menuById.action";
 import {
   toggleShowModalDeleteMenu,
   toggleShowModalUpdateMenu,
 } from "../../../../../redux/menu/menu.action";
-
+import { selectCurrentUserRole } from "../../../../../redux/user/user.selectors";
 // Import Components
 import { Row, Col, Button, Image, Space } from "antd";
 
 const MenuListCard = ({ menu }) => {
   const { NamaMenu, Harga, NamaKategori, Foto, IdMenu } = menu;
   const dispatch = useDispatch();
+  const currentRole = useSelector(selectCurrentUserRole);
   const handlingClickEdit = () => {
     dispatch(fetchDataMenuById(IdMenu));
     dispatch(toggleShowModalUpdateMenu());
@@ -41,14 +42,19 @@ const MenuListCard = ({ menu }) => {
         <span>{`Rp. ${Harga}`}</span>
       </Col>
       <Col className="card-action">
-        <Space>
-          <Button className="btn-action-primary" onClick={handlingClickEdit}>
-            Edit
-          </Button>
-          <Button className="btn-action-secondary" onClick={handlingClickHapus}>
-            Hapus
-          </Button>
-        </Space>
+        {currentRole === "admin" ? (
+          <Space>
+            <Button className="btn-action-primary" onClick={handlingClickEdit}>
+              Edit
+            </Button>
+            <Button
+              className="btn-action-secondary"
+              onClick={handlingClickHapus}
+            >
+              Hapus
+            </Button>
+          </Space>
+        ) : null}
       </Col>
     </Row>
   );

@@ -5,6 +5,7 @@ import "./pegawai-update-form-profile.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setInputProfile } from "../../../../../redux/pegawai/pegawai.action";
 import { selectUserData } from "../../../../../redux/userById/userById.selectors";
+import { selectCurrentUserRole } from "../../../../../redux/user/user.selectors";
 
 // Import Components
 import { Upload, message } from "antd";
@@ -14,7 +15,7 @@ const { Dragger } = Upload;
 
 const PegawaiUpdateFormProfile = () => {
   const [imageUrl, setImageUrl] = useState(null);
-
+  const currentRole = useSelector(selectCurrentUserRole);
   // Start Handling Redux
   const dispatch = useDispatch();
   const userByIdData = useSelector(selectUserData);
@@ -61,6 +62,7 @@ const PegawaiUpdateFormProfile = () => {
 
   return (
     <Dragger
+      disabled={currentRole === "admin" ? false : true}
       name="avatar"
       listType="picture-card"
       className="avatar-uploader pegawai-add-form-profile"

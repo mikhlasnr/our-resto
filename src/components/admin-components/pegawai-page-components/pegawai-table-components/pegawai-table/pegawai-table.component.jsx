@@ -7,7 +7,7 @@ import {
   selectDataPegawai,
   selectPegawaiIsFetching,
 } from "../../../../../redux/pegawai/pegawai.selectors";
-
+import { selectCurrentUserRole } from "../../../../../redux/user/user.selectors";
 // import component
 import { Table } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
@@ -20,6 +20,7 @@ const PegawaiTable = () => {
 
   const usersIsFetching = useSelector(selectPegawaiIsFetching);
   const usersData = useSelector(selectDataPegawai);
+  const currentRole = useSelector(selectCurrentUserRole);
 
   // !handling pagination
   const handlingPagination = (current, type, originalElement) => {
@@ -42,7 +43,7 @@ const PegawaiTable = () => {
           </span>
           <span>Pegawai</span>
         </p>
-        <PegawaiAddBtn />
+        {currentRole === "admin" ? <PegawaiAddBtn /> : null}
       </div>
       <div className="admin-pegawai-table-container">
         <Table

@@ -23,16 +23,17 @@ import {
 // USEBYID REDUCER
 import { selectUserData } from "../../../../../redux/userById/userById.selectors";
 
-// USER REDUCER
+// PEGAWAI REDUCER
 import { fetchDataPegawai } from "../../../../../redux/pegawai/pegawai.action";
 
+import { selectCurrentUserRole } from "../../../../../redux/user/user.selectors";
 // Import Component
 import { Form, Input, Select, Button, message } from "antd";
 
 const PegawaiUpdateFormInput = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-
+  const currentRole = useSelector(selectCurrentUserRole);
   const userById = useSelector(selectUserData);
   const inputProfile = useSelector(selectInputProfile);
 
@@ -189,25 +190,39 @@ const PegawaiUpdateFormInput = () => {
       >
         <div className="container">
           <Form.Item name="Nama" label="Nama" rules={[{ required: true }]}>
-            <Input className="input" />
+            <Input
+              className="input"
+              disabled={currentRole === "admin" ? false : true}
+            />
           </Form.Item>
           <Form.Item
             name="Email"
             label="Email"
             rules={[{ required: true, type: "email" }]}
           >
-            <Input className="input" />
+            <Input
+              className="input"
+              disabled={currentRole === "admin" ? false : true}
+            />
           </Form.Item>
           <Form.Item name="NoTelp" label="No Telp" rules={[{ required: true }]}>
-            <Input className="input" maxLength={13} />
+            <Input
+              className="input"
+              maxLength={13}
+              disabled={currentRole === "admin" ? false : true}
+            />
           </Form.Item>
           <Form.Item name="Alamat" label="Alamat" rules={[{ required: true }]}>
-            <Input className="input" />
+            <Input
+              className="input"
+              disabled={currentRole === "admin" ? false : true}
+            />
           </Form.Item>
           <Form.Item name="IdRole" label="Posisi" rules={[{ required: true }]}>
             <Select
               loading={rolesDataIsFetching}
               dropdownClassName="form-select-primary"
+              disabled={currentRole === "admin" ? false : true}
             >
               {rolesData
                 ? rolesData.map(role => (
@@ -228,19 +243,24 @@ const PegawaiUpdateFormInput = () => {
             label="Kata Sandi"
             rules={[{ required: true }]}
           >
-            <Input.Password className="input" />
+            <Input.Password
+              className="input"
+              disabled={currentRole === "admin" ? false : true}
+            />
           </Form.Item>
         </div>
-        <Form.Item className="btn-submit">
-          <Button
-            htmlType="submit"
-            block
-            className="custom-default-button secondary-button"
-            disabled={!isFormChange}
-          >
-            Simpan
-          </Button>
-        </Form.Item>
+        {currentRole === "admin" ? (
+          <Form.Item className="btn-submit">
+            <Button
+              htmlType="submit"
+              block
+              className="custom-default-button secondary-button"
+              disabled={!isFormChange}
+            >
+              Simpan
+            </Button>
+          </Form.Item>
+        ) : null}
       </Form>
     </section>
   );
