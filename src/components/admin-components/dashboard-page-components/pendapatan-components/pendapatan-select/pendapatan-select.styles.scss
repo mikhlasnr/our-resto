@@ -1,0 +1,13 @@
+.ant-select {
+  &.pendapatan-select {
+    .ant-select-selector {
+      border-radius: 10px;
+      height: 40px;
+      .ant-select-selection-item,
+      .ant-select-selection-placeholder {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

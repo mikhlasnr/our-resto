@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./dashboard-page.components.scss";
+// Handlng Redux
+import { useDispatch } from "react-redux";
+import {
+  fetchDataReport,
+  removeDataReport,
+} from "../../../../redux/report/report.action";
+
+// Import Components
 import { getCurrenDate } from "./dashboard-page.utils";
-import { Row, Col } from "antd";
+import PendapatanSection from "../pendapatan-components/pendapatan-section/pendapatan-section.components";
 const DashboardPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDataReport());
+    return () => {
+      dispatch(removeDataReport());
+    };
+  }, []);
   return (
     <div id="admin-dashboard-page">
       <header>
@@ -13,10 +28,7 @@ const DashboardPage = () => {
         </div>
       </header>
       <main>
-        <div className="pendapatan-container">
-          <div className="pendapatan-title"></div>
-          <Row className="pendapatan"></Row>
-        </div>
+        <PendapatanSection />
       </main>
     </div>
   );
