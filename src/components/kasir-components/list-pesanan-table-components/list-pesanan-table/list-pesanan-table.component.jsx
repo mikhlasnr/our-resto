@@ -15,7 +15,6 @@ const ListPesananTable = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const dataListPesanan = useSelector(selectDataListPesanan);
-  console.log(dataListPesanan);
   // START HANDLING SEARCH
   const getColumnSearchProps = (dataIndex, title) => ({
     filterDropdown: ({

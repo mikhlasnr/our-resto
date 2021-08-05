@@ -15,7 +15,7 @@ import MenuReducer from "./menu/menu.reducer";
 import MenuByIdReducer from "./menuById/menuById.reducer";
 import kategoriMenuReducer from "./kategoriMenu/kategoriMenu.reducer";
 import detailPesananReducer from "./detailPesanan/detailPesanan.reducer";
-
+import pembayaranReducer from "./pembayaran/pembayaran.reducer";
 //create persist config
 // its persist with local storage so when refresh the data won't disappeared
 // in this case we persist cart reducer
@@ -37,6 +37,7 @@ const rootReducer = combineReducers({
   menu: MenuReducer,
   menuById: MenuByIdReducer,
   kategoriMenu: kategoriMenuReducer,
+  pembayaran: pembayaranReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

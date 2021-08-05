@@ -17,7 +17,7 @@ import {
   toggleIsUploadingKategoriMenu,
   fetchDataKategoriMenu,
 } from "../../../redux/kategoriMenu/kategoriMenu.action";
-
+import { fetchDataMenu } from "../../../redux/menu/menu.action";
 // Import Component
 import { Modal, Button, Space, message, Spin } from "antd";
 import { ReactComponent as WarningIcon } from "../../../assets/icons/warningIcon.svg";
@@ -41,7 +41,7 @@ const KategoriMenuDeleteModal = () => {
         handlingDeleteImageRef();
       })
       .catch(err => {
-        message.error("Hapus pegawai gagal!");
+        message.error("Hapus Kategori gagal!");
         dispatch(toggleIsUploadingKategoriMenu());
       });
   };
@@ -53,7 +53,8 @@ const KategoriMenuDeleteModal = () => {
       .delete()
       .then(() => {
         // File deleted successfully
-        message.success("Hapus Pegawai Berhasil!");
+        message.success("Hapus Kategori Berhasil!");
+        dispatch(fetchDataMenu());
         dispatch(toggleShowModalDeleteKategoriMenu());
         dispatch(toggleIsUploadingKategoriMenu());
         dispatch(fetchDataKategoriMenu());
@@ -61,7 +62,7 @@ const KategoriMenuDeleteModal = () => {
       })
       .catch(error => {
         // Uh-oh, an error occurred!
-        message.error("Hapus pegawai gagal!");
+        message.error("Hapus Kategori gagal!");
         dispatch(toggleIsUploadingKategoriMenu());
       });
   };

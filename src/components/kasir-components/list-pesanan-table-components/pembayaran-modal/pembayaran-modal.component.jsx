@@ -8,10 +8,13 @@ import { selectModalBayarHidden } from "../../../../redux/listPesanan/listPesana
 import {
   toggleModalBayarHidden,
   removeDataPesanan,
+  toggleModalStrukHidden,
+  fetchDataListPesananKasir,
 } from "../../../../redux/listPesanan/listPesanan.action";
 import { removeDetailPesanan } from "../../../../redux/detailPesanan/detailPesanan.action";
 import { selectInfoPesanan } from "../../../../redux/detailPesanan/detailPesanan.selectors";
 import { selectCurrentUser } from "../../../../redux/user/user.selectors";
+import { fetchPembayaran } from "../../../../redux/pembayaran/pembayaran.action";
 // Import Component
 import { Modal, Skeleton, Button, Space, InputNumber, message } from "antd";
 
@@ -51,9 +54,11 @@ const PembayaranModal = () => {
         Kembalian,
       })
       .then(response => {
-        dispatch(removeDetailPesanan());
+        dispatch(fetchPembayaran(IdPesanan));
         dispatch(removeDataPesanan());
         dispatch(toggleModalBayarHidden());
+        dispatch(toggleModalStrukHidden());
+        dispatch(fetchDataListPesananKasir());
         message.success("Pembayaran Berhasil!");
       })
       .catch(error => {

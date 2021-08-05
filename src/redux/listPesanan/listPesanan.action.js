@@ -41,7 +41,7 @@ export const fetchDataListPesananKoki = () => {
 export const fetchDataListPesananKasir = () => {
   return dispatch => {
     dispatch(fetchListPesananStart());
-    axios(`/pesanan?getPesananByCurrentDay=true`)
+    axios(`/pesanan?getCurrentDay=true`)
       .then(res => {
         dispatch(fetchListPesananSuccess(res.data));
       })

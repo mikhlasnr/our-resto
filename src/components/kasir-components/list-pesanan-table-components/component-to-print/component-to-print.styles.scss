@@ -1,0 +1,38 @@
+.print-struk-container {
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1em;
+  .print-struk-header {
+    h1 {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+    }
+  }
+  .print-struk-body {
+    .dash-diveder-bottom {
+      border-bottom: 1px dashed;
+      padding-bottom: 8px;
+      margin-bottom: 1em;
+    }
+
+    .print-struk-item {
+      display: flex;
+      justify-content: space-between;
+    }
+    .menu-pesanan-item {
+      .menu-pesanan-item-info {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        margin-left: -8px;
+      }
+    }
+    p {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 36px;
+    }
+  }
+}

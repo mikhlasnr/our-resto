@@ -10,36 +10,38 @@ import {
   fetchDataDetailPesanan,
   setInfoPemesan,
 } from "../../../../redux/detailPesanan/detailPesanan.action";
-
+import { fetchPembayaran } from "../../../../redux/pembayaran/pembayaran.action";
 // Import Components
-import { Button } from "antd";
+import { Button, Skeleton } from "antd";
 
 const ListPesananTableAction = ({ record }) => {
+  const { IdPesanan, StatusBayar } = record;
   const dispatch = useDispatch();
   const handlingActionLihat = () => {
-    dispatch(setInfoPemesan(record));
-    dispatch(fetchDataDetailPesanan(record.IdPesanan));
+    dispatch(fetchPembayaran(IdPesanan));
+    dispatch(fetchDataDetailPesanan(IdPesanan));
     dispatch(toggleModalStrukHidden());
   };
   const handlingActionBayar = () => {
     dispatch(setInfoPemesan(record));
-    dispatch(fetchDataDetailPesanan(record.IdPesanan));
+    dispatch(fetchDataDetailPesanan(IdPesanan));
     dispatch(toggleModalDetailPesananHidden());
   };
 
   const handlingRenderBtnAction = () => {
-    if (record.StatusBayar === "belum")
+    if (StatusBayar === "belum")
       return (
         <Button className="btn-action-secondary" onClick={handlingActionBayar}>
           Bayar
         </Button>
       );
-    if (record.StatusBayar === "lunas")
+    if (StatusBayar === "lunas")
       return (
         <Button className="btn-action-primary" onClick={handlingActionLihat}>
           Lihat
         </Button>
       );
+    return <Skeleton.Button />;
   };
 
   return handlingRenderBtnAction();

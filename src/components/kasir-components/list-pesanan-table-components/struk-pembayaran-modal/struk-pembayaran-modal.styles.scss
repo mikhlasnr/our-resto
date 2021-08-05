@@ -1,48 +1,43 @@
-.struk-pembayaran {
-  .struk-pembayaran-container {
+.detail-pesanan {
+  .detail-pesanan-container {
     text-align: center;
-    .struk-pembayaran-header {
+    .detail-pesanan-header {
       h1 {
         font-weight: 600;
         font-size: 24px;
         line-height: 36px;
       }
     }
-    .struk-pembayaran-body {
-      padding-top: 20px;
+    .detail-pesanan-body {
       .dash-diveder-bottom {
         border-bottom: 1px dashed;
-        padding: 1em 0;
+        padding-bottom: 8px;
+        margin-bottom: 1em;
       }
 
-      .struk-info-kasir,
-      .list-pesanan-title {
+      .detail-pesanan-item {
         display: flex;
         justify-content: space-between;
       }
-
-      .list-pesanan-title {
-        p {
-          font-weight: 600;
-          font-size: 18px;
+      .menu-pesanan-item {
+        .menu-pesanan-item-info {
+          display: grid;
+          grid-template-columns: 30px 1fr;
+          margin-left: -8px;
         }
       }
-
       p {
         font-style: normal;
         font-weight: 500;
         font-size: 18px;
         line-height: 36px;
       }
-      .detail-menu-pesanan {
-        h2 {
-          font-weight: 600;
-          font-size: 18px;
-          text-align: center;
-          padding: 0.5em 0;
-        }
-        margin-bottom: 2em;
-      }
     }
+    .detail-pesanan-footer {
+      padding-top: 1em;
+    }
+  }
+  .print-component-container {
+    display: none;
   }
 }

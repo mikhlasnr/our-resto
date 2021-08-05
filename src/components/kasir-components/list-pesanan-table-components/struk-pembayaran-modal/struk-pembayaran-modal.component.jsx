@@ -1,125 +1,149 @@
 import React, { useRef } from "react";
 import "./struk-pembayaran-modal.styles.scss";
-import axios from "axios";
 
 // Handling Redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectListPesananLihatModaltHidden } from "../../../../redux/listPesanan/listPesanan.selectors";
-import { toggleListPesananLihatModalHidden } from "../../../../redux/listPesanan/listPesanan.action";
+import { selectModalStrukrHidden } from "../../../../redux/listPesanan/listPesanan.selectors";
+import { toggleModalStrukHidden } from "../../../../redux/listPesanan/listPesanan.action";
 import { removeDetailPesanan } from "../../../../redux/detailPesanan/detailPesanan.action";
-import {
-  selectDataDetailPesanan,
-  selectInfoPesanan,
-} from "../../../../redux/detailPesanan/detailPesanan.selectors";
-import { selectCurrentUser } from "../../../../redux/user/user.selectors";
-
-// Handling print
-import { useReactToPrint } from "react-to-print";
-import { ComponentToPrint } from "../list-pesanan-print/list-pesanan-print.components";
-
+import { selectDataDetailPesanan } from "../../../../redux/detailPesanan/detailPesanan.selectors";
+import { selectDataPembayaran } from "../../../../redux/pembayaran/pembayaran.selectors";
+import { removeDataPembayaran } from "../../../../redux/pembayaran/pembayaran.action";
 // Import Component
-import { Modal, Spin, Skeleton, Button, message } from "antd";
-
+import { Modal, Skeleton, Button } from "antd";
+import { useReactToPrint } from "react-to-print";
+import ComponentToPrint from "../component-to-print/component-to-print.components";
 const StrukPembayaranModal = () => {
-  // START HANDLING PRINT
+  const dispatch = useDispatch();
+  const isModalVisible = useSelector(selectModalStrukrHidden);
+  const dataDetailPesanan = useSelector(selectDataDetailPesanan);
+  const dataPemesan = useSelector(selectDataPembayaran);
+  // START Handling Print
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    removeAfterPrint: () => true,
-    documentTitle: () => `invoice-ourresto`,
   });
-  // END HANDLING PRINT
-
-  const dispatch = useDispatch();
-  const isModalVisible = useSelector(selectListPesananLihatModaltHidden);
-  const dataDetailPesanan = useSelector(selectDataDetailPesanan);
-  const infoPemesan = useSelector(selectInfoPesanan);
-  const currentUser = useSelector(selectCurrentUser);
+  // END Handling Print
 
   const handlingModalOnCancel = () => {
+    dispatch(removeDataPembayaran());
     dispatch(removeDetailPesanan());
-    dispatch(toggleListPesananLihatModalHidden());
+    dispatch(toggleModalStrukHidden());
   };
 
   const handlingRenderMenuPesanan = () =>
     dataDetailPesanan.map(item => {
       return (
-        <div className="list-pesanan-title" key={item.IdMenu}>
-          <p>{item.NamaMenu}</p>
-          <p>{item.Quantity}</p>
+        <div
+          className="detail-pesanan-item menu-pesanan-item"
+          key={item.IdMenu}
+        >
+          <div className="menu-pesanan-item-info">
+            <p>{item.Quantity}</p>
+            <p>{item.NamaMenu}</p>
+          </div>
+          <p>{`${item.Harga}`}</p>
         </div>
       );
     });
   const handlingRenderMenuPesananSkeleton = () =>
     [1, 2, 3].map(item => {
       return (
-        <div className="detail-menu-pesanan-item" key={item}>
+        <div className="detail-pesanan-item" key={item}>
+          <Skeleton.Button active={true} />
           <Skeleton.Button active={true} />
         </div>
       );
     });
-  // Handling display date
-  const handlingFormatDate = () => {
-    if (infoPemesan) {
-      return infoPemesan.TanggalDibuat.replace("T", " ").split(".")[0];
-    }
-    return "";
-  };
+
   return (
-    <>
-      <Modal
-        className="struk-pembayaran"
-        visible={!isModalVisible}
-        onCancel={handlingModalOnCancel}
-        footer={null}
-        closable={false}
-        centered
-      >
-        <Spin spinning={false}>
-          <div className="struk-pembayaran-container">
-            <div className="struk-pembayaran-header">
-              <h1>Struk Pembayaran</h1>
-            </div>
-            <div className="struk-pembayaran-body">
-              <div className="struk-info-kasir dash-diveder-bottom">
-                {infoPemesan ? (
-                  <p>Nama Kasir</p>
-                ) : (
-                  <Skeleton.Button active={true} />
-                )}
-                {infoPemesan ? (
-                  <p>{currentUser.Nama}</p>
-                ) : (
-                  <Skeleton.Button active={true} />
-                )}
-              </div>
-              <div className="struk-info-kasir dash-diveder-bottom">
-                {infoPemesan ? <p></p> : <Skeleton.Button active={true} />}
-                {infoPemesan ? (
-                  <p>{handlingFormatDate()}</p>
-                ) : (
-                  <Skeleton.Button active={true} />
-                )}
-              </div>
-              <div className="detail-menu-pesanan dash-diveder-bottom">
-                {/* <h2>Menu Pesanan</h2> */}
-                {dataDetailPesanan
-                  ? handlingRenderMenuPesanan()
-                  : handlingRenderMenuPesananSkeleton()}
-              </div>
-            </div>
-            <Button className="btn-action-secondary" onClick={handlePrint}>
-              Cetak
-            </Button>
+    <Modal
+      className="detail-pesanan"
+      visible={!isModalVisible}
+      onCancel={handlingModalOnCancel}
+      footer={null}
+      closable={false}
+      centered
+    >
+      <div className="detail-pesanan-container">
+        <div className="detail-pesanan-header">
+          <h1>Struk Pembayaran</h1>
+        </div>
+        <div className="detail-pesanan-body">
+          <div className="detail-pesanan-item dash-diveder-bottom">
+            {dataPemesan ? <p>kasir</p> : <Skeleton.Button active={true} />}
+            {dataPemesan ? (
+              <p>{dataPemesan.NamaKasir}</p>
+            ) : (
+              <Skeleton.Button active={true} />
+            )}
           </div>
-        </Spin>
-      </Modal>
-      <ComponentToPrint
-        ref={componentRef}
-        infoPemesan={infoPemesan}
-        dataDetailPesanan={dataDetailPesanan}
-      />
-    </>
+          <div className="dash-diveder-bottom">
+            {dataDetailPesanan
+              ? handlingRenderMenuPesanan()
+              : handlingRenderMenuPesananSkeleton()}
+          </div>
+          <div className="dash-diveder-bottom">
+            <div className="detail-pesanan-item">
+              {dataPemesan ? (
+                <p>Subtotal</p>
+              ) : (
+                <Skeleton.Button active={true} />
+              )}
+              {dataPemesan ? (
+                <p>{dataPemesan.TotalHarga}</p>
+              ) : (
+                <Skeleton.Button active={true} />
+              )}
+            </div>
+            <div className="detail-pesanan-item">
+              {dataPemesan ? <p>Total</p> : <Skeleton.Button active={true} />}
+              {dataPemesan ? (
+                <p>{dataPemesan.TotalHarga}</p>
+              ) : (
+                <Skeleton.Button active={true} />
+              )}
+            </div>
+            <div className="detail-pesanan-item">
+              {dataPemesan ? <p>Payment</p> : <Skeleton.Button active={true} />}
+              {dataPemesan ? (
+                <p>{dataPemesan.Nominal}</p>
+              ) : (
+                <Skeleton.Button active={true} />
+              )}
+            </div>
+            <div className="detail-pesanan-item">
+              {dataPemesan ? <p>Kembali</p> : <Skeleton.Button active={true} />}
+              {dataPemesan ? (
+                <p>{dataPemesan.Kembalian}</p>
+              ) : (
+                <Skeleton.Button active={true} />
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="detail-pesanan-footer">
+          <Button
+            block
+            className="btn-action-secondary"
+            disabled={dataPemesan ? false : true}
+            onClick={handlePrint}
+          >
+            Cetak
+          </Button>
+        </div>
+
+        {dataPemesan && dataDetailPesanan ? (
+          <div className="print-component-container">
+            <ComponentToPrint
+              ref={componentRef}
+              dataPemesan={dataPemesan}
+              dataDetailPesanan={dataDetailPesanan}
+            />
+          </div>
+        ) : null}
+      </div>
+    </Modal>
   );
 };
 

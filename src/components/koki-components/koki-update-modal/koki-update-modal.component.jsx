@@ -37,12 +37,12 @@ const KokiUpdateModal = () => {
       .then(response => {
         dispatch(toggleModalUpdateStatusMasakHidden());
         dispatch(fetchDataListPesananKoki());
-        message.success("Pembaharuan Status Antar Berhasil!");
+        message.success("Pembaharuan Status Masak Berhasil!");
         setIsUploading(false);
       })
       .catch(err => {
         setIsUploading(false);
-        message.error("Pembaharuan Status Antar Gagal!");
+        message.error("Pembaharuan Status Masak Gagal!");
       });
   };
 

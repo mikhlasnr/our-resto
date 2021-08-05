@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 const detailPesananReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // *====START FETCH DATA KATEGORI MENU====
+    // *====START FETCH DATA DETAIL PESANAN====
     case DetailPesananActionTypes.FETCH_DETAIL_PESANAN_START:
       return {
         ...state,
@@ -28,18 +28,20 @@ const detailPesananReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
+    // *====END FETCH DETAIL PESANAN====
+    // *====START HANDLING FOR CRUD====
     case DetailPesananActionTypes.SET_INFO_PEMESAN:
       return {
         ...state,
         infoPemesan: action.payload,
       };
-    // *====END FETCH DATA KATEGORI MENU====
     case DetailPesananActionTypes.REMOVE_DATA_DETAIL_PESANAN:
       return {
         ...state,
         dataDetailPesanan: null,
         infoPemesan: null,
       };
+    // *====END HANDLING FOR CRUD====
     // *====START HANDLING UPLOAD====
     case DetailPesananActionTypes.TOGGLE_IS_UPLOADING_DETAIL_PESANAN:
       return {
