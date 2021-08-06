@@ -32,6 +32,7 @@ const PelayanSearch = () => {
         className="input-search"
         onChange={handlingSearch}
         bordered={false}
+        allowClear
       />
     </div>
   );

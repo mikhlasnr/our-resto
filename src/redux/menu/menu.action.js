@@ -55,6 +55,9 @@ export const setSearchMenuField = searchValue => ({
   type: MenuActionTypes.SET_SEARCH_MENU_FIELD,
   payload: searchValue,
 });
+export const removeSearchMenuField = () => ({
+  type: MenuActionTypes.REMOVE_SEARCH_MENU_FIELD,
+});
 // *====START HANDLING UPLOAD====
 export const setInputProfileMenu = imgFile => ({
   type: MenuActionTypes.SET_INPUT_PROFILE_MENU,

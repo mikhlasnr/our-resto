@@ -39,6 +39,11 @@ const MenuReducer = (state = INITIAL_STATE, action) => {
         ...state,
         searchField: action.payload,
       };
+    case MenuActionTypes.REMOVE_SEARCH_MENU_FIELD:
+      return {
+        ...state,
+        searchField: "",
+      };
     // *====START HANDLING SHOW MODAL====
     case MenuActionTypes.TOGGLE_SHOW_MODAL_ADD_MENU:
       return {

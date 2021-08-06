@@ -5,7 +5,7 @@ import "./pelayan-profile.styles.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { removeCurrentUser } from "../../../redux/user/user.action";
 import { toggleListPesananModalHidden } from "../../../redux/listPesanan/listPesanan.action";
-
+import { removeSearchMenuField } from "../../../redux/menu/menu.action";
 // import components
 import { Avatar, Badge, Image } from "antd";
 import { Menu, Dropdown } from "antd";
@@ -17,7 +17,10 @@ const PelayanProfile = () => {
   const dispatch = useDispatch();
 
   const handlingMenuClick = ({ key }) => {
-    if (key === "logout") dispatch(removeCurrentUser());
+    if (key === "logout") {
+      dispatch(removeCurrentUser());
+      dispatch(removeSearchMenuField());
+    }
     if (key === "list-pesanan") dispatch(toggleListPesananModalHidden());
   };
   const menu = (
