@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 
 // Handling Redux
-import { useDispatch } from "react-redux";
-import { fetchDataPegawai } from "../../../../redux/pegawai/pegawai.action";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchDataPegawaiPemilik,
+  fetchDataPegawaiAdmin,
+} from "../../../../redux/pegawai/pegawai.action";
 import { fetchDataRoles } from "../../../../redux/roles/roles.action";
+import { selectCurrentUser } from "../../../../redux/user/user.selectors";
 
 // import component
 import PegawaiTable from "../pegawai-table-components/pegawai-table/pegawai-table.component";
@@ -12,9 +16,12 @@ import PegawaiUpdateModal from "../pegawai-update-components/pegawai-update-moda
 import PegawaiDeleteModal from "../pegawai-delete-modal/admin-pegawai-delete-modal.component";
 const PegawaiPage = () => {
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    dispatch(fetchDataPegawai());
+    currentUser.NamaRole === "admin"
+      ? dispatch(fetchDataPegawaiAdmin())
+      : dispatch(fetchDataPegawaiPemilik(currentUser.IdUser));
     dispatch(fetchDataRoles());
   }, [dispatch]);
 

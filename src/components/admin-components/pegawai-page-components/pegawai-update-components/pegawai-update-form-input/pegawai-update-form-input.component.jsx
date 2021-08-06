@@ -24,7 +24,7 @@ import {
 import { selectUserData } from "../../../../../redux/userById/userById.selectors";
 
 // PEGAWAI REDUCER
-import { fetchDataPegawai } from "../../../../../redux/pegawai/pegawai.action";
+import { fetchDataPegawaiAdmin } from "../../../../../redux/pegawai/pegawai.action";
 
 import { selectCurrentUserRole } from "../../../../../redux/user/user.selectors";
 // Import Component
@@ -107,7 +107,7 @@ const PegawaiUpdateFormInput = () => {
           handlingUploaImage();
         } else {
           dispatch(toggleIsUploading());
-          dispatch(fetchDataPegawai());
+          dispatch(fetchDataPegawaiAdmin());
           dispatch(toggleShowModalUpdatePegawai());
           message.success("Pembaharuan Pegawai Berhasil!");
         }
@@ -140,7 +140,7 @@ const PegawaiUpdateFormInput = () => {
               .put(`/user/add/image/${userById.IdUser}`, { ImageUrl: url })
               .then(response => {
                 message.success("Pembaharuan Pegawai Berhasil!");
-                dispatch(fetchDataPegawai());
+                dispatch(fetchDataPegawaiAdmin());
                 dispatch(toggleShowModalUpdatePegawai());
                 dispatch(toggleIsUploading());
               })

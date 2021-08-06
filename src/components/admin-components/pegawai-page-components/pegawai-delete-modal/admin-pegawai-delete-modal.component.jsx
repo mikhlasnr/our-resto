@@ -13,7 +13,7 @@ import {
 import {
   toggleShowModalDeletePegawai,
   toggleIsUploading,
-  fetchDataPegawai,
+  fetchDataPegawaiAdmin,
 } from "../../../../redux/pegawai/pegawai.action";
 import { removeCurrentUserById } from "../../../../redux/userById/userById.action";
 
@@ -48,7 +48,7 @@ const PegawaiDeleteModal = () => {
         } else {
           dispatch(toggleShowModalDeletePegawai());
           dispatch(toggleIsUploading());
-          dispatch(fetchDataPegawai());
+          dispatch(fetchDataPegawaiAdmin());
           message.success("Hapus Pegawai Berhasil!");
           dispatch(removeCurrentUserById());
         }
@@ -68,7 +68,7 @@ const PegawaiDeleteModal = () => {
         // File deleted successfully
         dispatch(toggleShowModalDeletePegawai());
         dispatch(toggleIsUploading());
-        dispatch(fetchDataPegawai());
+        dispatch(fetchDataPegawaiAdmin());
         message.success("Hapus Pegawai Berhasil!");
         dispatch(removeCurrentUserById());
       })

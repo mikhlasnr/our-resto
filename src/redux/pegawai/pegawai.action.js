@@ -2,10 +2,10 @@ import PegawaiActionTypes from "./pegawai.types";
 import axios from "axios";
 
 // *====START FETCH DATA PEGAWAI====
-export const fetchDataPegawai = () => {
+export const fetchDataPegawaiAdmin = () => {
   return dispatch => {
     dispatch(fetchPegawaiStart());
-    axios("/users")
+    axios("/users?adminHidden=true")
       .then(res => {
         dispatch(fetchPegawaiSuccess(res.data));
       })
@@ -14,7 +14,18 @@ export const fetchDataPegawai = () => {
       });
   };
 };
-
+export const fetchDataPegawaiPemilik = IdUser => {
+  return dispatch => {
+    dispatch(fetchPegawaiStart());
+    axios(`/users?currentUserHidden=${IdUser}`)
+      .then(res => {
+        dispatch(fetchPegawaiSuccess(res.data));
+      })
+      .catch(error => {
+        dispatch(fetchPegawaiFailure(error.message));
+      });
+  };
+};
 const fetchPegawaiStart = () => ({
   type: PegawaiActionTypes.FETCH_PEGAWAI_START,
 });

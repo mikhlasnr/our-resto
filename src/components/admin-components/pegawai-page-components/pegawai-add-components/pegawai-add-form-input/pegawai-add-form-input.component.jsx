@@ -20,7 +20,7 @@ import {
   toggleIsUploading,
   handlingIsEmailExist,
 } from "../../../../../redux/pegawai/pegawai.action";
-import { fetchDataPegawai } from "../../../../../redux/pegawai/pegawai.action";
+import { fetchDataPegawaiAdmin } from "../../../../../redux/pegawai/pegawai.action";
 
 // Import Component
 import { Form, Input, Select, Button, message } from "antd";
@@ -84,7 +84,7 @@ const PegawaiAddFormInput = () => {
           form.resetFields();
           message.success("Tambah Pegawai Berhasil!");
           dispatch(toggleIsUploading());
-          dispatch(fetchDataPegawai());
+          dispatch(fetchDataPegawaiAdmin());
           dispatch(toggleShowModalAddPegawai());
         }
       })
@@ -114,7 +114,7 @@ const PegawaiAddFormInput = () => {
               .put(`/user/add/image/${IdUser}`, { ImageUrl: url })
               .then(response => {
                 message.success("Tambah Pegawai Berhasil!");
-                dispatch(fetchDataPegawai());
+                dispatch(fetchDataPegawaiAdmin());
                 dispatch(toggleShowModalAddPegawai());
                 dispatch(toggleIsUploading());
                 form.resetFields();
