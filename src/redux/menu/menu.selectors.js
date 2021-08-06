@@ -33,6 +33,11 @@ export const selectShowModalUpdateMenu = createSelector(
   menu => menu.showModalUpdateMenu
 );
 // *====END SELECTOR HANDLING MODAL====
+// Handling search menu
+export const selectSearchField = createSelector(
+  [selectMenu],
+  menu => menu.searchField
+);
 // *====START SELECTOR HANDLING FOR UPLOADING====
 export const selectInputProfileMenu = createSelector(
   [selectMenu],

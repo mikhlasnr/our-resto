@@ -53,7 +53,6 @@ const BuatPesananForm = () => {
       .catch(error => {
         console.log(error);
         message.error("Buat Pesanan Gagal!");
-        dispatch(toggleIsUploadingPesanan());
       });
   };
   const handlingUpdateStok = () => {
@@ -67,7 +66,6 @@ const BuatPesananForm = () => {
             form.resetFields();
             message.success("Buat Pesanan Berhasil!");
             dispatch(toggleIsUploadingPesanan());
-            dispatch(fetchDataMenu());
             dispatch(toggleCheckoutModalHidden());
             dispatch(clearPesananItems());
           })

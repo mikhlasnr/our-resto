@@ -50,7 +50,11 @@ export const toggleShowModalUpdateMenu = () => ({
   type: MenuActionTypes.TOGGLE_SHOW_MODAL_UPDATE_MENU,
 });
 // *====END HANDLING SHOW MODAL====
-
+// Handling Search
+export const setSearchMenuField = searchValue => ({
+  type: MenuActionTypes.SET_SEARCH_MENU_FIELD,
+  payload: searchValue,
+});
 // *====START HANDLING UPLOAD====
 export const setInputProfileMenu = imgFile => ({
   type: MenuActionTypes.SET_INPUT_PROFILE_MENU,

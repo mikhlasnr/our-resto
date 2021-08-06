@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   dataMenu: null,
   isFetching: false,
   errorMessage: undefined,
+  searchField: "",
   showModalAddMenu: false,
   showModalDeleteMenu: false,
   showModalUpdateMenu: false,
@@ -32,6 +33,12 @@ const MenuReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
       };
     // *====END FETCH DATA  MENU====
+    // handling search menu
+    case MenuActionTypes.SET_SEARCH_MENU_FIELD:
+      return {
+        ...state,
+        searchField: action.payload,
+      };
     // *====START HANDLING SHOW MODAL====
     case MenuActionTypes.TOGGLE_SHOW_MODAL_ADD_MENU:
       return {

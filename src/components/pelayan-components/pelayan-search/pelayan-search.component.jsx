@@ -1,10 +1,18 @@
 import React from "react";
+import "./pelayan-search.styles.scss";
+
+import { useDispatch } from "react-redux";
+import { setSearchMenuField } from "../../../redux/menu/menu.action";
+
 import { Input, Image } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-import "./pelayan-search.styles.scss";
-
 const PelayanSearch = () => {
+  const dispatch = useDispatch();
+  const handlingSearch = e => {
+    dispatch(setSearchMenuField(e.currentTarget.value));
+    console.log(e.currentTarget.value);
+  };
   return (
     <div id="dashboard-pelayan-search">
       <div className="search-logo">
@@ -22,6 +30,7 @@ const PelayanSearch = () => {
           <SearchOutlined style={{ fontSize: "24px", color: "#FF5348" }} />
         }
         className="input-search"
+        onChange={handlingSearch}
         bordered={false}
       />
     </div>

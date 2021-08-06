@@ -11,7 +11,7 @@ import {
 import {
   toggleListPesananDeleteModalHidden,
   toggleIsUploadingListPesanan,
-  fetchDataListPesanan,
+  fetchDataListPesananPelayan,
 } from "../../../../../redux/listPesanan/listPesanan.action";
 import { removeDetailPesanan } from "../../../../../redux/detailPesanan/detailPesanan.action";
 import {
@@ -64,7 +64,7 @@ const ListPesananDeleteModal = () => {
           })
           .then(res => {
             dispatch(fetchDataMenu());
-            dispatch(fetchDataListPesanan());
+            dispatch(fetchDataListPesananPelayan());
             dispatch(toggleIsUploadingListPesanan());
             dispatch(toggleListPesananDeleteModalHidden());
             message.success("Hapus Pesanan Berhasil!");
